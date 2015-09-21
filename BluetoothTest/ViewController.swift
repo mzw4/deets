@@ -18,7 +18,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
         
         view.addSubview(label)
-        label.setTranslatesAutoresizingMaskIntoConstraints(false)
+        label.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 0.0))
         
@@ -28,20 +28,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B7D1027D-6788-416E-994F-EA11075F1765"), identifier: "TEST")
+        let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B7D1027D-6788-416E-994F-EA11075F1765")!, identifier: "TEST")
         
         locationManager.startRangingBeaconsInRegion(region)
         
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func locationManager(manager: CLLocationManager!, didRangeBeacons beacons: [AnyObject]!, inRegion region: CLBeaconRegion!) {
+    func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
         
         var beaconMajor = 0
         var rssi = 0
         
         for beacon in beacons{
-            beaconMajor = beacon.major as! Int
+            beaconMajor = beacon.major as Int
             rssi = beacon.rssi
         }
         
@@ -65,8 +65,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             view.backgroundColor = UIColor.redColor()
         }
         
-        println(beaconMajor)
-        println(rssi)
+        print(beaconMajor)
+        print(rssi)
     }
     
 
