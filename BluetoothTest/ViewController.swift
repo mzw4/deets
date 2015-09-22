@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import CoreBluetooth
 
+import Firebase
+
 extension UIView {
     func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
@@ -34,6 +36,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     
     var label = UILabel()
 
+    let requestHandler = RequestHandler() // for http requests
+
     var customActivity = UIImageView()
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
     var contactView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark)) as UIVisualEffectView
@@ -41,12 +45,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     
     var viewContacts = UIButton()
     
-    
+    let profilePicture = UIImageView()
+
     var phone = "555-555-5555"
     var email = "john.smith@gmail.com"
     var companyName = "Uber Gizmos Inc."
     var titleName = "Associate Director"
-    var peopleMet:[Int] = []
+    var peopleMet:[String] = []
+    var userNameText = "Sample User Name"
+
+    // Create a reference to a Firebase location
+    let userref = Firebase(url:"https://fiery-heat-4470.firebaseio.com/users")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,13 +63,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         /* START BROADCASTING BEACON */
         
         let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
-        let major: CLBeaconMajorValue = 001
+        let major: CLBeaconMajorValue = 123
         let minor: CLBeaconMinorValue = 678
         
         beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: "TEST")
         peripheral = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         beaconData = beacon.peripheralDataWithMeasuredPower(nil)
-        
+
         
         /* START LISTENING FOR BEACON */
         
@@ -72,12 +81,64 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         locationManager.startRangingBeaconsInRegion(region)
         
         createView()
+        
+        // Firebase stuff
+        
+        // Write data to Firebase
+        // Add user data
+//        userref.childByAppendingPath("000").updateChildValues(["email":"dtrump@president.com", "name": "Donald Trump", "title":"future president", "profile_pic":"http://i.imgur.com/gGwaKO2.jpg", "phone":"111-111-1111"])
+//        userref.childByAppendingPath("999").updateChildValues(["email":"jonsnow@got.com", "name": "Jon Snow", "title":"Lord Commander of the Night's Watch", "profile_pic":"http://i.imgur.com/oAM2HAo.png", "phone":"222-222-2222"])
+//        userref.childByAppendingPath("234").updateChildValues(["email":"jonsnow@got.com", "name": "Jon Snow", "title":"Lord Commander of the Night's Watch", "profile_pic":"http://i.imgur.com/oAM2HAo.png", "phone":"111-111-1111"])
+//        userref.childByAppendingPath("123").updateChildValues(["email":"mzw4@cornell", "name": "Mike Wang", "title":"Cornell Tech Student, Parkour master", "profile_pic":"http://i.imgur.com/vei6Ryq.jpg", "phone":"781-526-1943"])
 
+        
+        // use ATS for security eventually
+//        let params = ["client_id": "30e036d353d740b", "response_type": "token", "state": ""]
+//        requestHandler.sendRequest("https://api.imgur.com/oauth2/authorize", method: "GET", params: params, completionHandler: responseHandler)
+//        
+//        firebaseRootRef.createUser("bobtony@example.com", password: "correcthorsebatterystaple",
+//            withValueCompletionBlock: { error, result in
+//                if error != nil {
+//                    // There was an error creating the account
+//                    print("error creating account: \(error)")
+//                } else {
+//                    let uid = result["uid"] as? String
+//                    print("Successfully created user account with uid: \(uid)")
+//                }
+//        })
+//        
+//        firebaseRootRef.authUser("bobtony@example.com", password: "correcthorsebatterystaple",
+//            withCompletionBlock: { error, authData in
+//                if error != nil {
+//                    // There was an error logging in to this account
+//                    print("Error logging in! \(error)")
+//                } else {
+//                    // We are now logged in
+//                    let email = authData.providerData["email"]
+//                    print("\(authData) logged in with email \(email)")
+//                }
+//        })
         view.layoutIfNeeded()
         
-        testCard()
+//        testCard()
         
         // Do any additional setup after loading the view, typically from a nib.
+    }
+
+    func displayUserInfo(info: NSDictionary) {
+        let url = NSURL(string: info.objectForKey("profile_pic") as! String)
+        let img_data = NSData(contentsOfURL: url!)
+        let img = UIImage(data: img_data!)
+
+        let imgview = UIImageView(image: img)
+        imgview.layer.masksToBounds = true
+        imgview.layer.cornerRadius = (img?.size.height)!/2
+        
+        self.view.addSubview(imgview)
+    }
+    
+    func responseHandler(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void {
+        print("Response")
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager){
@@ -89,34 +150,59 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         }
     }
     
-    
-    
     func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
-        var beaconMajor = 0
-        var rssi: Int
+        var beaconMajor = ""
+        var rssi = 0
         
         
         for beacon in beacons{
-            beaconMajor = beacon.major as Int
+            beaconMajor = "\(beacon.major)"
             rssi = beacon.rssi
+            print(rssi)
+        }
+        
+        if (rssi > 50) {
+            return
         }
         
         /* Use beaconMajor as closes becaon - send that ID to firebase to retrieve contact information */
-        
         if peopleMet.contains(beaconMajor){
             print("Person already met")
         }
         else{
-            if (beaconMajor == 000)
-            {
-                topConstraint.constant = 0.0
-                UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
-                    self.view.layoutIfNeeded()
-                }, completion: nil)
-                peopleMet.append(beaconMajor)
-            
-            }
+//            if (beaconMajor == 000)
+//            {
+                // Attach a closure to read the data at our posts reference
+                userref.childByAppendingPath(beaconMajor).observeEventType(.Value, withBlock: { snapshot in
+                    print(snapshot.value)
+                    self.populateUserInfo(snapshot.value as! NSDictionary)
+                    self.peopleMet.append(beaconMajor)
+
+                    }, withCancelBlock: { error in
+                        print(error.description)
+                })
+//            }
         }
+    }
+    
+    func populateUserInfo(info: NSDictionary) {
+        phone = info.objectForKey("phone") as! String
+        email = info.objectForKey("email") as! String
+        companyName = info.objectForKey("phone") as! String
+        titleName = info.objectForKey("title") as! String
+        userNameText = info.objectForKey("name") as! String
+        
+        let url = NSURL(string: info.objectForKey("profile_pic") as! String)
+        let img_data = NSData(contentsOfURL: url!)
+        profilePicture.image = UIImage(data: img_data!)
+        
+        // Load fields into the card view
+        detailCardView()
+
+        topConstraint.constant = 0.0
+        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
+            self.view.layoutIfNeeded()
+            }, completion: nil)
     }
     
     func testCard(){
@@ -146,7 +232,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         label.textColor = UIColor.whiteColor()
         label.font = UIFont(name: label.font.fontName, size: 21.0)
         
-
         view.addSubview(customActivity)
         customActivity.translatesAutoresizingMaskIntoConstraints = false
         customActivity.image = UIImage(named: "Radar2.png")
@@ -181,13 +266,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         view.addConstraint(NSLayoutConstraint(item: contactView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.9, constant: 0.0))
         topConstraint = NSLayoutConstraint(item: contactView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 2000.0)
         view.addConstraint(topConstraint)
-        
-        
-        detailCardView()
     }
     
     func detailCardView(){
-        let profilePicture = UIImageView()
         let phoneNumber = UILabel()
         let emailAddress = UILabel()
         let userName = UILabel()
@@ -196,8 +277,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         
         
         /* UPDATE FROM FIREBASE */
-        
-        
 
         let allContactViews = [profilePicture,userName,phoneNumber,emailAddress,company,title]
         
@@ -206,8 +285,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
             items.translatesAutoresizingMaskIntoConstraints = false
         }
         
-        
-        profilePicture.image = UIImage(named: "sample2.png")
         profilePicture.layer.cornerRadius = 25.0
         profilePicture.clipsToBounds = true
         profilePicture.contentMode = UIViewContentMode.ScaleAspectFill
@@ -216,13 +293,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         contactView.addConstraint(NSLayoutConstraint(item: profilePicture, attribute: .Left, relatedBy: .Equal, toItem: contactView, attribute: .Left, multiplier: 1.0, constant: 20.0))
         contactView.addConstraint(NSLayoutConstraint(item: profilePicture, attribute: .Top, relatedBy: .Equal, toItem: contactView, attribute: .Top, multiplier: 1.0, constant: 30.0))
         
-        userName.text = "Sample User Name"
+        userName.text = userNameText
         userName.textColor = UIColor.whiteColor()
         userName.font = UIFont(name: label.font.fontName, size: 19)
         contactView.addConstraint(NSLayoutConstraint(item: userName, attribute: .Top, relatedBy: .Equal, toItem: contactView, attribute: .Top, multiplier: 1.0, constant: 42.0))
         contactView.addConstraint(NSLayoutConstraint(item: userName, attribute: .Left, relatedBy: .Equal, toItem: profilePicture, attribute: .Right, multiplier: 1.0, constant: 20.0))
         
-        phoneNumber.text = "Phone:  \(phone)"
+        phoneNumber.text = "Phone: \(phone)"
         phoneNumber.font = UIFont(name: label.font.fontName, size: 17)
         phoneNumber.textColor = UIColor.whiteColor()
         contactView.addConstraint(NSLayoutConstraint(item: phoneNumber, attribute: .Top, relatedBy: .Equal, toItem: profilePicture, attribute: .Bottom, multiplier: 1.0, constant: 35.0))
@@ -250,7 +327,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
             
             itemCount += 1
         }
-        
     }
     
     
