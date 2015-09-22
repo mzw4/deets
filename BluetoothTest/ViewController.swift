@@ -177,7 +177,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         contactView.layer.borderWidth = 1.0
         contactView.clipsToBounds = true
         view.addConstraint(NSLayoutConstraint(item: contactView, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
-        view.addConstraint(NSLayoutConstraint(item: contactView, attribute: .Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 0.45, constant: 0.0))
+        view.addConstraint(NSLayoutConstraint(item: contactView, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 300.0))
         view.addConstraint(NSLayoutConstraint(item: contactView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.9, constant: 0.0))
         topConstraint = NSLayoutConstraint(item: contactView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 2000.0)
         view.addConstraint(topConstraint)
