@@ -33,7 +33,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     var beaconData: NSDictionary!
     var peripheral: CBPeripheralManager!
     
-    
     var label = UILabel()
 
     let requestHandler = RequestHandler() // for http requests
@@ -55,6 +54,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     var userNameText = "Sample User Name"
 
     // Create a reference to a Firebase location
+    let firebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com")
     let userref = Firebase(url:"https://fiery-heat-4470.firebaseio.com/users")
     
     override func viewDidLoad() {
@@ -63,7 +63,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         /* START BROADCASTING BEACON */
         
         let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
-        let major: CLBeaconMajorValue = 123
+        let major: CLBeaconMajorValue = 999
         let minor: CLBeaconMinorValue = 678
         
         beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: "TEST")
@@ -82,61 +82,42 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         
         createView()
         
-        // Firebase stuff
-        
         // Write data to Firebase
         // Add user data
-//        userref.childByAppendingPath("000").updateChildValues(["email":"dtrump@president.com", "name": "Donald Trump", "title":"future president", "profile_pic":"http://i.imgur.com/gGwaKO2.jpg", "phone":"111-111-1111"])
 //        userref.childByAppendingPath("999").updateChildValues(["email":"jonsnow@got.com", "name": "Jon Snow", "title":"Lord Commander of the Night's Watch", "profile_pic":"http://i.imgur.com/oAM2HAo.png", "phone":"222-222-2222"])
-//        userref.childByAppendingPath("234").updateChildValues(["email":"jonsnow@got.com", "name": "Jon Snow", "title":"Lord Commander of the Night's Watch", "profile_pic":"http://i.imgur.com/oAM2HAo.png", "phone":"111-111-1111"])
-//        userref.childByAppendingPath("123").updateChildValues(["email":"mzw4@cornell", "name": "Mike Wang", "title":"Cornell Tech Student, Parkour master", "profile_pic":"http://i.imgur.com/vei6Ryq.jpg", "phone":"781-526-1943"])
 
-        
         // use ATS for security eventually
 //        let params = ["client_id": "30e036d353d740b", "response_type": "token", "state": ""]
 //        requestHandler.sendRequest("https://api.imgur.com/oauth2/authorize", method: "GET", params: params, completionHandler: responseHandler)
-//        
-//        firebaseRootRef.createUser("bobtony@example.com", password: "correcthorsebatterystaple",
-//            withValueCompletionBlock: { error, result in
-//                if error != nil {
-//                    // There was an error creating the account
-//                    print("error creating account: \(error)")
-//                } else {
-//                    let uid = result["uid"] as? String
-//                    print("Successfully created user account with uid: \(uid)")
-//                }
-//        })
-//        
-//        firebaseRootRef.authUser("bobtony@example.com", password: "correcthorsebatterystaple",
-//            withCompletionBlock: { error, authData in
-//                if error != nil {
-//                    // There was an error logging in to this account
-//                    print("Error logging in! \(error)")
-//                } else {
-//                    // We are now logged in
-//                    let email = authData.providerData["email"]
-//                    print("\(authData) logged in with email \(email)")
-//                }
-//        })
+
+        firebaseRef.authUser("bobtony@example.com", password: "correcthorsebatterystaple",
+            withCompletionBlock: { error, authData in
+                if error != nil {
+                    // There was an error logging in to this account
+                    print("Error logging in! \(error)")
+                } else {
+                    // We are now logged in
+                    let email = authData.providerData["email"]
+                    print("\(authData) logged in with email \(email) and id \(authData.uid)")
+                }
+        })
         view.layoutIfNeeded()
         
 //        testCard()
-        
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    func displayUserInfo(info: NSDictionary) {
-        let url = NSURL(string: info.objectForKey("profile_pic") as! String)
-        let img_data = NSData(contentsOfURL: url!)
-        let img = UIImage(data: img_data!)
-
-        let imgview = UIImageView(image: img)
-        imgview.layer.masksToBounds = true
-        imgview.layer.cornerRadius = (img?.size.height)!/2
-        
-        self.view.addSubview(imgview)
     }
     
+    func createUser(email: String, password: String) {
+        firebaseRef.createUser(email, password: password,
+            withValueCompletionBlock: { error, result in
+                if error != nil {
+                    // There was an error creating the account
+                    print("error creating account: \(error)")
+                } else {
+                    let uid = result["uid"] as? String
+                    print("Successfully created user account with uid: \(uid)")
+                }
+        })
+    }
     func responseHandler(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void {
         print("Response")
     }
@@ -154,14 +135,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         var beaconMajor = ""
         var rssi = 0
         
-        
         for beacon in beacons{
             beaconMajor = "\(beacon.major)"
             rssi = beacon.rssi
             print(rssi)
         }
         
-        if (rssi > 50) {
+        if (rssi < -50 || beaconMajor.isEmpty) {
+            print("No one in range")
             return
         }
         
@@ -172,6 +153,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         else{
 //            if (beaconMajor == 000)
 //            {
+                print(beaconMajor)
+            
                 // Attach a closure to read the data at our posts reference
                 userref.childByAppendingPath(beaconMajor).observeEventType(.Value, withBlock: { snapshot in
                     print(snapshot.value)
