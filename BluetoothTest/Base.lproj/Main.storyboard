@@ -1,28 +1,143 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5FV-1Y-tUc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5FV-1Y-tUc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Event View Controller-->
+        <scene sceneID="gRH-Gd-bDZ">
+            <objects>
+                <viewController id="rGS-fr-eM4" customClass="EventViewController" customModule="BluetoothTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gH5-5s-0Z2"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qma-AC-rza"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ex0-KW-Pjo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chalk" translatesAutoresizingMaskIntoConstraints="NO" id="gBa-Sf-sXl">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="269"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z14-Bv-6RI">
+                                <rect key="frame" x="677" y="178" width="135" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="N8K-e5-HHa"/>
+                                    <constraint firstAttribute="width" constant="135" id="tmb-RS-x4P"/>
+                                </constraints>
+                                <state key="normal" title="Register Here">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="JeK-1G-PUj">
+                                <rect key="frame" x="0.0" y="277" width="600" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="RW4-PW-W8X"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Program"/>
+                                    <segment title="Activity"/>
+                                    <segment title="Network"/>
+                                </segments>
+                                <connections>
+                                    <action selector="eventSegmentAction:" destination="rGS-fr-eM4" eventType="valueChanged" id="N9K-Fi-2zu"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gl4-TK-cR4">
+                                <rect key="frame" x="518" y="228" width="57" height="30"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUw-XR-Cp4">
+                                <rect key="frame" x="18" y="228" width="58" height="30"/>
+                                <state key="normal" title="Go Back">
+                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="io15-color" translatesAutoresizingMaskIntoConstraints="NO" id="sG3-FO-BQh">
+                                <rect key="frame" x="208" y="36" width="184" height="135"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="184" id="dsg-gE-Q8q"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Google I/O" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mAE-Xp-QCJ">
+                                <rect key="frame" x="259" y="178" width="82" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New York, NY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujg-bv-AQk">
+                                <rect key="frame" x="248" y="202" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VUw-XR-Cp4" firstAttribute="leading" secondItem="ex0-KW-Pjo" secondAttribute="leadingMargin" constant="-2" id="EW1-xf-K2P"/>
+                            <constraint firstItem="JeK-1G-PUj" firstAttribute="leading" secondItem="gBa-Sf-sXl" secondAttribute="leading" id="GYk-3W-slZ"/>
+                            <constraint firstItem="gBa-Sf-sXl" firstAttribute="leading" secondItem="ex0-KW-Pjo" secondAttribute="leading" id="LkM-PK-u6c"/>
+                            <constraint firstItem="z14-Bv-6RI" firstAttribute="top" secondItem="ex0-KW-Pjo" secondAttribute="top" constant="178" id="LuY-i1-ml0"/>
+                            <constraint firstItem="z14-Bv-6RI" firstAttribute="leading" secondItem="gBa-Sf-sXl" secondAttribute="trailing" constant="77" id="Lws-uH-o2m"/>
+                            <constraint firstItem="JeK-1G-PUj" firstAttribute="trailing" secondItem="gBa-Sf-sXl" secondAttribute="trailing" id="TJQ-x1-pND"/>
+                            <constraint firstItem="gl4-TK-cR4" firstAttribute="top" secondItem="VUw-XR-Cp4" secondAttribute="top" id="TRq-A2-UYW"/>
+                            <constraint firstItem="sG3-FO-BQh" firstAttribute="top" secondItem="gH5-5s-0Z2" secondAttribute="bottom" constant="16" id="XyR-11-gv2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gl4-TK-cR4" secondAttribute="trailing" constant="5" id="Z01-Ty-RTP"/>
+                            <constraint firstItem="JeK-1G-PUj" firstAttribute="top" secondItem="VUw-XR-Cp4" secondAttribute="bottom" constant="19" id="eAF-WZ-N4g"/>
+                            <constraint firstItem="JeK-1G-PUj" firstAttribute="top" secondItem="gBa-Sf-sXl" secondAttribute="bottom" constant="8" symbolic="YES" id="gHW-RN-1YW"/>
+                            <constraint firstAttribute="trailing" secondItem="gBa-Sf-sXl" secondAttribute="trailing" id="iEt-DH-1JZ"/>
+                            <constraint firstItem="Qma-AC-rza" firstAttribute="top" secondItem="JeK-1G-PUj" secondAttribute="bottom" constant="295" id="mXg-hD-cmF"/>
+                            <constraint firstItem="VUw-XR-Cp4" firstAttribute="baseline" secondItem="gl4-TK-cR4" secondAttribute="baseline" id="rBT-EY-g6o"/>
+                            <constraint firstItem="gBa-Sf-sXl" firstAttribute="top" secondItem="ex0-KW-Pjo" secondAttribute="top" id="wa4-dG-hkD"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="OqY-t1-SXa"/>
+                    <connections>
+                        <outlet property="EventLocation" destination="Ujg-bv-AQk" id="8Ou-x8-L3V"/>
+                        <outlet property="EventTitle" destination="mAE-Xp-QCJ" id="57W-Ky-fXy"/>
+                        <outlet property="eventActivity" destination="JeK-1G-PUj" id="Peg-Ri-F75"/>
+                        <outlet property="eventIcon" destination="sG3-FO-BQh" id="E4Y-JP-Xds"/>
+                        <outlet property="eventNetwork" destination="JeK-1G-PUj" id="jdk-KG-VYs"/>
+                        <outlet property="eventProgram" destination="JeK-1G-PUj" id="qaL-B4-LbI"/>
+                        <outlet property="register" destination="gl4-TK-cR4" id="wo7-p6-M5X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hR7-nQ-OnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2193" y="-470"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="BluetoothTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="YAp-BZ-2W3"/>
+                        <viewControllerLayoutGuide type="bottom" id="wQS-wq-B2a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69w-Ws-j06">
+                                <rect key="frame" x="475" y="108" width="46" height="30"/>
+                                <state key="normal" title="Events"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="69w-Ws-j06" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="108" id="CGo-aI-Kd8"/>
+                            <constraint firstItem="69w-Ws-j06" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="475" id="XuG-dH-89o"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hTj-QX-HQr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="296"/>
+            <point key="canvasLocation" x="1289" y="295.99999999999994"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hwe-Ph-vk7">
@@ -41,7 +156,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bov-9n-1bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479" y="-396"/>
+            <point key="canvasLocation" x="479" y="-395.99999999999994"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chalk" width="3072" height="2048"/>
+        <image name="io15-color" width="800" height="600"/>
+    </resources>
 </document>
