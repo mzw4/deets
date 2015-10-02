@@ -10,13 +10,10 @@ import UIKit
 import XCTest
 
 @testable import BluetoothTest
-//@testable import Firebase
 
 class BluetoothTestTests: XCTestCase {
-    
-    // Create a reference to a Firebase location
-//    let firebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com")
-//    let userref = Firebase(url:"https://fiery-heat-4470.firebaseio.com/users")
+    // Get an instance of the main view controller
+    let viewController: ViewController = ViewController()
     
     override func setUp() {
         super.setUp()
@@ -29,29 +26,32 @@ class BluetoothTestTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testCreateUserCompletion(error: NSError!, result: [NSObject: AnyObject]!) {
+        XCTAssert(error == nil)
+        if error != nil {
+            print("Error creating user! \(error)")
+        }
     }
     
-    func testExample2() {
-        // This is an example of a functional test case.
-        XCTAssertEqual(1, 2, "They are equal")
+    // Test that we can create a user with Firebase
+    func testCreateUser() {
+        viewController.createUser("test@test.com", password: "bestpasswordever", completion: testCreateUserCompletion)
     }
     
-//    func testFirebaseLogin() {
-//        firebaseRef.authUser("bobtony@example.com", password: "correcthorsebatterystaple",
-//            withCompletionBlock: { error, authData in
-//                if error != nil {
-//                    // There was an error logging in to this account
-//                    print("Error logging in! \(error)")
-//                } else {
-//                    // We are now logged in
-//                    let email = authData.providerData["email"]
-//                    print("\(authData) logged in with email \(email) and id \(authData.uid)")
-//                }
-//        })
-//    }
+    func testFirebaseLogin() {
+        viewController.firebaseRef.authUser("test@test.com", password: "bestpasswordever",
+            withCompletionBlock: { error, authData in
+                XCTAssert(error == nil)
+                if error != nil {
+                    // There was an error logging in to this account
+                    print("Error logging in! \(error)")
+                } else {
+                    // We are now logged in
+                    let email = authData.providerData["email"]
+                    print("\(authData) logged in with email \(email) and id \(authData.uid)")
+                }
+        })
+    }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.

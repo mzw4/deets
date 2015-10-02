@@ -16,6 +16,7 @@
 		6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4D11BA282580081223C /* LaunchScreen.xib */; };
 		6188B4DF1BA282580081223C /* BluetoothTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4DE1BA282580081223C /* BluetoothTestTests.swift */; };
 		821546E960760936E7C4F975 /* libPods-BluetoothTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7556E6EE6E29C80A43C4087E /* libPods-BluetoothTest.a */; };
+		E90C2E98EEA32D8BCC1BEFE9 /* libPods-BluetoothTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7556E6EE6E29C80A43C4087E /* libPods-BluetoothTest.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90C2E98EEA32D8BCC1BEFE9 /* libPods-BluetoothTest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,9 +170,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6188B4E51BA282580081223C /* Build configuration list for PBXNativeTarget "BluetoothTestTests" */;
 			buildPhases = (
+				94EBD2E1B56C105E3BA0F8FD /* Check Pods Manifest.lock */,
 				6188B4D41BA282580081223C /* Sources */,
 				6188B4D51BA282580081223C /* Frameworks */,
 				6188B4D61BA282580081223C /* Resources */,
+				80B0E0FA9BCA45CA49179841 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,6 +275,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		80B0E0FA9BCA45CA49179841 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94EBD2E1B56C105E3BA0F8FD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -443,6 +477,7 @@
 		};
 		6188B4E61BA282580081223C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA20280748557A50A82DE35E /* Pods-BluetoothTest.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -463,6 +498,7 @@
 		};
 		6188B4E71BA282580081223C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D57BB4D432E6A2EA596C8851 /* Pods-BluetoothTest.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
