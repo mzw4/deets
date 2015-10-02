@@ -105,18 +105,21 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
 
     }
     
-    func createUser(email: String, password: String) {
+    func createUser(email: String, password: String, completion: (error: NSError!, result: [NSObject: AnyObject]!) -> Void) {
         firebaseRef.createUser(email, password: password,
-            withValueCompletionBlock: { error, result in
-                if error != nil {
-                    // There was an error creating the account
-                    print("error creating account: \(error)")
-                } else {
-                    let uid = result["uid"] as? String
-                    print("Successfully created user account with uid: \(uid)")
-                }
-        })
+            withValueCompletionBlock: completion)
     }
+    
+    func createUserCompletion(error: NSError!, result: [NSObject: AnyObject]!) {
+        if error != nil {
+            // There was an error creating the account
+            print("error creating account: \(error)")
+        } else {
+            let uid = result["uid"] as? String
+            print("Successfully created user account with uid: \(uid)")
+        }
+    }
+    
     func responseHandler(response: NSURLResponse?, data: NSData?, error: NSError?) -> Void {
         print("Response")
     }
