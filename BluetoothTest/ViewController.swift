@@ -102,8 +102,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
                 }
         })
         view.layoutIfNeeded()
-        
-//        testCard()
+
     }
     
     func createUser(email: String, password: String) {
