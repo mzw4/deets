@@ -8,7 +8,6 @@ xcode_project: BluetoothTest.xcodeproj
 xcode_scheme: BluetoothTestTests
 osx_image: beta-xcode7
 xcode_sdk: iphonesimulator8.3 
- 
-script:
-- xcodebuild clean build test -project BluetoothTest.xcodeproj -scheme BluetoothTestTests
 
+script:
+- xcodebuild clean build test -workspace BluetoothTest.xcworkspace  -scheme BluetoothTestTests -destination 'OS=9.0,name=iPhone 6' SYMROOT=$(PWD)/build
