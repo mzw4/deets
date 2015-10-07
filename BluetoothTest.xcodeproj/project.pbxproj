@@ -11,6 +11,7 @@
 		27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F1BD381BB0C34500BBE01A /* RequestHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		49912B0C1BBD9DED007CC54D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49912B0B1BBD9DED007CC54D /* CoreLocation.framework */; };
 		49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912B0D1BBDB276007CC54D /* EventViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		49912B101BC47BFD007CC54D /* EventFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		6188B4C91BA282570081223C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4C81BA282570081223C /* AppDelegate.swift */; };
 		6188B4CB1BA282570081223C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4CA1BA282570081223C /* ViewController.swift */; };
 		6188B4CE1BA282570081223C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4CC1BA282570081223C /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		27F1BD381BB0C34500BBE01A /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		49912B0B1BBD9DED007CC54D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		49912B0D1BBDB276007CC54D /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
+		49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFormViewController.swift; sourceTree = "<group>"; };
 		6188B4C31BA282570081223C /* BluetoothTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6188B4C71BA282570081223C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6188B4C81BA282570081223C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				6188B4C81BA282570081223C /* AppDelegate.swift */,
+				49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */,
 				49912B0D1BBDB276007CC54D /* EventViewController.swift */,
 				6188B4CA1BA282570081223C /* ViewController.swift */,
 				6188B4CC1BA282570081223C /* Main.storyboard */,
@@ -324,6 +327,7 @@
 				49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */,
 				6188B4CB1BA282570081223C /* ViewController.swift in Sources */,
 				274AC9221BA356530026F3FA /* ProfileView.swift in Sources */,
+				49912B101BC47BFD007CC54D /* EventFormViewController.swift in Sources */,
 				27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */,
 				6188B4C91BA282570081223C /* AppDelegate.swift in Sources */,
 			);

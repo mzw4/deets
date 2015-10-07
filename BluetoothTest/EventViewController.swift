@@ -7,14 +7,21 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
+import Firebase
 
-class EventViewController: UIViewController {
+class EventViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var eventRegister: UIButton!
+
     @IBOutlet weak var eventIcon: UIImageView!
     @IBOutlet weak var eventTitle: UILabel!
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventSegment: UISegmentedControl!
+
+    let FirebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com/")
+    let eventsRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com/events")
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +30,7 @@ class EventViewController: UIViewController {
         self.eventIcon.clipsToBounds = true;
         self.eventIcon.layer.borderWidth = 3.0;
         self.eventIcon.layer.borderColor = UIColor.whiteColor().CGColor;
+        
         
         /* PROGRAMATICALLY
         eventSegment = UISegmentedControl (items: ["Program","Activity","Network"])
@@ -40,32 +48,47 @@ class EventViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return 0
+
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let myCell = tableView.dequeueReusableCellWithIdentifier("calendar");
+        return myCell!;
+    }
+    
+    @IBAction func registerButton(sender: AnyObject) {
+        
+    }
     
     @IBAction func eventSegmentAction(sender: AnyObject) {
         if(eventSegment.selectedSegmentIndex == 0)
         {
-             //PUT A LIST OF TIMES AND EVENTS/SPEAKERS HERE
+            retrieveEventData()
         }
             
         else
             
             if(eventSegment.selectedSegmentIndex == 1)
-                
             {
                
-                //PUT A TWITTER FEED using the EVENT HASHTAG
             }
                 
             else
                 
                 if(eventSegment.selectedSegmentIndex == 2)
-                    
                 {
-                   
-                    //LIST OF USERS FRIENDS WHO ARE ATTENDING (LinkedIn?)
-        }
+                    
+                }
     }
 
+    func retrieveEventData() -> Array<AnyObject>{
+
+            }
 
     /*
     // MARK: - Navigation
