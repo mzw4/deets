@@ -19,8 +19,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     @IBOutlet weak var eventLocation: UILabel!
     @IBOutlet weak var eventSegment: UISegmentedControl!
 
-    let FirebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com/")
-    let eventsRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com/events")
+    //let FirebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com/")
+    //let eventsRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com/events")
     
     
     override func viewDidLoad() {

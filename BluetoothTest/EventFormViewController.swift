@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import Firebase
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class EventFormViewController: UIViewController, UITextFieldDelegate {
     
     var eventTitle = UITextField()
     var eventAddress = UITextField() //Thought is to change all address fields to a single Maps Query
