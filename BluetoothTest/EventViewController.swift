@@ -87,7 +87,8 @@ class EventViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
 
     func retrieveEventData() -> Array<AnyObject>{
-
+        
+        return ["0"] //Pull data from Firebase
             }
 
     /*
