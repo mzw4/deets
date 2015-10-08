@@ -21,24 +21,64 @@ class EventFormViewController: UIViewController, UITextFieldDelegate {
     let dateFormat: NSDateFormatter = NSDateFormatter()
     let startDatePicker: UIDatePicker = UIDatePicker()
     let endDatePicker: UIDatePicker = UIDatePicker()
+    var fontAwesomeIcon: UILabel!
+    let ThumbsUp = "\u{f164}"
     
+    //Company Name, Image, Description, Max Participants,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for family: String in UIFont.familyNames()
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNamesForFamilyName(family)
+            {
+                print("== \(names)")
+            }
+        }
+        
+        let label: UILabel = UILabel(frame: CGRectMake(0, 0, self.view.frame.size.width, 120))
+        label.textAlignment = NSTextAlignment.Center
+        label.text = "Create Event"
+        label.font = UIFont(name: "Courier New", size: 30)
+        label.backgroundColor = UIColor(red: 0, green: 74, blue: 255, alpha: 1.0)
+        self.view.addSubview(label)
+        
+        view.backgroundColor = UIColor(red: 0.16, green: 0.19, blue: 0.22, alpha: 1.0)
+        
+        //navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        //navigationController?.navigationBar.shadowImage = UIImage()
+        //navigationController?.navigationBar.translucent = true
+        //navigationController?.view.backgroundColor = UIColor.clearColor()
+        //UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+        //let cohesveBlue = UIColor(red: 0.0, green: 0.74, blue: 1.0, alpha: 1.0).CGColor
+        
+        
+        let labelItems: UILabel = UILabel(frame: CGRectMake(0, 200, self.view.frame.size.width, 10))
+        labelItems.textAlignment = NSTextAlignment.Center
+        labelItems.text = "Fields"
+        labelItems.font = UIFont(name: "FontAwesome", size: 12)
+        labelItems.textColor = UIColor.whiteColor()
+        labelItems.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+        self.view.addSubview(labelItems)
+        
         
         view.addSubview(eventTitle)
         eventTitle.delegate=self
         eventTitle.translatesAutoresizingMaskIntoConstraints = false
         eventTitle.backgroundColor = UIColor.whiteColor()
-        eventTitle.layer.borderColor = UIColor.blackColor().CGColor
-        eventTitle.layer.borderWidth = 1.0
+        eventTitle.layer.borderColor = UIColor(red:0/255.0, green:188.7/255.0, blue:255/255.0, alpha: 1.0).CGColor
+        eventTitle.layer.borderWidth = 1.5
         eventTitle.attributedPlaceholder = NSAttributedString(string:"Event Title",
             attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        eventTitle.font = UIFont(name: "FontAwesome", size: 12)
         eventTitle.layer.sublayerTransform = CATransform3DMakeTranslation(10, 000, 0)
         eventTitle.selectedTextRange = eventTitle.textRangeFromPosition(eventTitle.beginningOfDocument, toPosition: eventTitle.beginningOfDocument)
         eventTitle.layer.cornerRadius = 10
         view.addConstraint(NSLayoutConstraint(item: eventTitle, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0)) //Tell field to center on x-axis
-        view.addConstraint(NSLayoutConstraint(item: eventTitle, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: 0)) //Tell field to center on y-axis
+        view.addConstraint(NSLayoutConstraint(item: eventTitle, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterY, multiplier: 1.0, constant: -100)) //Tell field to center on y-axis
         view.addConstraint(NSLayoutConstraint(item: eventTitle, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 30))
         view.addConstraint(NSLayoutConstraint(item: eventTitle, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 200))
         
@@ -62,10 +102,11 @@ class EventFormViewController: UIViewController, UITextFieldDelegate {
         //eventStart.delegate=self
         eventStart.translatesAutoresizingMaskIntoConstraints = false
         eventStart.backgroundColor = UIColor.whiteColor()
-        eventStart.layer.borderColor = UIColor.blackColor().CGColor
-        eventStart.layer.borderWidth = 1.0
-        eventStart.attributedPlaceholder = NSAttributedString(string:"Start Date",
+        eventStart.layer.borderColor = UIColor(red:0/255.0, green:188.7/255.0, blue:255/255.0, alpha: 1.0).CGColor
+        eventStart.layer.borderWidth = 1.5
+        eventStart.attributedPlaceholder = NSAttributedString(string:"\u{f073} Start Date",
             attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        eventStart.font = UIFont(name: "FontAwesome", size: 12)
         eventStart.layer.sublayerTransform = CATransform3DMakeTranslation(10, 000, 0)
         eventStart.layer.cornerRadius = 10
         view.addConstraint(NSLayoutConstraint(item: eventStart, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0)) //Tell field to center on x-axis
@@ -79,10 +120,11 @@ class EventFormViewController: UIViewController, UITextFieldDelegate {
         //eventEnd.delegate=self
         eventEnd.translatesAutoresizingMaskIntoConstraints = false
         eventEnd.backgroundColor = UIColor.whiteColor()
-        eventEnd.layer.borderColor = UIColor.blackColor().CGColor
-        eventEnd.layer.borderWidth = 1.0
-        eventEnd.attributedPlaceholder = NSAttributedString(string:"Start End",
+        eventEnd.layer.borderColor = UIColor(red:0/255.0, green:188.7/255.0, blue:255/255.0, alpha: 1.0).CGColor
+        eventEnd.layer.borderWidth = 1.5
+        eventEnd.attributedPlaceholder = NSAttributedString(string:"\u{f073} End Date",
             attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        eventEnd.font = UIFont(name: "FontAwesome", size: 12)
         eventEnd.layer.sublayerTransform = CATransform3DMakeTranslation(10, 000, 0)
         eventEnd.layer.cornerRadius = 10
         view.addConstraint(NSLayoutConstraint(item: eventEnd, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterX, multiplier: 1.0, constant: 0)) //Tell field to center on x-axis
@@ -95,10 +137,11 @@ class EventFormViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(eventAddress)
         //eventAddress.delegate=self
         eventAddress.backgroundColor = UIColor.whiteColor()
-        eventAddress.layer.borderColor = UIColor.blackColor().CGColor
-        eventAddress.layer.borderWidth = 1.0
-        eventAddress.attributedPlaceholder = NSAttributedString(string:"Location",
+        eventAddress.layer.borderColor = UIColor(red:0/255.0, green:188.7/255.0, blue:255/255.0, alpha: 1.0).CGColor
+        eventAddress.layer.borderWidth = 1.5
+        eventAddress.attributedPlaceholder = NSAttributedString(string:"\u{f124} Location",
             attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+        eventAddress.font = UIFont(name: "FontAwesome", size: 12)
         eventAddress.layer.sublayerTransform = CATransform3DMakeTranslation(10, 000, 0)
         eventAddress.translatesAutoresizingMaskIntoConstraints = false
         eventAddress.layer.cornerRadius = 10
@@ -117,6 +160,8 @@ class EventFormViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view, typically from a nib.
     }
+    
+    
     
     //Remove Keyboard when clicking outside
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?){
@@ -142,18 +187,17 @@ class EventFormViewController: UIViewController, UITextFieldDelegate {
     
     //Keyboard Position Fix
     func keyboardWillShow(sender: NSNotification) {
-        self.view.frame.origin.y -= 150
+        self.view.frame.origin.y -= 100
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y += 150
+        self.view.frame.origin.y += 100
     }
     
     
     //Address Attempt
     
     @IBAction func eventAddress(sender: AnyObject) {
-        sender.resignFirstResponder()
         self.performSearch()
     }
     
@@ -175,6 +219,4 @@ class EventFormViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
 }
-

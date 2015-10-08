@@ -12,6 +12,7 @@
 		49912B0C1BBD9DED007CC54D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49912B0B1BBD9DED007CC54D /* CoreLocation.framework */; };
 		49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912B0D1BBDB276007CC54D /* EventViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		49912B101BC47BFD007CC54D /* EventFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		49A897B01BC710E700BBD558 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49A897AF1BC710E700BBD558 /* FontAwesome.otf */; settings = {ASSET_TAGS = (); }; };
 		6188B4C91BA282570081223C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4C81BA282570081223C /* AppDelegate.swift */; };
 		6188B4CB1BA282570081223C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4CA1BA282570081223C /* ViewController.swift */; };
 		6188B4CE1BA282570081223C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4CC1BA282570081223C /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		49912B0B1BBD9DED007CC54D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		49912B0D1BBDB276007CC54D /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFormViewController.swift; sourceTree = "<group>"; };
+		49A897AF1BC710E700BBD558 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
 		6188B4C31BA282570081223C /* BluetoothTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6188B4C71BA282570081223C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6188B4C81BA282570081223C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		49A897AE1BC710D100BBD558 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				49A897AF1BC710E700BBD558 /* FontAwesome.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
 		6188B4BA1BA282570081223C = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +107,7 @@
 		6188B4C51BA282570081223C /* BluetoothTest */ = {
 			isa = PBXGroup;
 			children = (
+				49A897AE1BC710D100BBD558 /* Fonts */,
 				6188B4C81BA282570081223C /* AppDelegate.swift */,
 				49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */,
 				49912B0D1BBDB276007CC54D /* EventViewController.swift */,
@@ -243,6 +254,7 @@
 			files = (
 				6188B4CE1BA282570081223C /* Main.storyboard in Resources */,
 				6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */,
+				49A897B01BC710E700BBD558 /* FontAwesome.otf in Resources */,
 				6188B4D01BA282580081223C /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
