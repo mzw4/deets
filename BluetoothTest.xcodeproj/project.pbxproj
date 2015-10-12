@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2706E2791BCC48B400537B7E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2706E2781BCC48B400537B7E /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
+		2706E27B1BCC6B2400537B7E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2706E27A1BCC6B2400537B7E /* Util.swift */; settings = {ASSET_TAGS = (); }; };
+		271DD9F61BC57A4900FF864B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9F51BC57A4900FF864B /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FB1BC6E54200FF864B /* SignupViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		274AC9221BA356530026F3FA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AC9211BA356530026F3FA /* ProfileView.swift */; settings = {ASSET_TAGS = (); }; };
 		27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F1BD381BB0C34500BBE01A /* RequestHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		49912B0C1BBD9DED007CC54D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49912B0B1BBD9DED007CC54D /* CoreLocation.framework */; };
@@ -18,8 +23,9 @@
 		6188B4D01BA282580081223C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4CF1BA282580081223C /* Images.xcassets */; };
 		6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4D11BA282580081223C /* LaunchScreen.xib */; };
 		6188B4DF1BA282580081223C /* BluetoothTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4DE1BA282580081223C /* BluetoothTestTests.swift */; };
-		821546E960760936E7C4F975 /* libPods-BluetoothTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7556E6EE6E29C80A43C4087E /* libPods-BluetoothTest.a */; };
-		E90C2E98EEA32D8BCC1BEFE9 /* libPods-BluetoothTest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7556E6EE6E29C80A43C4087E /* libPods-BluetoothTest.a */; };
+		6816182FCB2BEF43E6C8BC85 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9AEECE2C3F54384387CAA146 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E90C2E98EEA32D8BCC1BEFE9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2706E2781BCC48B400537B7E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2706E27A1BCC6B2400537B7E /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		271DD9F51BC57A4900FF864B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		271DD9FB1BC6E54200FF864B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		274AC9211BA356530026F3FA /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		27F1BD381BB0C34500BBE01A /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		49912B0B1BBD9DED007CC54D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -48,7 +59,7 @@
 		6188B4D81BA282580081223C /* BluetoothTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluetoothTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6188B4DD1BA282580081223C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6188B4DE1BA282580081223C /* BluetoothTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTestTests.swift; sourceTree = "<group>"; };
-		7556E6EE6E29C80A43C4087E /* libPods-BluetoothTest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BluetoothTest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BluetoothTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA20280748557A50A82DE35E /* Pods-BluetoothTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D57BB4D432E6A2EA596C8851 /* Pods-BluetoothTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -59,7 +70,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49912B0C1BBD9DED007CC54D /* CoreLocation.framework in Frameworks */,
-				821546E960760936E7C4F975 /* libPods-BluetoothTest.a in Frameworks */,
+				9AEECE2C3F54384387CAA146 /* Pods_BluetoothTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +78,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E90C2E98EEA32D8BCC1BEFE9 /* libPods-BluetoothTest.a in Frameworks */,
+				E90C2E98EEA32D8BCC1BEFE9 /* (null) in Frameworks */,
+				6816182FCB2BEF43E6C8BC85 /* Pods_BluetoothTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +119,11 @@
 				6188B4C61BA282570081223C /* Supporting Files */,
 				274AC9211BA356530026F3FA /* ProfileView.swift */,
 				27F1BD381BB0C34500BBE01A /* RequestHandler.swift */,
+				271DD9F51BC57A4900FF864B /* LoginViewController.swift */,
+				271DD9FB1BC6E54200FF864B /* SignupViewController.swift */,
+				271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */,
+				2706E2781BCC48B400537B7E /* Constants.swift */,
+				2706E27A1BCC6B2400537B7E /* Util.swift */,
 			);
 			path = BluetoothTest;
 			sourceTree = "<group>";
@@ -140,7 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				49912B0B1BBD9DED007CC54D /* CoreLocation.framework */,
-				7556E6EE6E29C80A43C4087E /* libPods-BluetoothTest.a */,
+				A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -166,6 +183,7 @@
 				6188B4C01BA282570081223C /* Frameworks */,
 				6188B4C11BA282570081223C /* Resources */,
 				7E7A3CDE51E1709E893F35CA /* Copy Pods Resources */,
+				134F43414008E440F7CA8425 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,6 +203,7 @@
 				6188B4D51BA282580081223C /* Frameworks */,
 				6188B4D61BA282580081223C /* Resources */,
 				80B0E0FA9BCA45CA49179841 /* Copy Pods Resources */,
+				23D7CAC0A54E49E3F6CF113E /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -257,6 +276,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		134F43414008E440F7CA8425 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		23D7CAC0A54E49E3F6CF113E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4047FEC494750DE469227ACF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -324,11 +373,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2706E27B1BCC6B2400537B7E /* Util.swift in Sources */,
+				271DD9F61BC57A4900FF864B /* LoginViewController.swift in Sources */,
 				49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */,
+				271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */,
 				6188B4CB1BA282570081223C /* ViewController.swift in Sources */,
 				274AC9221BA356530026F3FA /* ProfileView.swift in Sources */,
+				2706E2791BCC48B400537B7E /* Constants.swift in Sources */,
 				49912B101BC47BFD007CC54D /* EventFormViewController.swift in Sources */,
 				27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */,
+				271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */,
 				6188B4C91BA282570081223C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
