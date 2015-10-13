@@ -15,6 +15,7 @@ class LandingViewController: UIViewController {
     let backgroundImageView = UIImageView()
     let logoView = UIImageView()
     let titleView = UILabel()
+    let tagline = UILabel()
     
     func handleSignup(sender: UIButton!) {
         let signupVC = SignupViewController()
@@ -27,7 +28,7 @@ class LandingViewController: UIViewController {
     }
     
     func createView() {
-        view.backgroundColor = UIColor.blackColor()
+        view.backgroundColor = UIColor.grayColor()
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -35,52 +36,64 @@ class LandingViewController: UIViewController {
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         
         view.addSubview(backgroundImageView)
-//        view.addSubview(blurEffectView)
-        
         view.addSubview(loginButton)
         view.addSubview(signupButton)
         view.addSubview(logoView)
         view.addSubview(titleView)
+        view.addSubview(tagline)
         
         // Set the background image
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundImageView.image = UIImage(named: "background2.png")!
-        backgroundImageView.alpha = 0.5
+        backgroundImageView.alpha = 0.2
         backgroundImageView.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(view.snp_center)
             make.size.equalTo(view.snp_size)
         }
 
+        // Logo and title
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.text = "Cohesve"
+        titleView.sizeToFit()
         titleView.textColor = UIColor.whiteColor()
-        titleView.font = UIFont(name: titleView.font.fontName, size: 72)
+        titleView.font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontLarge))
         titleView.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
             make.bottom.equalTo(view.snp_centerY)
+            make.height.lessThanOrEqualTo(100)
         }
-        
         logoView.translatesAutoresizingMaskIntoConstraints = false
         logoView.frame = CGRectMake(logoView.frame.origin.x, logoView.frame.origin.y, 100, 50)
         logoView.contentMode = UIViewContentMode.ScaleAspectFit
         logoView.image = UIImage(named: "logo.png")!
         logoView.snp_makeConstraints { (make) -> Void in
-            //make.height.equalTo(UIConstants.logoHeightLarge)
             make.centerX.equalTo(view.snp_centerX)
             make.bottom.equalTo(titleView.snp_top)
             make.height.equalTo(UIConstants.logoHeightLarge)
         }
         
+        // Tagline
+        tagline.translatesAutoresizingMaskIntoConstraints = false
+        tagline.text = StringConstants.tagline
+        tagline.sizeToFit()
+        tagline.textColor = UIColor.whiteColor()
+        tagline.font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
+        tagline.snp_makeConstraints { (make) -> Void in
+            make.centerX.equalTo(view.snp_centerX)
+            make.top.equalTo(titleView.snp_bottom)//.offset(UIConstants.spacing1)
+        }
+        tagline.layoutIfNeeded()
+        
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         signupButton.setTitle("Join", forState: .Normal)
         signupButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        signupButton.backgroundColor = UIConstants.primaryColor
+        signupButton.backgroundColor = UIConstants.primaryColor        
         signupButton.layer.cornerRadius = 5
         signupButton.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
-            make.centerY.equalTo(view.snp_centerY).offset(50)
-            make.width.equalTo(200)
+            make.bottom.equalTo(loginButton.snp_top).offset(-UIConstants.spacing1)
+            make.width.equalTo(UIConstants.fieldWidth)
         }
         signupButton.addTarget(self, action: "handleSignup:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -93,8 +106,8 @@ class LandingViewController: UIViewController {
         loginButton.backgroundColor = UIColor(white: 1, alpha: 0.1)
         loginButton.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
-            make.top.equalTo(signupButton.snp_bottom).offset(16)
-            make.width.equalTo(200)
+            make.bottom.equalTo(view.snp_bottom).offset((tagline.frame.origin.y - view.frame.height)/2)
+            make.width.equalTo(UIConstants.fieldWidth)
         }
         loginButton.addTarget(self, action: "handleLogin:", forControlEvents: UIControlEvents.TouchUpInside)
 
@@ -107,7 +120,8 @@ class LandingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UILabel.appearance().font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
+
         createView()
         // Do any additional setup after loading the view.
     }

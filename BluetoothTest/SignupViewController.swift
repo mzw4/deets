@@ -13,6 +13,7 @@ class SignupViewController: UIViewController {
 
     let firebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com")
     
+    let logoContainer = UIView()
     let logoView = UIImageView()
     let titleView = UILabel()
     let tagline = UILabel()
@@ -72,8 +73,9 @@ class SignupViewController: UIViewController {
         
         view.addSubview(backgroundImageView)
         view.addSubview(blurEffectView)
-        view.addSubview(logoView)
-        view.addSubview(titleView)
+        logoContainer.addSubview(logoView)
+        logoContainer.addSubview(titleView)
+        view.addSubview(logoContainer)
         view.addSubview(tagline)
         nameContainer.addSubview(firstNameField)
         nameContainer.addSubview(lastNameField)
@@ -95,24 +97,32 @@ class SignupViewController: UIViewController {
             make.size.equalTo(view.snp_size)
         }
         
+        // Logo and title
         logoView.translatesAutoresizingMaskIntoConstraints = false
         logoView.frame = CGRectMake(logoView.frame.origin.x, logoView.frame.origin.y, 100, 50)
         logoView.contentMode = UIViewContentMode.ScaleAspectFit
         logoView.image = UIImage(named: "logo.png")
         logoView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(view.snp_left).offset(UIConstants.leftMargin)
-            make.top.equalTo(view.snp_top).offset(UIConstants.topMargin)
+            make.left.equalTo(logoContainer.snp_left)
+            make.centerY.equalTo(logoContainer.snp_centerY)
             make.height.equalTo(UIConstants.logoHeightLarge)
             make.width.equalTo(UIConstants.logoWidthLarge)
         }
-        
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.text = "Cohesve"
         titleView.textColor = UIColor.whiteColor()
-        titleView.font = UIFont(name: titleView.font.fontName, size: CGFloat(UIConstants.fontMed))
+        titleView.font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontBig))
         titleView.snp_makeConstraints { (make) -> Void in
-            make.centerY.equalTo(logoView.snp_centerY)
             make.left.equalTo(logoView.snp_right).offset(UIConstants.spacing1)
+            make.centerY.equalTo(logoContainer.snp_centerY)
+        }
+        titleView.layoutIfNeeded()
+        logoContainer.translatesAutoresizingMaskIntoConstraints = false
+        logoContainer.snp_makeConstraints { (make) -> Void in
+            make.centerX.equalTo(view.snp_centerX)
+            make.top.equalTo(view.snp_top).offset(UIConstants.topMargin)
+            make.width.equalTo(UIConstants.logoWidthLarge + UIConstants.spacing1 + Int(titleView.frame.width))
+            make.height.equalTo(logoView.snp_height)
         }
         
         // Name fields
@@ -212,6 +222,8 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UILabel.appearance().font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
+
         createView()
         // Do any additional setup after loading the view.
     }

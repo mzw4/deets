@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2706E2791BCC48B400537B7E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2706E2781BCC48B400537B7E /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 		2706E27B1BCC6B2400537B7E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2706E27A1BCC6B2400537B7E /* Util.swift */; settings = {ASSET_TAGS = (); }; };
+		2706E27D1BCC911700537B7E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2706E27C1BCC911700537B7E /* OpenSans-Light.ttf */; };
 		271DD9F61BC57A4900FF864B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9F51BC57A4900FF864B /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FB1BC6E54200FF864B /* SignupViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		2706E2781BCC48B400537B7E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2706E27A1BCC6B2400537B7E /* Util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		2706E27C1BCC911700537B7E /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		271DD9F51BC57A4900FF864B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		271DD9FB1BC6E54200FF864B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		6188B4C61BA282570081223C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2706E27C1BCC911700537B7E /* OpenSans-Light.ttf */,
 				6188B4C71BA282570081223C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -271,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2706E27D1BCC911700537B7E /* OpenSans-Light.ttf in Resources */,
 				6188B4CE1BA282570081223C /* Main.storyboard in Resources */,
 				6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */,
 				49A897B01BC710E700BBD558 /* FontAwesome.otf in Resources */,
