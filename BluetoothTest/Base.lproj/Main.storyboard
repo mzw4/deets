@@ -1,28 +1,159 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5FV-1Y-tUc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="nMA-fn-UOu">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--Event View Controller-->
+        <scene sceneID="gRH-Gd-bDZ">
+            <objects>
+                <viewController id="rGS-fr-eM4" customClass="EventViewController" customModule="BluetoothTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="itn-BN-3R2"/>
+                        <viewControllerLayoutGuide type="bottom" id="aLU-uU-xtC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ex0-KW-Pjo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chalk" id="gBa-Sf-sXl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="237"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z14-Bv-6RI">
+                                <rect key="frame" x="397" y="178" width="135" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Register Here">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="JeK-1G-PUj">
+                                <rect key="frame" x="0.0" y="245" width="320" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Program"/>
+                                    <segment title="Activity"/>
+                                    <segment title="Network"/>
+                                </segments>
+                                <connections>
+                                    <action selector="eventSegmentAction:" destination="rGS-fr-eM4" eventType="valueChanged" id="N9K-Fi-2zu"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gl4-TK-cR4">
+                                <rect key="frame" x="242" y="196" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="registerButton:" destination="rGS-fr-eM4" eventType="touchUpInside" id="r4n-hd-Vk3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VUw-XR-Cp4">
+                                <rect key="frame" x="14" y="196" width="58" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go Back">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="io15-color" id="sG3-FO-BQh">
+                                <rect key="frame" x="208" y="36" width="184" height="135"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Google I/O" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mAE-Xp-QCJ">
+                                <rect key="frame" x="259" y="178" width="82" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New York, NY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ujg-bv-AQk">
+                                <rect key="frame" x="248" y="202" width="105" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="OqY-t1-SXa"/>
+                    <connections>
+                        <outlet property="EventLocation" destination="Ujg-bv-AQk" id="8Ou-x8-L3V"/>
+                        <outlet property="EventTitle" destination="mAE-Xp-QCJ" id="57W-Ky-fXy"/>
+                        <outlet property="eventActivity" destination="JeK-1G-PUj" id="Peg-Ri-F75"/>
+                        <outlet property="eventIcon" destination="sG3-FO-BQh" id="E4Y-JP-Xds"/>
+                        <outlet property="eventNetwork" destination="JeK-1G-PUj" id="jdk-KG-VYs"/>
+                        <outlet property="eventProgram" destination="JeK-1G-PUj" id="qaL-B4-LbI"/>
+                        <outlet property="register" destination="gl4-TK-cR4" id="wo7-p6-M5X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hR7-nQ-OnV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1110.9333333333334" y="-469.54666666666668"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="BluetoothTest" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="bVV-8o-PVH"/>
+                        <viewControllerLayoutGuide type="bottom" id="NMo-ZW-rJL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="69w-Ws-j06">
+                                <rect key="frame" x="475" y="108" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Events"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="hTj-QX-HQr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="296"/>
+            <point key="canvasLocation" x="687.4666666666667" y="280.21333333333325"/>
+        </scene>
+        <!--Landing View Controller-->
+        <scene sceneID="kdq-l5-nCC">
+            <objects>
+                <viewController id="nMA-fn-UOu" customClass="LandingViewController" customModule="BluetoothTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zf3-Wo-Sri"/>
+                        <viewControllerLayoutGuide type="bottom" id="b8y-pf-kN3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wmY-Sg-MrO">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YGQ-3K-jLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="491" y="-1056"/>
+        </scene>
+        <!--Event Form View Controller-->
+        <scene sceneID="Dl6-Mb-JnL">
+            <objects>
+                <viewController id="kUk-yA-hQZ" customClass="EventFormViewController" customModule="BluetoothTest" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EON-4e-fQW"/>
+                        <viewControllerLayoutGuide type="bottom" id="oBg-zO-eez"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xVC-S8-LXC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="C37-70-l74" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1090.6666666666667" y="250.86666666666667"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hwe-Ph-vk7">
@@ -41,7 +172,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bov-9n-1bh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="479" y="-396"/>
+            <point key="canvasLocation" x="255.46666666666667" y="-374.87999999999994"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="chalk" width="3072" height="2048"/>
+        <image name="io15-color" width="800" height="600"/>
+    </resources>
 </document>

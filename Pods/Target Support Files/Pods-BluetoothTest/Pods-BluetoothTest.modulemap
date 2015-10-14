@@ -1,0 +1,6 @@
+framework module Pods_BluetoothTest {
+  umbrella header "Pods-BluetoothTest-umbrella.h"
+
+  export *
+  module * { export * }
+}
