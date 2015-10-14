@@ -25,6 +25,7 @@
 		6188B4D01BA282580081223C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4CF1BA282580081223C /* Images.xcassets */; };
 		6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4D11BA282580081223C /* LaunchScreen.xib */; };
 		6188B4DF1BA282580081223C /* BluetoothTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4DE1BA282580081223C /* BluetoothTestTests.swift */; };
+		618C4FCC1BCEA0CC007F238E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C4FCB1BCEA0CC007F238E /* HomeViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		6816182FCB2BEF43E6C8BC85 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9AEECE2C3F54384387CAA146 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E90C2E98EEA32D8BCC1BEFE9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
@@ -63,6 +64,7 @@
 		6188B4D81BA282580081223C /* BluetoothTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BluetoothTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6188B4DD1BA282580081223C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6188B4DE1BA282580081223C /* BluetoothTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTestTests.swift; sourceTree = "<group>"; };
+		618C4FCB1BCEA0CC007F238E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BluetoothTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA20280748557A50A82DE35E /* Pods-BluetoothTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D57BB4D432E6A2EA596C8851 /* Pods-BluetoothTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				271DD9F51BC57A4900FF864B /* LoginViewController.swift */,
 				271DD9FB1BC6E54200FF864B /* SignupViewController.swift */,
 				271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */,
+				618C4FCB1BCEA0CC007F238E /* HomeViewController.swift */,
 				2706E2781BCC48B400537B7E /* Constants.swift */,
 				2706E27A1BCC6B2400537B7E /* Util.swift */,
 			);
@@ -246,6 +249,7 @@
 					};
 					6188B4D71BA282580081223C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 963W32VWA9;
 						TestTargetID = 6188B4C21BA282570081223C;
 					};
 				};
@@ -400,6 +404,7 @@
 				27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */,
 				271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */,
 				6188B4C91BA282570081223C /* AppDelegate.swift in Sources */,
+				618C4FCC1BCEA0CC007F238E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,18 +535,14 @@
 			baseConfigurationReference = AA20280748557A50A82DE35E /* Pods-BluetoothTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: msoccer37@yahoo.com (V98L4UHTX7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: msoccer37@yahoo.com (V98L4UHTX7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "33b83224-4097-4493-9136-5fd9a1e59e65";
-=======
-				PROVISIONING_PROFILE = "ada00afd-4a95-48cb-8421-97b0b929f346";
->>>>>>> 9f977dac28047cacceb909ef626f6a9af50c415b
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -550,18 +551,14 @@
 			baseConfigurationReference = D57BB4D432E6A2EA596C8851 /* Pods-BluetoothTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: msoccer37@yahoo.com (V98L4UHTX7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: msoccer37@yahoo.com (V98L4UHTX7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "33b83224-4097-4493-9136-5fd9a1e59e65";
-=======
-				PROVISIONING_PROFILE = "ada00afd-4a95-48cb-8421-97b0b929f346";
->>>>>>> 9f977dac28047cacceb909ef626f6a9af50c415b
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -570,6 +567,8 @@
 			baseConfigurationReference = AA20280748557A50A82DE35E /* Pods-BluetoothTest.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -582,6 +581,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Sudarsan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BluetoothTest.app/BluetoothTest";
 			};
 			name = Debug;
@@ -591,6 +591,8 @@
 			baseConfigurationReference = D57BB4D432E6A2EA596C8851 /* Pods-BluetoothTest.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -599,6 +601,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Sudarsan.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BluetoothTest.app/BluetoothTest";
 			};
 			name = Release;

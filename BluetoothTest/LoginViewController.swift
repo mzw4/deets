@@ -45,8 +45,8 @@ class LoginViewController: UIViewController {
                         let email = authData.providerData["email"]
                         print("\(authData) logged in with email \(email) and id \(authData.uid)")
                         
-                        let VC = ViewController()
-                        self.presentViewController(VC, animated: true, completion: nil)
+                        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        appDelegate.window?.rootViewController = appDelegate.tabBarController
                     }
             })
         }
@@ -57,18 +57,19 @@ class LoginViewController: UIViewController {
     }
     
     func handleForgotPassword(sender: UIButton!) {
-        print("Forgot passowrd!")
+        print("Forgot password!")
     }
     
     func handleBack(sender: UIButton!) {
-        let landingVC = LandingViewController()
-        self.presentViewController(landingVC, animated: true, completion: nil)
+//        let landingVC = LandingViewController()
+//        self.presentViewController(landingVC, animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func createView() {
         view.backgroundColor = UIColor.blackColor()
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.view.bounds
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -203,7 +204,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UILabel.appearance().font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
-
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         createView()
         // Do any additional setup after loading the view.
     }

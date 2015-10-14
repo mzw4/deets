@@ -28,7 +28,7 @@ class LandingViewController: UIViewController {
     }
     
     func createView() {
-        view.backgroundColor = UIColor.grayColor()
+        view.backgroundColor = UIColor.blackColor()
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -46,7 +46,7 @@ class LandingViewController: UIViewController {
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
         backgroundImageView.image = UIImage(named: "background2.png")!
-        backgroundImageView.alpha = 0.2
+        backgroundImageView.alpha = 0.25
         backgroundImageView.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(view.snp_center)
             make.size.equalTo(view.snp_size)
@@ -121,7 +121,7 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UILabel.appearance().font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
-
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         createView()
         // Do any additional setup after loading the view.
     }
@@ -129,6 +129,10 @@ class LandingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     /*

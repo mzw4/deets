@@ -15,7 +15,7 @@ struct UIConstants {
     static let fieldWidthSmall = 92
 
     static let spacing0 = 8
-    static let spacing1 = 16
+    static let spacing1 = 20
     static let spacing2 = 32
 
     static let topMargin = 100
@@ -42,4 +42,10 @@ struct UIConstants {
 
 struct StringConstants {
     static let tagline = "Stay connected."
+}
+
+class EventChosen {
+    var eventSelected = ""
+    var eventImage = ""
+    static let events = EventChosen()
 }

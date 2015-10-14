@@ -9,14 +9,15 @@
 import UIKit
 import CoreLocation
 import CoreBluetooth
-
 import Firebase
+import SnapKit
+import Darwin
 
 extension UIView {
     func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = 0.0
-        rotateAnimation.toValue = CGFloat(M_PI * 100000.0)
+        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
         rotateAnimation.duration = duration
         
         if let delegate: AnyObject = completionDelegate {
@@ -26,7 +27,6 @@ extension UIView {
     }
 }
 
-
 class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralManagerDelegate {
     let locationManager = CLLocationManager()
     var beacon: CLBeaconRegion!
@@ -35,17 +35,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     
     var label = UILabel()
 
+    let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
     let requestHandler = RequestHandler() // for http requests
 
     var customActivity = UIImageView()
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
     var contactView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark)) as UIVisualEffectView
     var topConstraint: NSLayoutConstraint!
-    
+    var bg = UIImageView()
     var viewContacts = UIButton()
     
     let profilePicture = UIImageView()
-
+    
     var phone = "555-555-5555"
     var email = "john.smith@gmail.com"
     var companyName = "Uber Gizmos Inc."
@@ -101,8 +102,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
                     print("\(authData) logged in with email \(email) and id \(authData.uid)")
                 }
         })
+        
         view.layoutIfNeeded()
-
+        NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "rotateImage", userInfo: nil, repeats: false)
     }
     
     func createUser(email: String, password: String, completion: (error: NSError!, result: [NSObject: AnyObject]!) -> Void) {
@@ -153,8 +155,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
             print("Person already met")
         }
         else{
-//            if (beaconMajor == 000)
-//            {
                 print(beaconMajor)
             
                 // Attach a closure to read the data at our posts reference
@@ -166,7 +166,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
                     }, withCancelBlock: { error in
                         print(error.description)
                 })
-//            }
         }
     }
     
@@ -192,14 +191,17 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     
     func testCard(){
         topConstraint.constant = 0.0
-        UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
+        UIView.animateWithDuration(1.0, delay: 3.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
             self.view.layoutIfNeeded()
             }, completion: nil)
     }
     
+    override func viewDidAppear(animated: Bool) {
+        rotateImage()
+    }
     
     func createView(){
-        view.backgroundColor = UIColor(red: 0.16, green: 0.19, blue: 0.22, alpha: 1.0)
+        view.backgroundColor = UIColor.blackColor()
         
         navigationController?.navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
         navigationController?.navigationBar.shadowImage = UIImage()
@@ -207,29 +209,48 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         navigationController?.view.backgroundColor = UIColor.clearColor()
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
+        view.addSubview(bg)
+        bg.snp_makeConstraints { (make) -> Void in
+            make.centerX.equalTo(view.snp_centerX)
+            make.centerY.equalTo(view.snp_centerY)
+            make.width.equalTo(view.snp_width)
+            make.height.equalTo(view.snp_height)
+        }
+        bg.image = UIImage(named: EventChosen.events.eventImage)
+        bg.alpha = 0.15
+        bg.contentMode = UIViewContentMode.ScaleAspectFill
+        
 
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: label, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 120.0))
         
-        label.text = "Entreprenuers Meetup"
+        label.text = EventChosen.events.eventSelected
         label.textColor = UIColor.whiteColor()
         label.font = UIFont(name: label.font.fontName, size: 21.0)
         
+        rotateAnimation.delegate = rotateAnimation
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
+        rotateAnimation.duration = 100000.0
+        
+        
         view.addSubview(customActivity)
         customActivity.translatesAutoresizingMaskIntoConstraints = false
-        customActivity.image = UIImage(named: "Radar2.png")
-        customActivity.rotate360Degrees(100000.0, completionDelegate: nil)
+        customActivity.image = UIImage(named: "Radar3.png")
+//        customActivity.layer.addAnimation(rotateAnimation, forKey: "transform.rotation")
         customActivity.contentMode = UIViewContentMode.ScaleAspectFit
+        customActivity.frame.size.width = view.frame.size.width/2
         view.addConstraint(NSLayoutConstraint(item: customActivity, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: customActivity, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: -100.0))
         view.addConstraint(NSLayoutConstraint(item: customActivity, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.75, constant: 0.0))
+        
 
         view.addSubview(viewContacts)
         viewContacts.translatesAutoresizingMaskIntoConstraints = false
         viewContacts.layer.cornerRadius = 25.0
-        viewContacts.backgroundColor = UIColor(red: 0.0, green: 0.74, blue: 1.0, alpha: 1.0)
+        viewContacts.backgroundColor = UIConstants.primaryColor
         viewContacts.setTitle("View Contacts", forState: .Normal)
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.7, constant: 0.0))
@@ -251,6 +272,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         view.addConstraint(NSLayoutConstraint(item: contactView, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.9, constant: 0.0))
         topConstraint = NSLayoutConstraint(item: contactView, attribute: .CenterY, relatedBy: .Equal, toItem: view, attribute: .CenterY, multiplier: 1.0, constant: 2000.0)
         view.addConstraint(topConstraint)
+        
+
+        
+    }
+    
+    
+    func rotateImage(){
+        UIView.animateWithDuration(2.0, delay: 0.0, options: UIViewAnimationOptions.CurveLinear, animations: { () -> Void in
+            self.customActivity.transform = CGAffineTransformRotate(self.customActivity.transform, CGFloat(M_PI))
+            }) { (Bool) -> Void in
+                self.rotateImage()
+                self.view.layoutIfNeeded()
+        }
     }
     
     func detailCardView(){
@@ -316,22 +350,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     
     
     func swipeDown(gesture: UISwipeGestureRecognizer) {
-        if gesture.direction == UISwipeGestureRecognizerDirection.Down {
+        if gesture.direction == UISwipeGestureRecognizerDirection.Down && topConstraint.constant == 0{
                 topConstraint.constant = 2000.0
                 UIView.animateWithDuration(1.0, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: [], animations: {
                     self.view.layoutIfNeeded()
                     }, completion: nil)
+        }else if gesture.direction == UISwipeGestureRecognizerDirection.Down && topConstraint.constant == 2000.0{
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-//    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-//        return UIStatusBarStyle.LightContent
-//    }
 
 }
 

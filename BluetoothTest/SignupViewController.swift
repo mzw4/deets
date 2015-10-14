@@ -45,8 +45,8 @@ class SignupViewController: UIViewController {
                         print("Successfully created user account with uid: \(uid)")
                         
                         self.errorText.text = ""
-                        let VC = ViewController()
-                        self.presentViewController(VC, animated: true, completion: nil)
+                        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        appDelegate.window?.rootViewController = appDelegate.tabBarController
                     }
             })
         }
@@ -66,7 +66,7 @@ class SignupViewController: UIViewController {
     func createView() {
         view.backgroundColor = UIColor.blackColor()
         
-        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+        let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = self.view.bounds
         blurEffectView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -223,7 +223,7 @@ class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UILabel.appearance().font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
-
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         createView()
         // Do any additional setup after loading the view.
     }

@@ -12,10 +12,26 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var tabBarController = UITabBarController()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let firstVC = UINavigationController(rootViewController: HomeViewController())
+        let secondVC = UINavigationController(rootViewController: EventFormViewController())
+        let thirdVC = UINavigationController(rootViewController: HomeViewController())
+        let fourthVC = UINavigationController(rootViewController: HomeViewController())
+        let fifthVC = UINavigationController(rootViewController: HomeViewController())
+        let controllers = [firstVC,secondVC,thirdVC,fourthVC,fifthVC]
+        tabBarController.viewControllers = controllers
+        firstVC.tabBarItem = UITabBarItem(title: "Home", image:UIImage(named: "home.png"), selectedImage: UIImage(named: "homeselected.png"))
+        secondVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Search, tag: 1)
+        thirdVC.tabBarItem = UITabBarItem(title: "Alerts", image:UIImage(named: "notifications.png"), selectedImage: UIImage(named: "notificationselected.png"))
+        fourthVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 2)
+        fifthVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings.png"), selectedImage: UIImage(named: "settingsfilled.png"))
+        
+        window?.rootViewController = LandingViewController()
+        
+        
         return true
     }
 
