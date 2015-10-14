@@ -453,9 +453,9 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve.bluetoothtest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33b83224-4097-4493-9136-5fd9a1e59e65";
 			};
 			name = Debug;
 		};
@@ -469,9 +469,9 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve.bluetoothtest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33b83224-4097-4493-9136-5fd9a1e59e65";
 			};
 			name = Release;
 		};

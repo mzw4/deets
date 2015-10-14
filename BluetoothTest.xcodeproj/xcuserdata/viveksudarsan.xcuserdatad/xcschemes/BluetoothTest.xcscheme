@@ -110,6 +110,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Cohesve"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
