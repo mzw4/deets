@@ -17,6 +17,11 @@ struct UIConstants {
     static let spacing0 = 8
     static let spacing1 = 20
     static let spacing2 = 32
+    static let spacing3 = 64
+    static let spacing4 = 128
+
+    static let borderThin = 0.5
+    static let borderThick = 1
 
     static let topMargin = 100
     static let botMargin = -75
@@ -26,6 +31,8 @@ struct UIConstants {
     static let logoHeightLarge = 50
     static let logoWidthLarge = 50
 
+    static let profilePictureSize = 96
+    
     static let fontLarge = 64
     static let fontBig = 32
     static let fontMed = 24
@@ -34,10 +41,13 @@ struct UIConstants {
 
     static let primaryColor = UIColor(red: 51.0/255, green: 102.0/255, blue: 204.0/255, alpha: 1)
     static let errorColor = UIColor(red: 1, green: 153.0/255, blue: 153.0/255, alpha: 1)
-
     static let fadedColor = UIColor(white: 1, alpha: 0.5)
     
-    static let mainFont = "OpenSans-Light"
+    static let alphaMedFade = 0.5
+    static let alphaHighFade = 0.25
+    
+    static let fontLight = "OpenSans-Light"
+    static let fontRegular = "OpenSans-Light"
 }
 
 struct StringConstants {

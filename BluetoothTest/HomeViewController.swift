@@ -30,23 +30,29 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
         styleView()
-        
 
-        navigationController?.navigationBar.topItem!.title = "My Events"
-        navigationController?.navigationBar.topItem!.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "Modal")
+        // Style navigation bar
+        navigationItem.title = "My Events"
         navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "Modal")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), landscapeImagePhone: UIImage(named: "user.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "presentProfile:")
         
-        let leftItem:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "user.png"), landscapeImagePhone: UIImage(named: "user.png"), style: UIBarButtonItemStyle.Plain, target: self, action: "profile")
-        navigationController?.navigationBar.topItem!.leftBarButtonItem = leftItem
+        // Set back button with no text
+        navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         
         tabBarController?.tabBar.barStyle = UIBarStyle.Black
         tabBarController?.tabBar.tintColor = UIColor.whiteColor()
         
-        
         self.automaticallyAdjustsScrollViewInsets = true
         // Do any additional setup after loading the view.
+    }
+    
+    func presentProfile(sender: UIBarButtonItem!) {
+        let profileVC = ProfileViewController()
+        navigationController?.pushViewController(profileVC, animated: true)
     }
     
     func styleView() {

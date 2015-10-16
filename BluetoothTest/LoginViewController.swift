@@ -114,7 +114,7 @@ class LoginViewController: UIViewController {
         titleView.translatesAutoresizingMaskIntoConstraints = false
         titleView.text = "Cohesve"
         titleView.textColor = UIColor.whiteColor()
-        titleView.font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontBig))
+        titleView.font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontBig))
         titleView.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(logoView.snp_right).offset(UIConstants.spacing1)
             make.centerY.equalTo(logoContainer.snp_centerY)
@@ -203,7 +203,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        UILabel.appearance().font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         createView()
         // Do any additional setup after loading the view.

@@ -17,3 +17,21 @@ func createLinedField(field: UITextField) {
     border.borderWidth = width
     field.layer.addSublayer(border)
 }
+
+func formatLabel(label: UILabel, text: String, color: UIColor, font: UIFont = UIFont(name: UIConstants.fontRegular, size: CGFloat(UIConstants.fontSmall))!) {
+    label.translatesAutoresizingMaskIntoConstraints = false
+    label.text = text
+    label.textColor = color
+    label.font = font
+    label.snp_makeConstraints { (make) -> Void in
+        make.width.equalTo(label.intrinsicContentSize().width)
+        make.height.equalTo(label.intrinsicContentSize().height)
+    }
+}
+
+func formatButton(button: UIButton, title: String, color: UIColor = UIColor.whiteColor(), action: Selector, delegate: UIViewController) {
+    button.translatesAutoresizingMaskIntoConstraints = false
+    button.setTitle(title, forState: .Normal)
+    button.setTitleColor(color, forState: .Normal)
+    button.addTarget(delegate, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+}

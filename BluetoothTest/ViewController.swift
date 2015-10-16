@@ -64,7 +64,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         /* START BROADCASTING BEACON */
         
         let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
-        let major: CLBeaconMajorValue = 234
+        let major: CLBeaconMajorValue = 999
         let minor: CLBeaconMinorValue = 678
         
         beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: "TEST")

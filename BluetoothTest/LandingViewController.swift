@@ -57,7 +57,7 @@ class LandingViewController: UIViewController {
         titleView.text = "Cohesve"
         titleView.sizeToFit()
         titleView.textColor = UIColor.whiteColor()
-        titleView.font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontLarge))
+        titleView.font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontLarge))
         titleView.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
             make.bottom.equalTo(view.snp_centerY)
@@ -78,7 +78,7 @@ class LandingViewController: UIViewController {
         tagline.text = StringConstants.tagline
         tagline.sizeToFit()
         tagline.textColor = UIColor.whiteColor()
-        tagline.font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
+        tagline.font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontMed))
         tagline.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
             make.top.equalTo(titleView.snp_bottom)//.offset(UIConstants.spacing1)
@@ -120,8 +120,12 @@ class LandingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UILabel.appearance().font = UIFont(name: UIConstants.mainFont, size: CGFloat(UIConstants.fontMed))
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
+        
+        for font in UIFont.familyNames()
+        {
+            print(UIFont.fontNamesForFamilyName(font))
+        }
         createView()
         // Do any additional setup after loading the view.
     }

@@ -13,7 +13,8 @@
 		271DD9F61BC57A4900FF864B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9F51BC57A4900FF864B /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FB1BC6E54200FF864B /* SignupViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		274AC9221BA356530026F3FA /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AC9211BA356530026F3FA /* ProfileView.swift */; settings = {ASSET_TAGS = (); }; };
+		273957781BCF0E3B0044EE19 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273957771BCF0E3B0044EE19 /* ProfileViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		27A96E2B1BD15D5B00B6C1FB /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27A96E2A1BD15D4D00B6C1FB /* OpenSans-Regular.ttf */; };
 		27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F1BD381BB0C34500BBE01A /* RequestHandler.swift */; settings = {ASSET_TAGS = (); }; };
 		49912B0C1BBD9DED007CC54D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49912B0B1BBD9DED007CC54D /* CoreLocation.framework */; };
 		49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912B0D1BBDB276007CC54D /* EventViewController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -48,7 +49,8 @@
 		271DD9F51BC57A4900FF864B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		271DD9FB1BC6E54200FF864B /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
-		274AC9211BA356530026F3FA /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		273957771BCF0E3B0044EE19 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		27A96E2A1BD15D4D00B6C1FB /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		27F1BD381BB0C34500BBE01A /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		49912B0B1BBD9DED007CC54D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		49912B0D1BBDB276007CC54D /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
@@ -132,8 +134,8 @@
 				6188B4CF1BA282580081223C /* Images.xcassets */,
 				6188B4D11BA282580081223C /* LaunchScreen.xib */,
 				6188B4C61BA282570081223C /* Supporting Files */,
-				274AC9211BA356530026F3FA /* ProfileView.swift */,
 				27F1BD381BB0C34500BBE01A /* RequestHandler.swift */,
+				273957771BCF0E3B0044EE19 /* ProfileViewController.swift */,
 				271DD9F51BC57A4900FF864B /* LoginViewController.swift */,
 				271DD9FB1BC6E54200FF864B /* SignupViewController.swift */,
 				271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */,
@@ -148,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				2706E27C1BCC911700537B7E /* OpenSans-Light.ttf */,
+				27A96E2A1BD15D4D00B6C1FB /* OpenSans-Regular.ttf */,
 				6188B4C71BA282570081223C /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -245,7 +248,7 @@
 				TargetAttributes = {
 					6188B4C21BA282570081223C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 963W32VWA9;
+						DevelopmentTeam = W9N77F6KZT;
 					};
 					6188B4D71BA282580081223C = {
 						CreatedOnToolsVersion = 6.4;
@@ -278,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27A96E2B1BD15D5B00B6C1FB /* OpenSans-Regular.ttf in Resources */,
 				2706E27D1BCC911700537B7E /* OpenSans-Light.ttf in Resources */,
 				6188B4CE1BA282570081223C /* Main.storyboard in Resources */,
 				6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */,
@@ -398,11 +402,11 @@
 				49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */,
 				271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */,
 				6188B4CB1BA282570081223C /* ViewController.swift in Sources */,
-				274AC9221BA356530026F3FA /* ProfileView.swift in Sources */,
 				2706E2791BCC48B400537B7E /* Constants.swift in Sources */,
 				49912B101BC47BFD007CC54D /* EventFormViewController.swift in Sources */,
 				27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */,
 				271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */,
+				273957781BCF0E3B0044EE19 /* ProfileViewController.swift in Sources */,
 				6188B4C91BA282570081223C /* AppDelegate.swift in Sources */,
 				618C4FCC1BCEA0CC007F238E /* HomeViewController.swift in Sources */,
 			);
@@ -540,7 +544,7 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -556,7 +560,7 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
