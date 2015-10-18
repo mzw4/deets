@@ -121,11 +121,6 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
-        
-        for font in UIFont.familyNames()
-        {
-            print(UIFont.fontNamesForFamilyName(font))
-        }
         createView()
         // Do any additional setup after loading the view.
     }
