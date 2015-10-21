@@ -18,11 +18,10 @@ func createLinedField(field: UITextField) {
     field.layer.addSublayer(border)
 }
 
-func formatLabel(label: UILabel, text: String, color: UIColor, font: UIFont = UIFont(name: UIConstants.fontRegular, size: CGFloat(UIConstants.fontSmall))!) {
-    label.translatesAutoresizingMaskIntoConstraints = false
+func formatLabel(label: UILabel, text: String, color: UIColor, fontName: String = UIConstants.fontRegular, fontSize: Int = UIConstants.fontSmall) {
     label.text = text
     label.textColor = color
-    label.font = font
+    label.font = UIFont(name: fontName, size: CGFloat(fontSize))
     label.snp_makeConstraints { (make) -> Void in
         make.width.equalTo(label.intrinsicContentSize().width)
         make.height.equalTo(label.intrinsicContentSize().height)
@@ -30,7 +29,6 @@ func formatLabel(label: UILabel, text: String, color: UIColor, font: UIFont = UI
 }
 
 func formatButton(button: UIButton, title: String, color: UIColor = UIColor.whiteColor(), action: Selector, delegate: UIViewController) {
-    button.translatesAutoresizingMaskIntoConstraints = false
     button.setTitle(title, forState: .Normal)
     button.setTitleColor(color, forState: .Normal)
     button.addTarget(delegate, action: action, forControlEvents: UIControlEvents.TouchUpInside)

@@ -13,7 +13,8 @@ struct UIConstants {
     static let fieldHeight = 12
     static let fieldWidth = 200
     static let fieldWidthSmall = 92
-
+    static let textHeight = 20.5
+    
     static let spacing0 = 8
     static let spacing1 = 20
     static let spacing2 = 32
@@ -36,18 +37,21 @@ struct UIConstants {
     static let fontLarge = 64
     static let fontBig = 32
     static let fontMed = 24
+    static let fontSmallish = 18
     static let fontSmall = 14
     static let fontTiny = 10
 
     static let primaryColor = UIColor(red: 51.0/255, green: 102.0/255, blue: 204.0/255, alpha: 1)
     static let errorColor = UIColor(red: 1, green: 153.0/255, blue: 153.0/255, alpha: 1)
     static let fadedColor = UIColor(white: 1, alpha: 0.5)
-    
-    static let alphaMedFade = 0.5
-    static let alphaHighFade = 0.25
+    static let veryFadedColor = UIColor(white: 1, alpha: 0.1)
+
+    static let alphaMedFade = CGFloat(0.5)
+    static let alphaHighFade = CGFloat(0.25)
     
     static let fontLight = "OpenSans-Light"
     static let fontRegular = "OpenSans-Light"
+    static let systemFont = UIFont.systemFontOfSize(12).fontName
 }
 
 struct StringConstants {
