@@ -161,9 +161,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         
         topView.translatesAutoresizingMaskIntoConstraints = false
         topView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(view.snp_top).offset(navHeight)
-            make.left.equalTo(view.snp_left)
-            make.right.equalTo(view.snp_right)
+            make.top.equalTo(scrollView.snp_top).offset(navHeight)
+            make.left.equalTo(scrollView.snp_left)
+            make.right.equalTo(scrollView.snp_right)
             make.bottom.equalTo(titleView.snp_bottom).offset(UIConstants.spacing1)
         }
         
@@ -190,8 +190,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         profilePicture.layer.borderColor = UIColor.whiteColor().CGColor
         profilePicture.clipsToBounds = true
         profilePicture.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(view.snp_top).offset(CGFloat(UIConstants.spacing1) + navHeight)
-            make.centerX.equalTo(view.snp_centerX)
+            make.top.equalTo(scrollView.snp_top).offset(CGFloat(UIConstants.spacing1) + navHeight)
+            make.centerX.equalTo(scrollView.snp_centerX)
             make.size.equalTo(CGSize(width: UIConstants.profilePictureSize, height: UIConstants.profilePictureSize))
         }
         
@@ -201,7 +201,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         nameView.textColor = UIColor.whiteColor()
         nameView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(profilePicture.snp_bottom).offset(UIConstants.spacing0)
-            make.centerX.equalTo(view.snp_centerX)
+            make.centerX.equalTo(scrollView.snp_centerX)
             make.width.equalTo(nameView.intrinsicContentSize().width)
             make.height.equalTo(nameView.intrinsicContentSize().height)
         }
@@ -212,7 +212,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         titleView.textColor = UIColor.lightGrayColor()
         titleView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(nameView.snp_bottom)
-            make.centerX.equalTo(view.snp_centerX)
+            make.centerX.equalTo(scrollView.snp_centerX)
             make.width.equalTo(titleView.intrinsicContentSize().width)
             make.height.equalTo(titleView.intrinsicContentSize().height)
         }
@@ -220,8 +220,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         // --------------------- Bottom View ---------------------
         bottomView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(topView.snp_bottom)
-            make.bottom.equalTo(view.snp_bottom).offset(200)
-            make.width.equalTo(view.snp_width)
+            make.bottom.equalTo(scrollView.snp_bottom).offset(200)
+            make.width.equalTo(scrollView.snp_width)
         }
         
         // Set the bottom view background image
@@ -245,8 +245,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         segmentedControlView.tintColor = UIColor.whiteColor()
         segmentedControlView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(bottomView.snp_top)
-            make.left.equalTo(view.snp_left)
-            make.right.equalTo(view.snp_right)
+            make.left.equalTo(scrollView.snp_left)
+            make.right.equalTo(scrollView.snp_right)
         }
         segmentedControlView.addTarget(self, action: "changeSegment:", forControlEvents: .ValueChanged)
         segmentedControlView.selectedSegmentIndex = 0
