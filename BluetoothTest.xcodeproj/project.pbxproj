@@ -248,7 +248,7 @@
 				TargetAttributes = {
 					6188B4C21BA282570081223C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = W9N77F6KZT;
+						DevelopmentTeam = 963W32VWA9;
 					};
 					6188B4D71BA282580081223C = {
 						CreatedOnToolsVersion = 6.4;
@@ -539,14 +539,14 @@
 			baseConfigurationReference = AA20280748557A50A82DE35E /* Pods-BluetoothTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = Cohesve;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = Cohesve;
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33b83224-4097-4493-9136-5fd9a1e59e65";
 			};
 			name = Debug;
 		};
@@ -555,14 +555,14 @@
 			baseConfigurationReference = D57BB4D432E6A2EA596C8851 /* Pods-BluetoothTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = Cohesve;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = Cohesve;
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "33b83224-4097-4493-9136-5fd9a1e59e65";
 			};
 			name = Release;
 		};
