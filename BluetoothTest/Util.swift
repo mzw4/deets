@@ -18,18 +18,27 @@ func createLinedField(field: UITextField) {
     field.layer.addSublayer(border)
 }
 
-func formatLabel(label: UILabel, text: String, color: UIColor, fontName: String = UIConstants.fontRegular, fontSize: Int = UIConstants.fontSmall) {
+func formatLabel(label: UILabel, text: String, color: UIColor = UIConstants.defaultTextColor, fontName: String = UIConstants.fontRegular, fontSize: CGFloat = UIConstants.fontSmall, layout: Bool = true) {
     label.text = text
     label.textColor = color
-    label.font = UIFont(name: fontName, size: CGFloat(fontSize))
-    label.snp_makeConstraints { (make) -> Void in
-        make.width.equalTo(label.intrinsicContentSize().width)
-        make.height.equalTo(label.intrinsicContentSize().height)
+    label.font = UIFont(name: fontName, size: fontSize)
+    
+    if layout {
+        label.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(label.intrinsicContentSize().width)
+            make.height.equalTo(label.intrinsicContentSize().height)
+        }
     }
 }
 
-func formatButton(button: UIButton, title: String, color: UIColor = UIColor.whiteColor(), action: Selector, delegate: UIViewController) {
+func formatButton(button: UIButton, title: String, color: UIColor = UIColor.whiteColor(), action: Selector?, delegate: UIViewController?) {
     button.setTitle(title, forState: .Normal)
     button.setTitleColor(color, forState: .Normal)
-    button.addTarget(delegate, action: action, forControlEvents: UIControlEvents.TouchUpInside)
+    if action != nil && delegate != nil {
+        button.addTarget(delegate, action: action!, forControlEvents: UIControlEvents.TouchUpInside)
+    }
+}
+
+func buildConnectionRequestView() {
+    
 }

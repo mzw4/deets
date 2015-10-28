@@ -25,7 +25,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var locations = ["Javits Center","Hilton Union Square","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
     var firstLaunch = true
     var initialLoadFinished = false
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
@@ -89,7 +89,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
         
-        
+
         let dateLabel = UILabel(frame: CGRectMake(16, 170, view.frame.width/2, 30))
         let locationIcon = UIImageView(frame: CGRectMake(13, 137, 20, 20))
         let imageView = UIImageView(frame: CGRectMake(0, -20, view.frame.width, 245))

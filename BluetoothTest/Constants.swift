@@ -21,8 +21,8 @@ struct UIConstants {
     static let spacing3 = 64
     static let spacing4 = 128
 
-    static let borderThin = 0.5
-    static let borderThick = 1
+    static let borderThin = CGFloat(0.5)
+    static let borderThick = CGFloat(1)
 
     static let topMargin = 100
     static let botMargin = -75
@@ -33,19 +33,24 @@ struct UIConstants {
     static let logoWidthLarge = 50
 
     static let profilePictureSize = 96
+    static let profilePictureSizeSmall = 64
     
-    static let fontLarge = 64
-    static let fontBig = 32
-    static let fontMed = 24
-    static let fontSmallish = 18
-    static let fontSmall = 14
-    static let fontTiny = 10
+    static let buttonCircleSize = CGFloat(32)
+
+    static let fontLarge = CGFloat(64)
+    static let fontBig = CGFloat(32)
+    static let fontMed = CGFloat(24)
+    static let fontSmallish = CGFloat(18)
+    static let fontSmall = CGFloat(14)
+    static let fontTiny = CGFloat(10)
 
     static let primaryColor = UIColor(red: 51.0/255, green: 102.0/255, blue: 204.0/255, alpha: 1)
     static let errorColor = UIColor(red: 1, green: 153.0/255, blue: 153.0/255, alpha: 1)
     static let fadedColor = UIColor(white: 1, alpha: 0.5)
     static let veryFadedColor = UIColor(white: 1, alpha: 0.1)
-
+    static let defaultTextColor = UIColor.whiteColor()
+    static let successColor = UIColor(red: 71.0/250, green: 218.0/255, blue: 145.0/255, alpha: 1)
+    
     static let alphaMedFade = CGFloat(0.5)
     static let alphaHighFade = CGFloat(0.25)
     

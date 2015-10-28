@@ -581,7 +581,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("Loading profile page")
         createView()
         // Do any additional setup after loading the view.
     }
