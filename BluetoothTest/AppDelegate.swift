@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let firstVC = UINavigationController(rootViewController: HomeViewController())
         let secondVC = UINavigationController(rootViewController: EventFormViewController())
         let thirdVC = UINavigationController(rootViewController: NotificationsViewController())
-        let fourthVC = UINavigationController(rootViewController: HomeViewController())
+        let fourthVC = UINavigationController(rootViewController: ContactsViewController())
         let fifthVC = UINavigationController(rootViewController: HomeViewController())
         let controllers = [firstVC,secondVC,thirdVC,fourthVC,fifthVC]
         tabBarController.viewControllers = controllers
