@@ -142,7 +142,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if rowTapped == 2{
             EventChosen.events.eventSelected = sampleEvents[indexPath.row]
             EventChosen.events.eventImage = eventImages[indexPath.row]
-            loadEvent()
+//            loadEvent()
             rowTapped = 0
         }
         
@@ -191,10 +191,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return sampleEvents.count
     }
     
-    func loadEvent(){
-        let destination = EventDetailViewController()
-        navigationController?.pushViewController(destination, animated: true)
-    }
+//    func loadEvent(){
+//        let destination = EventDetailViewController()
+//        navigationController?.pushViewController(destination, animated: true)
+//    }
     
     
     func startEvent(){
