@@ -57,7 +57,7 @@ class LandingViewController: UIViewController {
         titleView.text = "Cohesve"
         titleView.sizeToFit()
         titleView.textColor = UIColor.whiteColor()
-        titleView.font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontLarge))
+        titleView.font = UIFont(name: "Avenir-Heavy", size: 30)
         titleView.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
             make.bottom.equalTo(view.snp_centerY)
@@ -89,11 +89,12 @@ class LandingViewController: UIViewController {
         signupButton.setTitle("Join", forState: .Normal)
         signupButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         signupButton.backgroundColor = UIConstants.primaryColor        
-        signupButton.layer.cornerRadius = 5
+        signupButton.layer.cornerRadius = 18
         signupButton.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
             make.bottom.equalTo(loginButton.snp_top).offset(-UIConstants.spacing1)
             make.width.equalTo(UIConstants.fieldWidth)
+            make.height.equalTo(36)
         }
         signupButton.addTarget(self, action: "handleSignup:", forControlEvents: UIControlEvents.TouchUpInside)
         
@@ -101,13 +102,14 @@ class LandingViewController: UIViewController {
         loginButton.setTitle("Sign In", forState: .Normal)
         loginButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         loginButton.layer.borderColor = UIColor.whiteColor().CGColor
-        loginButton.layer.cornerRadius = 5
+        loginButton.layer.cornerRadius = 18
         loginButton.layer.borderWidth = 0.5
         loginButton.backgroundColor = UIColor(white: 1, alpha: 0.1)
         loginButton.snp_makeConstraints { (make) -> Void in
             make.centerX.equalTo(view.snp_centerX)
             make.bottom.equalTo(view.snp_bottom).offset((tagline.frame.origin.y - view.frame.height)/2)
             make.width.equalTo(UIConstants.fieldWidth)
+            make.height.equalTo(36)
         }
         loginButton.addTarget(self, action: "handleLogin:", forControlEvents: UIControlEvents.TouchUpInside)
 
