@@ -55,6 +55,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationController?.pushViewController(profileVC, animated: true)
     }
     
+    
     func styleView() {
         view.addSubview(eventTable)
         eventTable.backgroundColor = UIColor.clearColor()
@@ -141,7 +142,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if rowTapped == 2{
             EventChosen.events.eventSelected = sampleEvents[indexPath.row]
             EventChosen.events.eventImage = eventImages[indexPath.row]
-            startEvent()
+            loadEvent()
             rowTapped = 0
         }
         
@@ -188,6 +189,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sampleEvents.count
+    }
+    
+    func loadEvent(){
+        let destination = EventDetailViewController()
+        navigationController?.pushViewController(destination, animated: true)
     }
     
     

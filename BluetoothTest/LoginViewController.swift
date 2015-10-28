@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
                         
                         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                         appDelegate.window?.rootViewController = appDelegate.tabBarController
+                        self.dismissViewControllerAnimated(false, completion: nil)
                     }
             })
         }
