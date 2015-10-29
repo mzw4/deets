@@ -46,7 +46,13 @@ class LoginViewController: UIViewController {
                         print("\(authData) logged in with email \(email) and id \(authData.uid)")
                         
                         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                        appDelegate.window?.rootViewController = appDelegate.tabBarController
+                        self.presentViewController(appDelegate.tabBarController, animated: true, completion: nil)
+                        
+//                        appDelegate.window?.rootViewController = appDelegate.tabBarController
+                        
+                        // Set the user id for the session
+                        NSUserDefaults.standardUserDefaults().setObject(authData.uid, forKey: "userId")
+                        NSUserDefaults.standardUserDefaults().synchronize()
                     }
             })
         }
