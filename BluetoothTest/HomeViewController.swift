@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var firstLaunch = true
     var initialLoadFinished = false
     
+    // Populate field for the current user
     func populateUserInfo() {
         let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
         DataHandler.getUserInfo(userId, completion: { (snapshot) in
@@ -47,6 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    // Retrieve data for all events
     func populateEventInfo() {
         DataHandler.getAllEvents({ snapshot in
             let eventInfo: [String: AnyObject] = snapshot.value as! [String : AnyObject]
@@ -65,12 +67,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
     }
     
+    func getConnectionRequests() {
+        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+        DataHandler.getConnectionRequests(userId, completion: { snapshot in
+            print(snapshot)
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
         
+        makeUsers()
         populateUserInfo()
         populateEventInfo()
+        getConnectionRequests()
         styleView()
 
         // Style navigation bar

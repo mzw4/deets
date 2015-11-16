@@ -48,6 +48,8 @@ class DataHandler {
     
     static let dateFormatter: NSDateFormatter = NSDateFormatter()
     
+    // --------------------- User functions ---------------------
+
     // Create a user using firebase auth and write all of the profile fields
     static func createUser(email: String, password: String, user: User,
         completion: (NSError!, [NSObject : AnyObject]!) -> Void) {
@@ -68,6 +70,11 @@ class DataHandler {
             })
     }
 
+    // Authenticate the user
+    static func loginUser(email: String, password: String, completion: (NSError!, FAuthData!) -> Void) {
+        firebaseRef.authUser(email, password: password, withCompletionBlock: completion)
+    }
+    
     // Read user data for one user
     static func getUserInfo(id: String, completion: (FDataSnapshot!) -> Void) {
         userRef.childByAppendingPath(id).observeEventType(.Value, withBlock: completion)
@@ -82,6 +89,8 @@ class DataHandler {
     static func writeUserInfo(id: String, vals: [String: String]) {
         userRef.childByAppendingPath(id).updateChildValues(vals)
     }
+
+    // --------------------- Connection Request functions ---------------------
 
     // Create a connection request between two users
     static func submitConnectionRequest(userId1: String, userId2: String, score: Double) {
@@ -144,6 +153,8 @@ class DataHandler {
     static func userRejectedConnection(userId: String, connId: String) {
         connectionRequestsRef.childByAppendingPath(connId).removeValue()
     }
+
+    // --------------------- Event functions ---------------------
 
     // Create event, return the id
     static func createEvent(name: String, location: String, startDate: NSDate, endDate: NSDate,
