@@ -13,19 +13,6 @@ import Firebase
 import SnapKit
 import Darwin
 
-extension UIView {
-    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotateAnimation.fromValue = 0.0
-        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
-        rotateAnimation.duration = duration
-        
-        if let delegate: AnyObject = completionDelegate {
-            rotateAnimation.delegate = delegate
-        }
-        self.layer.addAnimation(rotateAnimation, forKey: nil)
-    }
-}
 
 class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralManagerDelegate {
     let locationManager = CLLocationManager()
@@ -57,6 +44,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     // Create a reference to a Firebase location
     let firebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com")
     let userref = Firebase(url:"https://fiery-heat-4470.firebaseio.com/users")
+    let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!, identifier: "TEST")
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,9 +66,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!, identifier: "TEST")
         
-        locationManager.startRangingBeaconsInRegion(region)
+        if BeaconStarted.beacon.started == false{
+            locationManager.startRangingBeaconsInRegion(region)
+        }
         
         createView()
         
@@ -127,11 +117,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager){
-        if peripheral.state == .PoweredOn {
-            print("test worked")
-            peripheral.startAdvertising(beaconData as! [String: AnyObject]!)
+        if BeaconStarted.beacon.started == false{
+            if peripheral.state == .PoweredOn {
+                print("test worked")
+                peripheral.startAdvertising(beaconData as! [String: AnyObject]!)
+                BeaconStarted.beacon.started = true
+            }
         } else if peripheral.state == .PoweredOff {
             peripheral.stopAdvertising()
+            BeaconStarted.beacon.started = false
         }
     }
     
@@ -162,7 +156,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
                     print(snapshot.value)
                     self.populateUserInfo(snapshot.value as! NSDictionary)
                     self.peopleMet.append(beaconMajor)
-
+                    PeopleMet.people.peopleMet.append(beaconMajor)
                     }, withCancelBlock: { error in
                         print(error.description)
                 })
@@ -249,13 +243,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
 
         view.addSubview(viewContacts)
         viewContacts.translatesAutoresizingMaskIntoConstraints = false
-        viewContacts.layer.cornerRadius = 25.0
+        viewContacts.layer.cornerRadius = 6.0
         viewContacts.backgroundColor = UIConstants.primaryColor
-        viewContacts.setTitle("View Contacts", forState: .Normal)
+        viewContacts.setTitle("Stop Broadcasting", forState: .Normal)
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.7, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 50.0))
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -60.0))
+        viewContacts.addTarget(self, action: "stopBeacon", forControlEvents: .TouchUpInside)
         
         let swipeDown = UISwipeGestureRecognizer(target: self, action: "swipeDown:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
@@ -348,6 +343,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         }
     }
     
+    func stopBeacon(){
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        peripheral.stopAdvertising()
+        BeaconStarted.beacon.started = false
+        locationManager.stopRangingBeaconsInRegion(region)
+
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func swipeDown(gesture: UISwipeGestureRecognizer) {
         if gesture.direction == UISwipeGestureRecognizerDirection.Down && topConstraint.constant == 0{

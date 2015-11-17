@@ -265,6 +265,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.center.equalTo(bottomView.snp_center)
             make.size.equalTo(bottomView.snp_size)
         }
+        backgroundImageView.alpha = 0.25
         
         blurEffectSegmentView.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(bottomView.snp_center)

@@ -34,6 +34,9 @@
 		<string>FontAwesome.otf</string>
 		<string>OpenSans-Light.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
+		<string>Franklin-Gothic-Demi.ttf</string>
+		<string>DIN Alternate Bold.ttf</string>
+		<string>FranklinGothicMedium.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

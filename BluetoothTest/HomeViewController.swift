@@ -9,6 +9,8 @@
 import UIKit
 import SnapKit
 
+
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var eventTable = UITableView()
@@ -22,7 +24,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
     var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
     var dates = ["10/25/2015","11/04/2015","11/11/2015","12/14/2015","12/16/2015","01/12/2015"]
-    var locations = ["Javits Center","Hilton Union Square","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
+    var locations = ["Javits Center","New York Hilton Midtown","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
     var firstLaunch = true
     var initialLoadFinished = false
 
@@ -53,6 +55,21 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func presentProfile(sender: UIBarButtonItem!) {
         let profileVC = ProfileViewController()
         navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        if BeaconStarted.beacon.started == false{
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "Modal")
+        }else{
+            let icon = UIImage(named: "Radar4")
+            let iconSize = CGRect(origin: CGPointZero, size: icon!.size)
+            let iconButton = UIButton(frame: iconSize)
+            iconButton.setBackgroundImage(icon, forState: .Normal)
+            navigationItem.rightBarButtonItem!.customView = iconButton
+            navigationItem.rightBarButtonItem!.customView!.rotate360Degrees()
+            iconButton.addTarget(self, action: "Modal", forControlEvents: .TouchUpInside)
+        }
     }
     
     
@@ -142,7 +159,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if rowTapped == 2{
             EventChosen.events.eventSelected = sampleEvents[indexPath.row]
             EventChosen.events.eventImage = eventImages[indexPath.row]
-//            loadEvent()
+            EventChosen.events.eventAddress = locations[indexPath.row]
+            loadEvent()
             rowTapped = 0
         }
         
@@ -191,13 +209,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return sampleEvents.count
     }
     
-//    func loadEvent(){
-//        let destination = EventDetailViewController()
-//        navigationController?.pushViewController(destination, animated: true)
-//    }
+    func loadEvent(){
+        let destination = EventDetailsViewController()
+        navigationController?.pushViewController(destination, animated: true)
+    }
     
     
-    func startEvent(){
+    func Modal(){
         let destination = ViewController()
         presentViewController(destination, animated: true, completion: nil)
     }
