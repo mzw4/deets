@@ -46,6 +46,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     let userref = Firebase(url:"https://fiery-heat-4470.firebaseio.com/users")
     let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!, identifier: "TEST")
 
+    let userID = User.currentUser.userId
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +54,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         /* START BROADCASTING BEACON */
         
         let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
+        
         let major: CLBeaconMajorValue = 999
         let minor: CLBeaconMinorValue = 678
         
-        let userID = User.currentUser.userId
+        
         
         beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: userID)
         peripheral = CBPeripheralManager(delegate: self, queue: nil, options: nil)
@@ -148,6 +150,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         
         print(PeopleMet.people.peopleMet)
         /* Use beaconMajor as closes becaon - send that ID to firebase to retrieve contact information */
+        /* If there is a beaconMajor match, append the userID */
         if peopleMet.contains(beaconMajor){
             print("Person already met")
         }
@@ -159,7 +162,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
                     print(snapshot.value)
                     self.populateUserInfo(snapshot.value as! NSDictionary)
                     self.peopleMet.append(beaconMajor)
-                    PeopleMet.people.peopleMet.append(beaconMajor)
+                    PeopleMet.people.peopleMet.append(self.userID)  //fix this so that it sends to the database each time
                     }, withCancelBlock: { error in
                         print(error.description)
                 })
