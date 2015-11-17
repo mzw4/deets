@@ -56,7 +56,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         let major: CLBeaconMajorValue = 999
         let minor: CLBeaconMinorValue = 678
         
-        beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: "TEST")
+        let userID = User.currentUser.userId
+        
+        beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: userID)
         peripheral = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         beaconData = beacon.peripheralDataWithMeasuredPower(nil)
 

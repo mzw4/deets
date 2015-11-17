@@ -46,6 +46,20 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         collectionView?.dataSource = self;
         collectionView?.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0);
         
+        var user: User!
+        if ProfileViewController.userIdShow == nil {
+            ProfileViewController.userIdShow = User.currentUser.userId
+        }
+        
+        let uid = ProfileViewController.userIdShow!
+        if uid == User.currentUser.userId {
+            user = User.currentUser
+        } else {
+            User.getUserInfo(uid, completion: { userObj in
+                user = userObj
+                
+            })
+        }
 
         
         self.view.addSubview(collectionView!);

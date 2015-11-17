@@ -46,9 +46,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             event.eventPhoto = String(eventInfo["eventPhoto"]!)
             
             EventManager.events.append(event)
-            print(event)
             self.eventTable.reloadData()
+            print(event.name)
         })
+
     }
     
     func getConnectionRequests() {
@@ -72,6 +73,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         populateEventInfo()
         getConnectionRequests()
         styleView()
+
         
         // Style navigation bar
         navigationItem.title = "My Events"
@@ -177,13 +179,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.backgroundView!.addSubview(locationLabel)
         cell.backgroundView?.clipsToBounds = true
         
+        var alreadyCompleted = 0
         
         if indexPath.row == 0 && firstLaunch == true{
-            cell.backgroundView?.alpha = 0.7
-            cell.textLabel?.font = UIFont.systemFontOfSize(25, weight: UIFontWeightRegular)
-            cell.textLabel?.alpha = 1.0
-            cell.selected = true
-            firstLaunch = false
+            if alreadyCompleted == 0{
+                cell.backgroundView?.alpha = 0.7
+                cell.textLabel?.font = UIFont.systemFontOfSize(25, weight: UIFontWeightRegular)
+                cell.textLabel?.alpha = 1.0
+                cell.selected = true
+                firstLaunch = false
+                alreadyCompleted = 1
+            }
         }
         
         return cell
