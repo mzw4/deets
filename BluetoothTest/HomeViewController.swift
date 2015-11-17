@@ -22,14 +22,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var rowTapped = 0
     var eventSelected: String = ""
     
-<<<<<<< HEAD
-    var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
-    var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
-    var dates = ["10/25/2015","11/04/2015","11/11/2015","12/14/2015","12/16/2015","01/12/2015"]
-    var locations = ["Javits Center","New York Hilton Midtown","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
-=======
+//    var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
+//    var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
+//    var dates = ["10/25/2015","11/04/2015","11/11/2015","12/14/2015","12/16/2015","01/12/2015"]
+//    var locations = ["Javits Center","New York Hilton Midtown","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
+
     var dateFormatter = NSDateFormatter()
->>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
     var firstLaunch = true
     var initialLoadFinished = false
     
@@ -48,6 +46,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             event.eventPhoto = String(eventInfo["eventPhoto"]!)
             
             EventManager.events.append(event)
+            print(event)
             self.eventTable.reloadData()
         })
     }
@@ -193,16 +192,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         rowTapped += 1
         print(rowTapped)
         if rowTapped == 2{
-<<<<<<< HEAD
-            EventChosen.events.eventSelected = sampleEvents[indexPath.row]
-            EventChosen.events.eventImage = eventImages[indexPath.row]
-            EventChosen.events.eventAddress = locations[indexPath.row]
-            loadEvent()
-=======
             EventChosen.events.eventSelected = EventManager.events[indexPath.row].name
             EventChosen.events.eventImage = EventManager.events[indexPath.row].eventPhoto
-            startEvent()
->>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
+            EventChosen.events.eventAddress = EventManager.events[indexPath.row].location
+            loadEvent()
+
             rowTapped = 0
         }
         
@@ -251,20 +245,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return EventManager.events.count
     }
     
-<<<<<<< HEAD
     func loadEvent(){
         let destination = EventDetailsViewController()
         navigationController?.pushViewController(destination, animated: true)
     }
     
-    
     func Modal(){
-=======
-    func startEvent(){
->>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
-        let destination = ViewController()
-        presentViewController(destination, animated: true, completion: nil)
+        presentViewController(ViewController(), animated: true, completion: nil)
     }
+
     
     
 

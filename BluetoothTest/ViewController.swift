@@ -81,7 +81,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
 //        let params = ["client_id": "30e036d353d740b", "response_type": "token", "state": ""]
 //        requestHandler.sendRequest("https://api.imgur.com/oauth2/authorize", method: "GET", params: params, completionHandler: responseHandler)
 
-        firebaseRef.authUser("bobtony@example.com", password: "correcthorsebatterystaple",
+        firebaseRef.authUser("mzw4@cornell.edu", password: "123",
             withCompletionBlock: { error, authData in
                 if error != nil {
                     // There was an error logging in to this account
@@ -144,6 +144,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
             return
         }
         
+        print(PeopleMet.people.peopleMet)
         /* Use beaconMajor as closes becaon - send that ID to firebase to retrieve contact information */
         if peopleMet.contains(beaconMajor){
             print("Person already met")

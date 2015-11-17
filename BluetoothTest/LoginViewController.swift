@@ -41,26 +41,21 @@ class LoginViewController: UIViewController {
                     print("\(authData) logged in with email \(email!) and id \(authData.uid)")
                     
                     // Get user info
-                    let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
                     
-                    User.getUserInfo(userId, completion: { user in
-                        User.currentUser = user
-                        
-                        // Present the home view controller in the tab bar controller
-                        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-<<<<<<< HEAD
-                        appDelegate.window?.rootViewController = appDelegate.tabBarController
-                        self.dismissViewControllerAnimated(false, completion: nil)
-                    }
-=======
-                        self.presentViewController(appDelegate.tabBarController, animated: true, completion: nil)
-                        
-                        // Set the user id for the session
-                        NSUserDefaults.standardUserDefaults().setObject(authData.uid, forKey: "userId")
-                        NSUserDefaults.standardUserDefaults().synchronize()
-                    })
+                    let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")
+                    // Present the home view controller in the tab bar controller
+                    let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    self.presentViewController(appDelegate.tabBarController, animated: true, completion: nil)
+                    
+//                    User.getUserInfo(userId!, completion: { user in
+//                        User.currentUser = user
+//                    
+//                        // Set the user id for the session
+//                        NSUserDefaults.standardUserDefaults().setObject(authData.uid, forKey: "userId")
+//                        NSUserDefaults.standardUserDefaults().synchronize()
+//                    })
+
                 }
->>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
             })
         }
     }

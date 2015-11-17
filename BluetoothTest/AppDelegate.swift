@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         let firstVC = UINavigationController(rootViewController: HomeViewController())
-        let secondVC = UINavigationController(rootViewController: EventFormViewController())
+        let secondVC = UINavigationController(rootViewController: HomeViewController())
         let thirdVC = UINavigationController(rootViewController: NotificationsViewController())
         let fourthVC = UINavigationController(rootViewController: ContactsViewController())
-        let fifthVC = UINavigationController(rootViewController: HomeViewController())
+        let fifthVC = UINavigationController(rootViewController: SettingsViewController())
         let controllers = [firstVC,secondVC,thirdVC,fourthVC,fifthVC]
         tabBarController.viewControllers = controllers
         firstVC.tabBarItem = UITabBarItem(title: "Home", image:UIImage(named: "home.png"), selectedImage: UIImage(named: "homeselected.png"))
