@@ -125,7 +125,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     func populateUserInfo(user: User) {
         profilePicture.image = UIImage(named: user.profilePic)
         coverPhoto.image = UIImage(named: user.coverPhoto)
-        backgroundImageView.image = UIImage(named: user.profilePic)!
+        backgroundImageView.image = UIImage(named: user.profilePic)
 
         
         formatLabel(nameView, text: user.name, color: UIColor.whiteColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)

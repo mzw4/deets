@@ -65,7 +65,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // TEMP, CREATE DB ENTRIES
 //        makeEvents()
 //        makeUsers()
-        DataHandler.submitConnectionRequest(User.currentUser.userId, userId2: "100a1497-746f-43ce-81fc-120d87457d2b", date: NSDate(), location: "Mexico", score: 0.2374)
+//        DataHandler.submitConnectionRequest(User.currentUser.userId, userId2: "100a1497-746f-43ce-81fc-120d87457d2b", date: NSDate(), location: "Mexico", score: 0.2374)
 //        DataHandler.userAcceptedConnection(User.currentUser.userId, otherUserId: "100a1497-746f-43ce-81fc-120d87457d2b", connId: "100a1497-746f-43ce-81fc-120d87457d2be1c9384a-a279-4abe-9375-9bc8a813c034")
         // END TEMP
         
