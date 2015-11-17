@@ -27,6 +27,25 @@ class User {
     var events = [String]() // list of event ids
     var notes = ""
     
+    init() {}
+    
+    init(id: String, fromData data: [String : AnyObject]) {
+        userId = id
+        name = String(data[DBConstants.nameKey]!)
+        title = String(data[DBConstants.titleKey]!)
+        email = String(data[DBConstants.emailKey]!)
+        phone = String(data[DBConstants.phoneKey]!)
+        profilePic = String(data[DBConstants.profilePicKey]!)
+        coverPhoto = String(data[DBConstants.coverPhotoKey]!)
+        description = String(data[DBConstants.descriptionKey]!)
+        
+        twitter = String(data[DBConstants.twitterKey]!)
+        linkedIn = String(data[DBConstants.linkedInKey]!)
+        
+        numConnections = data[DBConstants.numConnectionsKey] as! Int
+        numEvents = data[DBConstants.numEventsKey] as! Int
+    }
+    
     // Singleton for the current user
     static var currentUser = User()
     
@@ -34,22 +53,7 @@ class User {
         DataHandler.getUserInfo(userId, completion: { (snapshot) in
             let userInfo: [String: AnyObject] = snapshot.value as! [String : AnyObject]
             
-            let user = User()
-            user.userId = snapshot.key
-            user.name = String(userInfo["name"]!)
-            user.title = String(userInfo["title"]!)
-            user.email = String(userInfo["email"]!)
-            user.phone = String(userInfo["phone"]!)
-            user.profilePic = String(userInfo["profile_pic"]!)
-            user.coverPhoto = String(userInfo["coverPhoto"]!)
-            user.description = String(userInfo["description"]!)
-            
-            user.twitter = String(userInfo["twitter"]!)
-            user.linkedIn = String(userInfo["linkedin"]!)
-            
-            user.numConnections = userInfo["numConnections"] as! Int
-            user.numEvents = userInfo["numEvents"] as! Int
-            
+            let user = User(id: snapshot.key, fromData: userInfo)
             completion(user)
         })
     }

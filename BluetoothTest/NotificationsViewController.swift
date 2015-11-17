@@ -10,23 +10,25 @@ import UIKit
 
 class NotificationsViewController: UIPageViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var sampleConnectionRequests = [
-        ["name": "Jaime Lanister", "profilePic": "jaime.png", "date": "5/5/15", "location": "King's Landing Pregame"],
-        ["name": "Little Finger", "profilePic": "littlefinger.png", "date": "1/2/34", "location": "King's Landing Pregame"],
-        ["name": "Daenerys Targaryen", "profilePic": "daenerys.png", "date": "7/7/15", "location": "King's Landing Pregame"]]
+//    var sampleConnectionRequests = [
+//        ["name": "Jaime Lanister", "profilePic": "jaime.png", "date": "5/5/15", "location": "King's Landing Pregame"],
+//        ["name": "Little Finger", "profilePic": "littlefinger.png", "date": "1/2/34", "location": "King's Landing Pregame"],
+//        ["name": "Daenerys Targaryen", "profilePic": "daenerys.png", "date": "7/7/15", "location": "King's Landing Pregame"]]
+    var connections: [ConnectionRequest] = [ConnectionRequest]()
     
     var connectionsTable = UITableView()
     var cellToHide: Int?
     var numCells = 0
     
+    var dateFormatter = NSDateFormatter()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         createView()
         
-//        let uid = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
-//        DataHandler.getConnectionRequests(uid, completion: { (snapshot) in
-//            print(snapshot)
-//        })
+
+        connections = Array(ConnectionRequestManager.connectionRequests.values)
+
         
         // Style navigation bar
         navigationItem.title = "Notifications"
@@ -45,15 +47,22 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
     }
     
     func handleAccept(sender: UIButton) {
+        let conn = connections[sender.tag]
+        let otherId = (conn.userId1 == User.currentUser.userId) ? conn.userId2 : conn.userId1
+        DataHandler.userAcceptedConnection(User.currentUser.userId, otherUserId: otherId, connId: connections[sender.tag].connId)
+
         connectionsTable.beginUpdates()
-        sampleConnectionRequests.removeAtIndex(sender.tag)
+        connections.removeAtIndex(sender.tag)
         connectionsTable.deleteRowsAtIndexPaths([NSIndexPath(forRow: sender.tag, inSection: 0)], withRowAnimation: .Right)
         connectionsTable.endUpdates()
+        
     }
     
     func handleReject(sender: UIButton) {
+        DataHandler.userRejectedConnection(User.currentUser.userId, connId: connections[sender.tag].connId)
+        
         connectionsTable.beginUpdates()
-        sampleConnectionRequests.removeAtIndex(sender.tag)
+        connections.removeAtIndex(sender.tag)
         connectionsTable.deleteRowsAtIndexPaths([NSIndexPath(forRow: sender.tag, inSection: 0)], withRowAnimation: .Left)
         connectionsTable.endUpdates()
     }
@@ -90,17 +99,20 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
         cell.layoutMargins = UIEdgeInsetsZero
 
         // Retrieve info
-        let info = sampleConnectionRequests[indexPath.row]
-        let name = info["name"]!
-        let date = info["date"]!
-        let location = info["location"]!
+        let info = connections[indexPath.row]
+        if info.userId1 == User.currentUser.userId {
+            cell.backgroundImage.image = UIImage(named: info.profilePic2)
+            cell.profilePicView.image = UIImage(named: info.profilePic2)
+            cell.nameLabel.text = info.name2
+        } else {
+            cell.backgroundImage.image = UIImage(named: info.profilePic1)
+            cell.profilePicView.image = UIImage(named: info.profilePic1)
+            cell.nameLabel.text = info.name1
+        }
         
         // Format the view
-        cell.backgroundImage.image = UIImage(named: info["profilePic"]!)
-        cell.profilePicView.image = UIImage(named: info["profilePic"]!)
-        cell.nameLabel.text = name
-        cell.dateLabel.text = date
-        cell.locationLabel.text = location
+        cell.dateLabel.text = dateFormatter.stringFromDate(info.date)
+        cell.locationLabel.text = info.location
         cell.rejectButton.tag = indexPath.row
         cell.rejectButton.addTarget(self, action: "handleReject:", forControlEvents: UIControlEvents.TouchUpInside)
         cell.acceptButton.tag = indexPath.row
@@ -117,7 +129,7 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sampleConnectionRequests.count
+        return connections.count
     }
     
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
