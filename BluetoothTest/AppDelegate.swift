@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let firstVC = UINavigationController(rootViewController: HomeViewController())
         let secondVC = UINavigationController(rootViewController: EventFormViewController())
-        let thirdVC = UINavigationController(rootViewController: HomeViewController())
+        let thirdVC = UINavigationController(rootViewController: NotificationsViewController())
         let fourthVC = UINavigationController(rootViewController: ContactsViewController())
         let fifthVC = UINavigationController(rootViewController: HomeViewController())
         let controllers = [firstVC,secondVC,thirdVC,fourthVC,fifthVC]
@@ -29,8 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fourthVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 2)
         fifthVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings.png"), selectedImage: UIImage(named: "settingsfilled.png"))
         
-        window?.rootViewController = LandingViewController()
-        
+//        if let _ = NSUserDefaults.standardUserDefaults().stringForKey("userId") {
+//            window?.rootViewController = tabBarController
+//        } else {
+            window?.rootViewController = LandingViewController()
+//        }
         
         return true
     }

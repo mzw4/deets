@@ -31,28 +31,28 @@ class SignupViewController: UIViewController {
     
     func createUser(sender: UIButton!) {
         if (validateFields()) {
-            let email = emailField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-            let password = passwordField.text?.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let email = emailField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+            let password = passwordField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
             
-            firebaseRef.createUser(email, password: password,
-                withValueCompletionBlock: { error, result in
-                    if error != nil {
-                        // There was an error creating the account
-                        print("error creating account: \(error)")
-                        self.errorText.text = "Error creating account. Sorry :)"
-                    } else {
-                        let uid = result["uid"] as? String
-                        print("Successfully created user account with uid: \(uid)")
-                        
-                        self.errorText.text = ""
-                        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                        appDelegate.window?.rootViewController = appDelegate.tabBarController
-                    }
+            let userProfile = User()
+            // add fields to the user here
+            
+            DataHandler.createUser(email, password: password, user: userProfile, completion: { error, result in
+                if error != nil {
+                    // There was an error creating the account
+                    print("error creating account: \(error)")
+                    self.errorText.text = "Error creating account. Sorry :)"
+                } else {
+                    let uid = result["uid"] as? String
+                    print("Successfully created user account with uid: \(uid)")
+                    
+                    self.errorText.text = ""
+                    let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    appDelegate.window?.rootViewController = appDelegate.tabBarController
+                }
             })
         }
     }
-    
-    func createUserCompletion(error: NSError!, result: [NSObject: AnyObject]!) {}
     
     func validateFields() -> Bool {
         return true
@@ -222,7 +222,7 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UILabel.appearance().font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontMed))
+//        UILabel.appearance().font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontMed))
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         createView()
         // Do any additional setup after loading the view.

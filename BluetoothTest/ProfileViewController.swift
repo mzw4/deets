@@ -12,6 +12,8 @@ import SnapKit
 class ProfileViewController: UIViewController, UIScrollViewDelegate,
     UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
+    static var userIdShow: String?
+    
     // TEMP
     var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
     var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
@@ -21,16 +23,20 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     
     let viewSections = ["Info", "Events", "Notes"]
     
+    // Container views
     let scrollView = UIScrollView()
     let topView = UIView()
     let bottomView = UIView()
     
+    // Top details views
     let topViewRestingHeight = CGFloat(Double(2 * UIConstants.spacing1 + UIConstants.spacing0 + UIConstants.profilePictureSize) + 2 * UIConstants.textHeight)
     let topDetailsContainer = UIView()
     let profilePicture = UIImageView()
     let coverPhoto = UIImageView()
     let nameView = UILabel()
     let titleView = UILabel()
+    let numConnectionsView = UILabel()
+    let numEventsView = UILabel()
     
     // Section buttons
     let segmentedControlView = UISegmentedControl(items: ["Info", "Events", "Notes"])
@@ -42,14 +48,12 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     let infoView = UIView()
     let infoScrollView = UIScrollView()
     let backgroundImageView = UIImageView()
-
     let quoteView = UILabel()
     let descriptionView = UITextView()
     let emailLabelView = UILabel()
     let emailView = UILabel()
     let phoneLabelView = UILabel()
     let phoneView = UILabel()
-
     let twitterView = UIButton(type: UIButtonType.System)
     let linkedInView = UIButton(type: UIButtonType.System)
     let facebookView = UIButton(type: UIButtonType.System)
@@ -111,13 +115,46 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         // reveal cover photo and fade profile details when scrolled
         // fully faded when cover photo is 1.5 * its original height)
         let ratioRevealed = (topView.frame.height - topViewRestingHeight)/(0.5 * topViewRestingHeight)
-        print("scrolled \(ratioRevealed)")
 
         coverPhoto.alpha = max(UIConstants.alphaHighFade, CGFloat(UIConstants.alphaHighFade) + ratioRevealed * (1 - CGFloat(UIConstants.alphaHighFade)))
         topDetailsContainer.alpha = 1 - ratioRevealed
     }
     
+    // Set the values of the profile view for the given user object
+    func populateUserInfo(user: User) {
+        profilePicture.image = UIImage(named: user.profilePic)
+        coverPhoto.image = UIImage(named: user.coverPhoto)
+        backgroundImageView.image = UIImage(named: user.profilePic)!
+
+        
+        formatLabel(nameView, text: user.name, color: UIColor.whiteColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
+        formatLabel(titleView, text: user.title, color: UIColor.lightGrayColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
+        
+        formatLabel(numConnectionsView, text: "Connections: \(user.numConnections)")
+        formatLabel(numEventsView, text: "Events: \(user.numEvents)")
+        
+        descriptionView.text = user.description
+
+        formatLabel(emailView, text: user.email, color: UIColor.whiteColor())
+        formatLabel(phoneView, text: user.phone, color: UIColor.whiteColor())
+    }
+    
     func createView() {
+        var user: User!
+        if ProfileViewController.userIdShow == nil {
+            ProfileViewController.userIdShow = User.currentUser.userId
+        }
+        
+        let uid = ProfileViewController.userIdShow!
+        if uid == User.currentUser.userId {
+            user = User.currentUser
+            populateUserInfo(user)
+        } else {
+            User.getUserInfo(uid, completion: { userObj in
+                user = userObj
+                self.populateUserInfo(user)
+            })
+        }
         
         // Navigation bar
         navigationItem.title = "Profile"
@@ -149,6 +186,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         topDetailsContainer.addSubview(profilePicture)
         topDetailsContainer.addSubview(nameView)
         topDetailsContainer.addSubview(titleView)
+        topDetailsContainer.addSubview(numConnectionsView)
+        topDetailsContainer.addSubview(numEventsView)
 
         bottomView.addSubview(backgroundImageView)
         bottomView.addSubview(blurEffectSegmentView)
@@ -208,7 +247,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         }
         
         // Profile pic
-        profilePicture.image = UIImage(named: "jonsnow.png")
         profilePicture.contentMode = .ScaleAspectFit
         profilePicture.layer.cornerRadius = CGFloat(UIConstants.profilePictureSize/2)
         profilePicture.layer.borderWidth = 2
@@ -221,20 +259,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         }
 
         // Profile name
-        formatLabel(nameView, text: "Jon Snow", color: UIColor.whiteColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
         nameView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(profilePicture.snp_bottom).offset(UIConstants.spacing0)
             make.centerX.equalTo(topDetailsContainer.snp_centerX)
         }
         
         // Professional title
-        formatLabel(titleView, text: "Lord Commander, The Night's Watch", color: UIColor.lightGrayColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
         titleView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(nameView.snp_bottom)
             make.centerX.equalTo(topDetailsContainer.snp_centerX)
         }
 
-        coverPhoto.image = UIImage(named: "nightswatch.png")
         coverPhoto.contentMode = .ScaleAspectFill
         coverPhoto.alpha = CGFloat(UIConstants.alphaHighFade)
         coverPhoto.snp_makeConstraints { (make) -> Void in
@@ -248,6 +283,18 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
 //            make.size.equalTo(coverPhoto.snp_size)
         }
         
+//        bottomView.snp_makeConstraints { (make) -> Void in
+//            make.top.equalTo(topView.snp_bottom)
+//            make.bottom.equalTo(view.snp_bottom).offset(-tabHeight)
+//            make.width.equalTo(scrollView.snp_width)
+//        }
+        
+//        bottomView.snp_makeConstraints { (make) -> Void in
+//            make.top.equalTo(topView.snp_bottom)
+//            make.bottom.equalTo(view.snp_bottom).offset(-tabHeight)
+//            make.width.equalTo(scrollView.snp_width)
+//        }
+        
         // --------------------- Bottom View ---------------------
         
         bottomView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
@@ -259,7 +306,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         
         // Set the bottom view background image
         backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        backgroundImageView.image = UIImage(named: "jonsnow.png")!
         backgroundImageView.clipsToBounds = true
         backgroundImageView.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(bottomView.snp_center)
@@ -312,7 +358,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         descriptionView.scrollEnabled = false
 //        descriptionView.editable = false
         descriptionView.font = UIFont(name: UIConstants.fontRegular, size: CGFloat(UIConstants.fontSmall))
-        descriptionView.text = "My name is Jon Snow. I am Lord Commander of the Night's Watch, steward of justice and killer of white walkers. I am son to a murdered father, brother to murdered kin, husband to a murdered wife, I'm not sure who my mother was, and I was murdered too. And I will have my vengenace, in this life or the next."
         descriptionView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(infoView.snp_top).offset(UIConstants.spacing1)
             make.left.equalTo(quoteView.snp_right).offset(UIConstants.spacing0)
@@ -325,7 +370,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.left.equalTo(infoView.snp_left).offset(UIConstants.spacing1)
         }
         
-        formatLabel(emailView, text: "jsnow@winterfell.edu", color: UIColor.whiteColor())
         emailView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(descriptionView.snp_bottom).offset(UIConstants.spacing1)
             make.left.equalTo(emailLabelView.snp_right).offset(UIConstants.spacing0)
@@ -337,7 +381,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.left.equalTo(infoView.snp_left).offset(UIConstants.spacing1)
         }
 
-        formatLabel(phoneView, text: "424-242-4242", color: UIColor.whiteColor())
         phoneView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(emailView.snp_bottom).offset(UIConstants.spacing0)
             make.left.equalTo(phoneLabelView.snp_right).offset(UIConstants.spacing0)
@@ -583,7 +626,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("Loading profile page")
         createView()
         // Do any additional setup after loading the view.
     }

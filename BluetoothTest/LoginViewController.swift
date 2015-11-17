@@ -11,9 +11,6 @@ import Firebase
 import SnapKit
 
 class LoginViewController: UIViewController {
-    
-    let firebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com")
-    
     let logoContainer = UIView()
     let logoView = UIImageView()
     let titleView = UILabel()
@@ -32,23 +29,38 @@ class LoginViewController: UIViewController {
     func loginUser(sender: UIButton!) {
         spinner.startAnimating()
         if (validateFields()) {
-            //        firebaseRef.authUser("bobtony@example.com", password: "correcthorsebatterystaple",
-            firebaseRef.authUser(emailField.text, password: passwordField.text,
-                withCompletionBlock: { error, authData in
-                    self.spinner.stopAnimating()
-                    if error != nil {
-                        // There was an error logging in to this account
-                        print("Error logging in! \(error)")
-                        self.errorText.text = "Invalid email or password :("
-                    } else {
-                        // We are now logged in
-                        let email = authData.providerData["email"]
-                        print("\(authData) logged in with email \(email) and id \(authData.uid)")
+            DataHandler.loginUser(emailField.text!, password: passwordField.text!, completion: { error, authData in
+                self.spinner.stopAnimating()
+                if error != nil {
+                    // There was an error logging in to this account
+                    print("Error logging in! \(error)")
+                    self.errorText.text = "Invalid email or password :("
+                } else {
+                    // We are now logged in
+                    let email = authData.providerData["email"]
+                    print("\(authData) logged in with email \(email!) and id \(authData.uid)")
+                    
+                    // Get user info
+                    let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+                    
+                    User.getUserInfo(userId, completion: { user in
+                        User.currentUser = user
                         
+                        // Present the home view controller in the tab bar controller
                         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+<<<<<<< HEAD
                         appDelegate.window?.rootViewController = appDelegate.tabBarController
                         self.dismissViewControllerAnimated(false, completion: nil)
                     }
+=======
+                        self.presentViewController(appDelegate.tabBarController, animated: true, completion: nil)
+                        
+                        // Set the user id for the session
+                        NSUserDefaults.standardUserDefaults().setObject(authData.uid, forKey: "userId")
+                        NSUserDefaults.standardUserDefaults().synchronize()
+                    })
+                }
+>>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
             })
         }
     }
@@ -62,8 +74,6 @@ class LoginViewController: UIViewController {
     }
     
     func handleBack(sender: UIButton!) {
-//        let landingVC = LandingViewController()
-//        self.presentViewController(landingVC, animated: true, completion: nil)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

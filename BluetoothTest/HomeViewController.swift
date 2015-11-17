@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 
 
@@ -21,18 +22,56 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var rowTapped = 0
     var eventSelected: String = ""
     
+<<<<<<< HEAD
     var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
     var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
     var dates = ["10/25/2015","11/04/2015","11/11/2015","12/14/2015","12/16/2015","01/12/2015"]
     var locations = ["Javits Center","New York Hilton Midtown","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
+=======
+    var dateFormatter = NSDateFormatter()
+>>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
     var firstLaunch = true
     var initialLoadFinished = false
-
+    
+    // Retrieve data for all events
+    func populateEventInfo() {
+        DataHandler.getAllEvents({ snapshot in
+            let eventInfo: [String: AnyObject] = snapshot.value as! [String : AnyObject]
+            
+            let event = Event()
+            event.name = String(eventInfo["name"]!)
+            event.location = String(eventInfo["location"]!)
+            event.startDate = NSDate(timeIntervalSince1970: eventInfo["startDate"] as! Double)
+            event.endDate = NSDate(timeIntervalSince1970: eventInfo["endDate"] as! Double)
+            event.company = String(eventInfo["company"]!)
+            event.description = String(eventInfo["description"]!)
+            event.eventPhoto = String(eventInfo["eventPhoto"]!)
+            
+            EventManager.events.append(event)
+            self.eventTable.reloadData()
+        })
+    }
+    
+    func getConnectionRequests() {
+        DataHandler.getConnectionRequests(User.currentUser.userId, completion: { connections in
+            print(connections)
+        })
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
-        styleView()
 
+        // TEMP, CREATE DB ENTRIES
+//        makeEvents()
+//        makeUsers()
+//        DataHandler.submitConnectionRequest(User.currentUser.userId, userId2: "aiwjdlawijdaliwhd", score: 0.2374)
+        // END TEMP
+        
+        populateEventInfo()
+        getConnectionRequests()
+        styleView()
+        
         // Style navigation bar
         navigationItem.title = "My Events"
         navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
@@ -49,12 +88,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tabBarController?.tabBar.tintColor = UIColor.whiteColor()
         
         self.automaticallyAdjustsScrollViewInsets = true
-        // Do any additional setup after loading the view.
     }
     
     func presentProfile(sender: UIBarButtonItem!) {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        ProfileViewController.userIdShow = User.currentUser.userId
+        navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -93,28 +131,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
         eventTable.rowHeight = UITableViewAutomaticDimension
         eventTable.estimatedRowHeight = 100
-        
     }
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel!.text = sampleEvents[indexPath.row]
+        cell.textLabel!.text = EventManager.events[indexPath.row].name
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.font = UIFont.systemFontOfSize(20, weight: UIFontWeightLight)
         cell.backgroundColor = UIColor.clearColor()
         cell.selectionStyle = UITableViewCellSelectionStyle.None
         cell.separatorInset = UIEdgeInsetsZero
         cell.layoutMargins = UIEdgeInsetsZero
-        
-        
+
         let dateLabel = UILabel(frame: CGRectMake(16, 170, view.frame.width/2, 30))
         let locationIcon = UIImageView(frame: CGRectMake(13, 137, 20, 20))
         let imageView = UIImageView(frame: CGRectMake(0, -20, view.frame.width, 245))
         let shadowView = UIImageView(frame: CGRectMake(0, 0, view.frame.width, 225))
         let locationLabel = UILabel(frame: CGRectMake(40, 134, view.frame.width-50, 30))
 
-        imageView.image = UIImage(named: eventImages[indexPath.row])
+        imageView.image = UIImage(named: EventManager.events[indexPath.row].eventPhoto)
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
         imageView.clipsToBounds = true
         shadowView.image = UIImage(named: "shadow.png")
@@ -122,10 +158,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         shadowView.clipsToBounds = true
         dateLabel.textColor = UIColor.whiteColor()
         dateLabel.font = UIFont.systemFontOfSize(15, weight: UIFontWeightLight)
-        dateLabel.text = dates[indexPath.row]
+        dateLabel.text = dateFormatter.stringFromDate(EventManager.events[indexPath.row].startDate)
         locationIcon.image = UIImage(named: "location.png")
         locationIcon.contentMode = UIViewContentMode.ScaleAspectFit
-        locationLabel.text = locations[indexPath.row]
+        locationLabel.text = EventManager.events[indexPath.row].location
         locationLabel.font = UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
         locationLabel.textColor = UIColor.whiteColor()
         
@@ -157,10 +193,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         rowTapped += 1
         print(rowTapped)
         if rowTapped == 2{
+<<<<<<< HEAD
             EventChosen.events.eventSelected = sampleEvents[indexPath.row]
             EventChosen.events.eventImage = eventImages[indexPath.row]
             EventChosen.events.eventAddress = locations[indexPath.row]
             loadEvent()
+=======
+            EventChosen.events.eventSelected = EventManager.events[indexPath.row].name
+            EventChosen.events.eventImage = EventManager.events[indexPath.row].eventPhoto
+            startEvent()
+>>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
             rowTapped = 0
         }
         
@@ -198,7 +240,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-        if indexPath.row == rowToSelect{
+        if indexPath.row == rowToSelect {
             return 225
         }else{
             return 100
@@ -206,9 +248,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sampleEvents.count
+        return EventManager.events.count
     }
     
+<<<<<<< HEAD
     func loadEvent(){
         let destination = EventDetailsViewController()
         navigationController?.pushViewController(destination, animated: true)
@@ -216,6 +259,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func Modal(){
+=======
+    func startEvent(){
+>>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
         let destination = ViewController()
         presentViewController(destination, animated: true, completion: nil)
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+<<<<<<< HEAD
 import LTMorphingLabel
 
 
@@ -15,6 +16,9 @@ extension UILabel {
         self.attributedText =  NSAttributedString(string: self.text ?? "", attributes: [NSKernAttributeName:kerningValue, NSFontAttributeName:font, NSForegroundColorAttributeName:self.textColor])
     }
 }
+=======
+import Firebase
+>>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
 
 class LandingViewController: UIViewController {
     
@@ -138,6 +142,7 @@ class LandingViewController: UIViewController {
             make.height.equalTo(47)
         }
         loginButton.addTarget(self, action: "handleLogin:", forControlEvents: UIControlEvents.TouchUpInside)
+<<<<<<< HEAD
         loginButton.alpha = 0
 
 //        UIGraphicsBeginImageContext(self.view.frame.size)
@@ -146,6 +151,8 @@ class LandingViewController: UIViewController {
 //        UIGraphicsEndImageContext()
 //        self.view.backgroundColor = UIColor(patternImage: image)
         
+=======
+>>>>>>> 6e7013ff4a0f4c72b07d5cc39b9035e10fff8a31
     }
     
     override func viewDidLoad() {
