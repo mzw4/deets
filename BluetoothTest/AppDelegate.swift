@@ -29,11 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         fourthVC.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.Contacts, tag: 2)
         fifthVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings.png"), selectedImage: UIImage(named: "settingsfilled.png"))
         
-        if let _ = NSUserDefaults.standardUserDefaults().stringForKey("userId") {
-            window?.rootViewController = tabBarController
-        } else {
+//        if let _ = NSUserDefaults.standardUserDefaults().stringForKey("userId") {
+//            window?.rootViewController = tabBarController
+//        } else {
             window?.rootViewController = LandingViewController()
-        }
+//        }
         
         return true
     }

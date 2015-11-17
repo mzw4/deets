@@ -15,6 +15,7 @@ struct DBConstants {
     static let connReqCollection = "connectionRequests"
     static let eventsCollection = "events"
     
+    static let connIds = "connIds"
     static let userId1Key = "userId1"
     static let userId2Key = "userId2"
     static let scoreKey = "score"
@@ -93,25 +94,43 @@ class DataHandler {
     // --------------------- Connection Request functions ---------------------
 
     // Create a connection request between two users
+    // When two users connect, each of them will both submit a connection request
+    // (there will be 2 values in the DB per connection request for easier retrieval)
     static func submitConnectionRequest(userId1: String, userId2: String, score: Double) {
-        connectionRequestsRef.childByAutoId().setValue([
-            DBConstants.userId1Key: userId1,
-            DBConstants.userId2Key: userId2,
-            DBConstants.scoreKey: score, // the likelihood they taked, used for priority
+        let compareVal = userId1.compare(userId2)
+        
+        // Connection id is formed by appending userids in alphabetical order
+        let connId = (compareVal == NSComparisonResult.OrderedAscending) ? userId1 + userId2 : userId2 + userId1
+        connectionRequestsRef.childByAppendingPath(connId).setValue([
+            DBConstants.userId1Key: userId1,    // the current user
+            DBConstants.userId2Key: userId2,    // the other user
+            DBConstants.scoreKey: score, // the likelihood they talked, used for priority
             DBConstants.acceptedKey: 0   // when the count is 2, exchange contacts
         ])
     }
 
     // Get all pending connection requests for a user
-    static func getConnectionRequests(userId: String, completion: (FDataSnapshot!) -> Void) {
-        // can't think of a better way to do this right now aside from storing two entries for each request
-        // but then we would have to update accepted for both each time as well
+    static func getConnectionRequests(userId: String, completion: ([[String: AnyObject]]) -> Void) {
+        var numCompleted = 0
+        var connections = [[String: AnyObject]]()
         
-        // May be slightly buggy since
+        func waitForRequests(snapshot: FDataSnapshot!) -> Void {
+            let data: [String: AnyObject]? = snapshot.value as? [String : AnyObject]
+            if data != nil {
+                for connData in data!.values {
+                    connections.append(connData as! [String : AnyObject])
+                }
+            }
+            
+            numCompleted++
+            if numCompleted >= 2 { completion(connections) }
+        }
+        
+        // can't think of a better way to do this right now aside from storing two entries for each request
         connectionRequestsRef.queryOrderedByChild(DBConstants.userId1Key).queryEqualToValue(userId)
-            .observeEventType(.ChildAdded, withBlock: completion)
+        .observeEventType(.Value, withBlock: waitForRequests)
         connectionRequestsRef.queryOrderedByChild(DBConstants.userId2Key).queryEqualToValue(userId)
-            .observeEventType(.ChildAdded, withBlock: completion)
+        .observeEventType(.Value, withBlock: waitForRequests)
     }
 
     // Submit an accept connection request

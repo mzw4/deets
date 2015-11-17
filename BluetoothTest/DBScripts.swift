@@ -78,7 +78,7 @@ func makeUsers() {
     
     DataHandler.userRef.childByAppendingPath("100a1497-746f-43ce-81fc-120d87457d2b").setValue([
         "coverPhoto": "",
-        "description": "Tell me, if I stabbed the Mad King is the belly instead of the back, would you admire me more?",
+        "description": "Tell me, if I stabbed the Mad King in the belly instead of the back, would you admire me more?",
         "email": "jaime@thrones.com",
         "linkedin": "https://www.linkedin.com/pub/jon-snow/b5/94/a61",
         "name": "Jaime Lannister",

@@ -24,30 +24,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var firstLaunch = true
     var initialLoadFinished = false
     
-    // Populate field for the current user
-    func populateUserInfo() {
-        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
-        DataHandler.getUserInfo(userId, completion: { (snapshot) in
-            let userInfo: [String: AnyObject] = snapshot.value as! [String : AnyObject]
-            
-            let user = User.currentUser
-            user.userId = snapshot.key
-            user.name = String(userInfo["name"]!)
-            user.title = String(userInfo["title"]!)
-            user.email = String(userInfo["email"]!)
-            user.phone = String(userInfo["phone"]!)
-            user.profilePic = String(userInfo["profile_pic"]!)
-            user.coverPhoto = String(userInfo["coverPhoto"]!)
-            user.description = String(userInfo["description"]!)
-            
-            user.twitter = String(userInfo["twitter"]!)
-            user.linkedIn = String(userInfo["linkedin"]!)
-
-            user.numConnections = userInfo["numConnections"] as! Int
-            user.numEvents = userInfo["numEvents"] as! Int
-        })
-    }
-    
     // Retrieve data for all events
     func populateEventInfo() {
         DataHandler.getAllEvents({ snapshot in
@@ -68,22 +44,25 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getConnectionRequests() {
-        let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
-        DataHandler.getConnectionRequests(userId, completion: { snapshot in
-            print(snapshot)
+        DataHandler.getConnectionRequests(User.currentUser.userId, completion: { connections in
+            print(connections)
         })
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
+
+        // TEMP, CREATE DB ENTRIES
+//        makeEvents()
+//        makeUsers()
+//        DataHandler.submitConnectionRequest(User.currentUser.userId, userId2: "aiwjdlawijdaliwhd", score: 0.2374)
+        // END TEMP
         
-        makeUsers()
-        populateUserInfo()
         populateEventInfo()
         getConnectionRequests()
         styleView()
-
+        
         // Style navigation bar
         navigationItem.title = "My Events"
         navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
@@ -103,8 +82,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func presentProfile(sender: UIBarButtonItem!) {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+        ProfileViewController.userIdShow = User.currentUser.userId
+        navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
     
     func styleView() {

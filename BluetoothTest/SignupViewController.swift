@@ -222,7 +222,7 @@ class SignupViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UILabel.appearance().font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontMed))
+//        UILabel.appearance().font = UIFont(name: UIConstants.fontLight, size: CGFloat(UIConstants.fontMed))
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: true)
         createView()
         // Do any additional setup after loading the view.

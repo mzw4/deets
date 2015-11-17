@@ -110,6 +110,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		270D555E1BFA894C001F4C46 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				27F1BD381BB0C34500BBE01A /* RequestHandler.swift */,
+				2706E2781BCC48B400537B7E /* Constants.swift */,
+				2706E27A1BCC6B2400537B7E /* Util.swift */,
+				2708B9691BE1949800F3FC3B /* DBScripts.swift */,
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
+		270D555F1BFA9497001F4C46 /* DatabaseRequests */ = {
+			isa = PBXGroup;
+			children = (
+				27AD4C691BE11D9700BBED8D /* DataHandler.swift */,
+			);
+			name = DatabaseRequests;
+			sourceTree = "<group>";
+		};
 		27AD4C6B1BE136E500BBED8D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				27AD4C6B1BE136E500BBED8D /* Models */,
-				49A897AE1BC710D100BBD558 /* Fonts */,
 				6188B4C81BA282570081223C /* AppDelegate.swift */,
 				491FEC971BDED7E700B9BDE5 /* ContactsViewController.swift */,
 				49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */,
@@ -161,8 +179,6 @@
 				6188B4CC1BA282570081223C /* Main.storyboard */,
 				6188B4CF1BA282580081223C /* Images.xcassets */,
 				6188B4D11BA282580081223C /* LaunchScreen.xib */,
-				6188B4C61BA282570081223C /* Supporting Files */,
-				27F1BD381BB0C34500BBE01A /* RequestHandler.swift */,
 				273957771BCF0E3B0044EE19 /* ProfileViewController.swift */,
 				271DD9F51BC57A4900FF864B /* LoginViewController.swift */,
 				271DD9FB1BC6E54200FF864B /* SignupViewController.swift */,
@@ -170,10 +186,10 @@
 				618C4FCB1BCEA0CC007F238E /* HomeViewController.swift */,
 				274676AD1BDEB24D002FC67D /* NotificationsViewController.swift */,
 				274676B01BDF03A8002FC67D /* NotificationViewCell.swift */,
-				2706E2781BCC48B400537B7E /* Constants.swift */,
-				2706E27A1BCC6B2400537B7E /* Util.swift */,
-				27AD4C691BE11D9700BBED8D /* DataHandler.swift */,
-				2708B9691BE1949800F3FC3B /* DBScripts.swift */,
+				49A897AE1BC710D100BBD558 /* Fonts */,
+				6188B4C61BA282570081223C /* Supporting Files */,
+				270D555F1BFA9497001F4C46 /* DatabaseRequests */,
+				270D555E1BFA894C001F4C46 /* Util */,
 			);
 			path = BluetoothTest;
 			sourceTree = "<group>";

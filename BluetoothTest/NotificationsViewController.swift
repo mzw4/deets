@@ -23,6 +23,11 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
         super.viewDidLoad()
         createView()
         
+        let uid = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
+        DataHandler.getConnectionRequests(uid, completion: { (snapshot) in
+            print(snapshot)
+        })
+        
         // Style navigation bar
         navigationItem.title = "Notifications"
         navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent

@@ -12,6 +12,8 @@ import SnapKit
 class ProfileViewController: UIViewController, UIScrollViewDelegate,
     UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
+    static var userIdShow: String?
+    
     // TEMP
     var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
     var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
@@ -118,12 +120,41 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         topDetailsContainer.alpha = 1 - ratioRevealed
     }
     
-    func getUserInfo() {
+    // Set the values of the profile view for the given user object
+    func populateUserInfo(user: User) {
+        profilePicture.image = UIImage(named: user.profilePic)
+        coverPhoto.image = UIImage(named: user.coverPhoto)
+        backgroundImageView.image = UIImage(named: user.profilePic)!
+
         
+        formatLabel(nameView, text: user.name, color: UIColor.whiteColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
+        formatLabel(titleView, text: user.title, color: UIColor.lightGrayColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
+        
+        formatLabel(numConnectionsView, text: "Connections: \(user.numConnections)")
+        formatLabel(numEventsView, text: "Events: \(user.numEvents)")
+        
+        descriptionView.text = user.description
+
+        formatLabel(emailView, text: user.email, color: UIColor.whiteColor())
+        formatLabel(phoneView, text: user.phone, color: UIColor.whiteColor())
     }
     
     func createView() {
-        let user = User.currentUser
+        var user: User!
+        if ProfileViewController.userIdShow == nil {
+            ProfileViewController.userIdShow = User.currentUser.userId
+        }
+        
+        let uid = ProfileViewController.userIdShow!
+        if uid == User.currentUser.userId {
+            user = User.currentUser
+            populateUserInfo(user)
+        } else {
+            User.getUserInfo(uid, completion: { userObj in
+                user = userObj
+                self.populateUserInfo(user)
+            })
+        }
         
         // Navigation bar
         navigationItem.title = "Profile"
@@ -215,7 +246,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         }
         
         // Profile pic
-        profilePicture.image = UIImage(named: user.profilePic)
         profilePicture.contentMode = .ScaleAspectFit
         profilePicture.layer.cornerRadius = CGFloat(UIConstants.profilePictureSize/2)
         profilePicture.layer.borderWidth = 2
@@ -228,20 +258,17 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         }
 
         // Profile name
-        formatLabel(nameView, text: user.name, color: UIColor.whiteColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
         nameView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(profilePicture.snp_bottom).offset(UIConstants.spacing0)
             make.centerX.equalTo(topDetailsContainer.snp_centerX)
         }
         
         // Professional title
-        formatLabel(titleView, text: user.title, color: UIColor.lightGrayColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
         titleView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(nameView.snp_bottom)
             make.centerX.equalTo(topDetailsContainer.snp_centerX)
         }
 
-        coverPhoto.image = UIImage(named: user.coverPhoto)
         coverPhoto.contentMode = .ScaleAspectFill
         coverPhoto.alpha = CGFloat(UIConstants.alphaHighFade)
         coverPhoto.snp_makeConstraints { (make) -> Void in
@@ -255,14 +282,12 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
 //            make.size.equalTo(coverPhoto.snp_size)
         }
         
-        formatLabel(numConnectionsView, text: "Connections: \(user.numConnections)")
 //        bottomView.snp_makeConstraints { (make) -> Void in
 //            make.top.equalTo(topView.snp_bottom)
 //            make.bottom.equalTo(view.snp_bottom).offset(-tabHeight)
 //            make.width.equalTo(scrollView.snp_width)
 //        }
         
-        formatLabel(numEventsView, text: "Events: \(user.numEvents)")
 //        bottomView.snp_makeConstraints { (make) -> Void in
 //            make.top.equalTo(topView.snp_bottom)
 //            make.bottom.equalTo(view.snp_bottom).offset(-tabHeight)
@@ -280,7 +305,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         
         // Set the bottom view background image
         backgroundImageView.contentMode = UIViewContentMode.ScaleAspectFill
-        backgroundImageView.image = UIImage(named: user.profilePic)!
         backgroundImageView.clipsToBounds = true
         backgroundImageView.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(bottomView.snp_center)
@@ -332,7 +356,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         descriptionView.scrollEnabled = false
 //        descriptionView.editable = false
         descriptionView.font = UIFont(name: UIConstants.fontRegular, size: CGFloat(UIConstants.fontSmall))
-        descriptionView.text = user.description
         descriptionView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(infoView.snp_top).offset(UIConstants.spacing1)
             make.left.equalTo(quoteView.snp_right).offset(UIConstants.spacing0)
@@ -345,7 +368,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.left.equalTo(infoView.snp_left).offset(UIConstants.spacing1)
         }
         
-        formatLabel(emailView, text: user.email, color: UIColor.whiteColor())
         emailView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(descriptionView.snp_bottom).offset(UIConstants.spacing1)
             make.left.equalTo(emailLabelView.snp_right).offset(UIConstants.spacing0)
@@ -357,7 +379,6 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.left.equalTo(infoView.snp_left).offset(UIConstants.spacing1)
         }
 
-        formatLabel(phoneView, text: user.phone, color: UIColor.whiteColor())
         phoneView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(emailView.snp_bottom).offset(UIConstants.spacing0)
             make.left.equalTo(phoneLabelView.snp_right).offset(UIConstants.spacing0)

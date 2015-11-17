@@ -111,12 +111,6 @@ class LandingViewController: UIViewController {
             make.width.equalTo(UIConstants.fieldWidth)
         }
         loginButton.addTarget(self, action: "handleLogin:", forControlEvents: UIControlEvents.TouchUpInside)
-
-//        UIGraphicsBeginImageContext(self.view.frame.size)
-//        background.drawInRect(CGRect(x: self.view.frame.width/2 - background.size.width/2, y: 0, width: background.size.width, height: self.view.frame.height))
-//        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-//        UIGraphicsEndImageContext()
-//        self.view.backgroundColor = UIColor(patternImage: image)
     }
     
     override func viewDidLoad() {

@@ -38,15 +38,22 @@ class LoginViewController: UIViewController {
                 } else {
                     // We are now logged in
                     let email = authData.providerData["email"]
-                    print("\(authData) logged in with email \(email) and id \(authData.uid)")
+                    print("\(authData) logged in with email \(email!) and id \(authData.uid)")
                     
-                    let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    self.presentViewController(appDelegate.tabBarController, animated: true, completion: nil)
-//                        appDelegate.window?.rootViewController = appDelegate.tabBarController
+                    // Get user info
+                    let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
                     
-                    // Set the user id for the session
-                    NSUserDefaults.standardUserDefaults().setObject(authData.uid, forKey: "userId")
-                    NSUserDefaults.standardUserDefaults().synchronize()
+                    User.getUserInfo(userId, completion: { user in
+                        User.currentUser = user
+                        
+                        // Present the home view controller in the tab bar controller
+                        let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        self.presentViewController(appDelegate.tabBarController, animated: true, completion: nil)
+                        
+                        // Set the user id for the session
+                        NSUserDefaults.standardUserDefaults().setObject(authData.uid, forKey: "userId")
+                        NSUserDefaults.standardUserDefaults().synchronize()
+                    })
                 }
             })
         }
