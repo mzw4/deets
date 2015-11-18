@@ -53,13 +53,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
-    func getConnectionRequests() {
-        DataHandler.getConnectionRequests(User.currentUser.userId, completion: { connections in
-            print("got connection requests \(connections.count)")
-            ConnectionRequestManager.connectionRequests = connections
-        })
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
@@ -71,7 +64,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // END TEMP
         
         populateEventInfo()
-        getConnectionRequests()
+        ConnectionRequestManager.getConnectionRequests(User.currentUser.userId, completion: { (connections: [String : ConnectionRequest]) in
+            
+        })
         styleView()
 
         

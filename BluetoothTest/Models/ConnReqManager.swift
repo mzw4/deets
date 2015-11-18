@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 // Connection Request model data schema
 class ConnectionRequest {
@@ -44,4 +45,12 @@ class ConnectionRequest {
 // Singleton containing all currently outstanding connection requests for the current user
 class ConnectionRequestManager {
     static var connectionRequests = [String : ConnectionRequest]()
+    
+    static func getConnectionRequests(id: String, completion: ([String : ConnectionRequest]) -> Void) {
+        DataHandler.getConnectionRequests(id, completion: { connections in
+            print("got connection requests \(connections.count)")
+            connectionRequests = connections
+            completion(connections)
+        })
+    }
 }

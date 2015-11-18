@@ -25,6 +25,11 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
         // Set date formatter
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
+        ConnectionRequestManager.getConnectionRequests(User.currentUser.userId, completion: { (connections: [String : ConnectionRequest]) in
+            self.connections = Array(ConnectionRequestManager.connectionRequests.values)
+            self.connectionsTable.reloadData()
+        })
+
         connections = Array(ConnectionRequestManager.connectionRequests.values)
         
         // Style navigation bar
