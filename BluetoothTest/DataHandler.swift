@@ -97,6 +97,11 @@ class DataHandler {
     static func getUserInfo(id: String, completion: (FDataSnapshot!) -> Void) {
         userRef.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: completion)
     }
+    
+    static func updateContacts(id: String, addCompletion: (FDataSnapshot!) -> Void, removeCompletion: (FDataSnapshot!) -> Void) {
+        userRef.childByAppendingPath(id).childByAppendingPath(DBConstants.contactsKey).observeEventType(.ChildAdded, withBlock: addCompletion)
+        userRef.childByAppendingPath(id).childByAppendingPath(DBConstants.contactsKey).observeEventType(.ChildRemoved, withBlock: removeCompletion)
+    }
 
     // Write user data to the database for one field
     static func writeUserInfo(id: String, key: String, value: String) {

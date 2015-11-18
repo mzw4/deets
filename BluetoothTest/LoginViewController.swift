@@ -45,11 +45,22 @@ class LoginViewController: UIViewController {
                         User.currentUser = user
                         
                         // Populate contacts
-                        for uid in user.contacts {
-                            User.getUserInfo(uid, completion: { user in
-                                User.currentContacts[uid] = ContactMini(id: uid, name: user.name, title: user.title, profilePic: user.profilePic)
-                            })
-                        }
+                        DataHandler.updateContacts(user.userId, addCompletion: { snapshot in
+                                let contactId = snapshot.key
+                                User.getUserInfo(contactId, completion: { user in
+                                    print(user.name)
+                                    User.currentContacts[contactId] = ContactMini(id: contactId, name: user.name, title: user.title, profilePic: user.profilePic)
+                                })
+                            }, removeCompletion: { snapshot in
+                                let contactId = snapshot.key
+                                User.currentContacts.removeValueForKey(contactId)
+                        })
+                        
+//                        for uid in user.contacts {
+//                            User.getUserInfo(uid, completion: { user in
+//                                User.currentContacts[uid] = ContactMini(id: uid, name: user.name, title: user.title, profilePic: user.profilePic)
+//                            })
+//                        }
                         
                         // Present the home view controller in the tab bar controller
                         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
