@@ -74,9 +74,11 @@ class ContactMini {
     var userId = ""
     var name = ""
     var title = ""
+    var profilePic = ""
     
-    init(id: String, name: String, title: String) {
+    init(id: String, name: String, title: String, profilePic: String) {
         userId = id
+        self.profilePic = profilePic
         self.name = name
         self.title = title
     }

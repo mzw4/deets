@@ -47,7 +47,7 @@ class LoginViewController: UIViewController {
                         // Populate contacts
                         for uid in user.contacts {
                             User.getUserInfo(uid, completion: { user in
-                                User.currentContacts[uid] = ContactMini(id: uid, name: user.name, title: user.title)
+                                User.currentContacts[uid] = ContactMini(id: uid, name: user.name, title: user.title, profilePic: user.profilePic)
                             })
                         }
                         
