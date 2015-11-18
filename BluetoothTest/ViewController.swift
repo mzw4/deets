@@ -46,21 +46,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     let userref = Firebase(url:"https://fiery-heat-4470.firebaseio.com/users")
     let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!, identifier: "TEST")
 
-    let userID = User.currentUser.userId
+    let userID = "e1c9384a-a279-4abe-9375-9bc8a813c034"
+    
+    let idDictionary = ["999":"e1c9384a-a279-4abe-9375-9bc8a813c034","900":"0bf5ce44-8422-4754-9ff2-568b6fec27bd"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /* START BROADCASTING BEACON */
         
+//        let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
         let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
         
-        let major: CLBeaconMajorValue = 999
+        let major: CLBeaconMajorValue = 900
         let minor: CLBeaconMinorValue = 678
         
+        print(userID)
         
         
-        beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: userID)
+        
+        beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: "TEST")
         peripheral = CBPeripheralManager(delegate: self, queue: nil, options: nil)
         beaconData = beacon.peripheralDataWithMeasuredPower(nil)
 
@@ -133,6 +139,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         }
     }
     
+    var user: User!
+
     func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
         var beaconMajor = ""
         var rssi = 0
@@ -140,7 +148,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         for beacon in beacons{
             beaconMajor = "\(beacon.major)"
             rssi = beacon.rssi
-            print(rssi)
+//            print(rssi)
         }
         
         if (rssi < -50 || beaconMajor.isEmpty) {
@@ -159,10 +167,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
             
                 // Attach a closure to read the data at our posts reference
                 userref.childByAppendingPath(beaconMajor).observeEventType(.Value, withBlock: { snapshot in
-                    print(snapshot.value)
-                    self.populateUserInfo(snapshot.value as! NSDictionary)
+//                    print(snapshot.value)
+//                    self.populateUserInfo(snapshot.value as! NSDictionary)
                     self.peopleMet.append(beaconMajor)
-                    PeopleMet.people.peopleMet.append(self.userID)  //fix this so that it sends to the database each time
+                    User.getUserInfo(self.idDictionary[beaconMajor]!, completion: { userObj in
+                        self.user = userObj
+                        print(self.user.name)
+                    })
+                    DataHandler.submitConnectionRequest(self.idDictionary["999"]!, userId2: self.idDictionary[beaconMajor]!, date: NSDate(), location: EventChosen.events.eventSelected, score: 55.0)
+                    PeopleMet.people.peopleMet.append(self.idDictionary[beaconMajor]!)  //fix this so that it sends to the database each time
                     }, withCancelBlock: { error in
                         print(error.description)
                 })
