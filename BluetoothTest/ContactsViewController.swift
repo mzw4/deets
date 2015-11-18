@@ -20,6 +20,7 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
     var userProfiles: [UIImage] = [UIImage(named:"jonsnow.png")!,UIImage(named:"jaime.png")!,UIImage(named:"littlefinger.png")!,UIImage(named:"tyrion.png")!,UIImage(named:"trump.png")!,UIImage(named:"daenerys.png")!,UIImage(named:"jonsnow.png")!,UIImage(named:"jonsnow.png")!]
     
     var label = UILabel()
+    
     var nameArray = ["Jon Snow","Jaime Lannister","Littlefinger","Tyrion Lannister","Donald Trump","Daenerys Stormborn","Jon Snow","Jon Snow"]
     var cityArray = ["Product Manager, IBM", "Product Manager, IBM","Product Manager, IBM", "Product Manager, IBM","Product Manager, IBM", "Product Manager, IBM","Product Manager, IBM", "Product Manager, IBM"]
     
