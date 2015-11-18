@@ -55,6 +55,8 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         collectionView?.dataSource = self;
         collectionView?.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0);
         
+        collectionView?.reloadData()
+        
         var user: User!
         if ProfileViewController.userIdShow == nil {
             ProfileViewController.userIdShow = User.currentUser.userId
@@ -69,8 +71,6 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
                 
             })
         }
-
-        
         self.view.addSubview(collectionView!);
         
         // Do any additional setup after loading the view.
@@ -81,6 +81,7 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         // Dispose of any resources that can be recreated.
     }
     
+
     
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
