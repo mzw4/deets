@@ -20,15 +20,17 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
     var userProfiles: [UIImage] = [UIImage(named:"jonsnow.png")!,UIImage(named:"jaime.png")!,UIImage(named:"littlefinger.png")!,UIImage(named:"tyrion.png")!,UIImage(named:"trump.png")!,UIImage(named:"daenerys.png")!,UIImage(named:"jonsnow.png")!,UIImage(named:"jonsnow.png")!]
     
     var label = UILabel()
-    
-    var nameArray = ["Jon Snow","Jaime Lannister","Littlefinger","Tyrion Lannister","Donald Trump","Daenerys Stormborn","Jon Snow","Jon Snow"]
-    var cityArray = ["Product Manager, IBM", "Product Manager, IBM","Product Manager, IBM", "Product Manager, IBM","Product Manager, IBM", "Product Manager, IBM","Product Manager, IBM", "Product Manager, IBM"]
+    var user = User.currentContacts
+    var nameArray:[String] = []
+    var cityArray:[String] = []
+    var profileImage:[String] = []
+    var userid:[String] = []
     
     var connectionSwitch = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         navigationItem.title = "Contacts"
         navigationController?.navigationBar.barStyle = UIBarStyle.BlackTranslucent
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
@@ -41,7 +43,10 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         flowLayout.minimumLineSpacing = 0
         
         for c in User.currentContacts.values {
-            print(c.name)
+            nameArray.append(c.name)
+            cityArray.append(c.title)
+            profileImage.append(c.profilePic)
+            self.userid.append(c.userId)
         }
         
         let collectionView:UICollectionView? = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), collectionViewLayout: flowLayout);
@@ -88,6 +93,9 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         let blurEffectDark = UIBlurEffect(style: UIBlurEffectStyle.Dark)
         let cellBackgroundView = UIVisualEffectView(effect: blurEffectDark)
         let cellImage = UIImageView(frame: CGRectMake(-10, -10, cell.frame.width*1.2, cell.frame.height*1.2))
+        let cellID = UILabel()
+        
+        
 
         cell.clipsToBounds = true
         
@@ -97,11 +105,8 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         cell.layer.borderColor = UIColor(red:255/255.0, green:255/255.0, blue:255/255.0, alpha: 0.1).CGColor
         
 
-        
-        
         // Cell Image - To be changed to inherit from Firebase
         cellImage.alpha = 0.55
-//        cellImage.layer.cornerRadius = cell.frame.width/4
         cellImage.layer.borderColor = UIColor.whiteColor().CGColor
         cellImage.clipsToBounds = true
         cellImage.contentMode = .ScaleAspectFill
@@ -134,13 +139,20 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         cell.backgroundView?.addSubview(cellAddress)
         
         
+        cell.backgroundView?.addSubview(cellID)
+
+        cellID.text = userid[indexPath.row]
+        
+        cellID.hidden = true
+        cellID.tag = 2
+    
+        
         cellTitle.text = nameArray[indexPath.row]
         cellAddress.text = cityArray[indexPath.row]
-        cellImage.image = userProfiles[indexPath.row]
-        cellImageIcon.image = userProfiles[indexPath.row]
+        cellImage.image = UIImage(named: profileImage[indexPath.row])
+        cellImageIcon.image = UIImage(named: profileImage[indexPath.row])
         
 
-        print(indexPath.row)
         return cell;
     }
     
@@ -166,11 +178,9 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        //        let cell = collectionView.cellForItemAtIndexPath(indexPath)
-        //        //cell!.layer.backgroundColor = UIColor.redColor().CGColor
-        //        print(indexPath.row)
-        //        //LINK TO PROFILE VIEW
-        //        print(cell)
-        print("You selected cell #\(indexPath.item)!")
+        let cellindex = indexPath.item
+
+        ProfileViewController.userIdShow = userid[cellindex]
+        navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
 }
