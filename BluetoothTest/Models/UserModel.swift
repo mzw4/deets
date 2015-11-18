@@ -26,6 +26,7 @@ class User {
     var numEvents = 0
     var events = [String]() // list of event ids
     var notes = ""
+    var contacts = [String]() // list of user ids
     
     init() {}
     
@@ -44,17 +45,39 @@ class User {
         
         numConnections = data[DBConstants.numConnectionsKey] as! Int
         numEvents = data[DBConstants.numEventsKey] as! Int
+        
+        contacts = Array((data[DBConstants.contactsKey] as! [String:AnyObject]).keys)
+        events = Array((data[DBConstants.eventsKey] as! [String:AnyObject]).keys)
     }
     
     // Singleton for the current user
     static var currentUser = User()
     
+    // Singleton reference to current user contacts
+    static var currentContacts = [String:ContactMini]()
+    
     static func getUserInfo(userId: String, completion: (User) -> Void) {
         DataHandler.getUserInfo(userId, completion: { (snapshot) in
+            if snapshot.value is NSNull {
+                print("snapshot null")
+                return
+            }
             let userInfo: [String: AnyObject] = snapshot.value as! [String : AnyObject]
             
             let user = User(id: snapshot.key, fromData: userInfo)
             completion(user)
         })
+    }
+}
+
+class ContactMini {
+    var userId = ""
+    var name = ""
+    var title = ""
+    
+    init(id: String, name: String, title: String) {
+        userId = id
+        self.name = name
+        self.title = title
     }
 }

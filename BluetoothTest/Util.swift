@@ -18,11 +18,10 @@ func createLinedField(field: UITextField) {
     field.layer.addSublayer(border)
 }
 
-func formatLabel(label: UILabel, text: String, color: UIColor = UIConstants.defaultTextColor, fontName: String = UIConstants.fontRegular, fontSize: CGFloat = UIConstants.fontSmall, layout: Bool = true) {
+func formatLabel(label: UILabel, text: String, color: UIColor, font: UIFont?, fontName: String = UIConstants.fontRegular, fontSize: CGFloat = UIConstants.fontSmall, layout: Bool = true) {
     label.text = text
     label.textColor = color
-    label.font = UIFont(name: fontName, size: fontSize)
-    
+    label.font = (font != nil ? font! : UIFont(name: fontName, size: fontSize))
     if layout {
         label.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(label.intrinsicContentSize().width)

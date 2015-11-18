@@ -60,7 +60,7 @@ class NotificationViewCell: UITableViewCell {
         }
         
         // Name label
-        formatLabel(nameLabel, text: "", fontName: UIConstants.fontLight, fontSize: UIConstants.fontSmallish, layout: false)
+        formatLabel(nameLabel, text: "", color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmallish, weight: UIFontWeightRegular), layout: false)
         nameLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(profilePicView.snp_top)
             make.left.equalTo(profilePicView.snp_right).offset(UIConstants.spacing0)
@@ -75,7 +75,7 @@ class NotificationViewCell: UITableViewCell {
             make.left.equalTo(profilePicView.snp_right).offset(UIConstants.spacing0)
             make.size.equalTo(CGSize(width: 20, height: 20))
         }
-        formatLabel(locationLabel, text: "", fontName: UIConstants.fontLight, fontSize: UIConstants.fontSmall, layout: false)
+        formatLabel(locationLabel, text: "", color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightRegular), layout: false)
         locationLabel.font = UIFont.systemFontOfSize(12, weight: UIFontWeightRegular)
         locationLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(locationIcon.snp_top)//.offset(UIConstants.spacing0)
@@ -84,7 +84,7 @@ class NotificationViewCell: UITableViewCell {
         }
         
         // Date label
-        formatLabel(dateLabel, text: "", fontName: UIConstants.fontLight, fontSize: UIConstants.fontSmall, layout: false)
+        formatLabel(dateLabel, text: "", color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightRegular), layout: false)
         dateLabel.font = UIFont.systemFontOfSize(12, weight: UIFontWeightRegular)
         dateLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(locationIcon.snp_bottom)

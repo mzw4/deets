@@ -45,6 +45,7 @@ struct DBConstants {
     static let numConnectionsKey = "numConnections"
     static let numEventsKey = "numEvents"
     static let contactsKey = "contacts"
+    static let eventsKey = "events"
     
     // Event info
     static let companyKey = "company"
@@ -94,7 +95,7 @@ class DataHandler {
     
     // Read user data for one user
     static func getUserInfo(id: String, completion: (FDataSnapshot!) -> Void) {
-        userRef.childByAppendingPath(id).observeEventType(.Value, withBlock: completion)
+        userRef.childByAppendingPath(id).observeSingleEventOfType(.Value, withBlock: completion)
     }
 
     // Write user data to the database for one field
@@ -134,10 +135,6 @@ class DataHandler {
                     DBConstants.dateKey: date.timeIntervalSince1970,          // date when connection was made
                     DBConstants.locationKey: location   // location where the connection was made
                 ])
-//                // Add to accepted collection
-//                acceptedRequestsRef.childByAppendingPath(connId).setValue([
-//                    DBConstants.acceptedKey: 0
-//                ])
             })
         })
         
@@ -151,9 +148,10 @@ class DataHandler {
         func waitForRequests(snapshot: FDataSnapshot!) -> Void {
             let data: [String: AnyObject]? = snapshot.value as? [String : AnyObject]
             if data != nil {
-                for connData in data!.values {
-                    let connDataDict = connData as! [String : AnyObject]
-                    connections[snapshot.key] = ConnectionRequest(id: snapshot.key, fromData: connDataDict)
+//                print(data!.values)
+                for k in data!.keys {
+                    let connDataDict = data![k] as! [String : AnyObject]
+                    connections[k] = ConnectionRequest(id: k, fromData: connDataDict)
                 }
             }
             
@@ -164,13 +162,13 @@ class DataHandler {
         }
         
         // can't think of a better way to do this right now aside from storing two entries for each request
-        connectionRequestsRef.queryOrderedByChild(DBConstants.userId1Key).queryEqualToValue(userId).queryLimitedToFirst(1).observeEventType(.Value, withBlock: waitForRequests)
-//        connectionRequestsRef.queryOrderedByChild(DBConstants.userId2Key).queryEqualToValue(userId).observeEventType(.Value, withBlock: waitForRequests)
+        connectionRequestsRef.queryOrderedByChild(DBConstants.userId1Key).queryEqualToValue(userId).observeEventType(.Value, withBlock: waitForRequests)
+        connectionRequestsRef.queryOrderedByChild(DBConstants.userId2Key).queryEqualToValue(userId).observeEventType(.Value, withBlock: waitForRequests)
     }
 
     // Submit an accept connection request
     static func userAcceptedConnection(userId: String, otherUserId: String, connId: String) {
-        connectionRequestsRef.childByAppendingPath(connId).observeEventType(.ChildAdded, withBlock: { snapshot in
+        connectionRequestsRef.childByAppendingPath(connId).observeSingleEventOfType(.ChildAdded, withBlock: { snapshot in
             if snapshot.key == DBConstants.acceptedKey {
                 let acceptedResult = (snapshot.value as! Int) + 1
                 
@@ -187,16 +185,21 @@ class DataHandler {
         })
     }
 
-    static func addContact(userId: String, contactId: String) {
-        userRef.childByAppendingPath(userId).childByAppendingPath(DBConstants.contactsKey).childByAutoId().setValue(contactId)
-        print("added contact!")
-    }
-
     // Submit a reject connection request
     static func userRejectedConnection(userId: String, connId: String) {
         connectionRequestsRef.childByAppendingPath(connId).removeValue()
     }
+    
+    // Submit a new contact for this user
+    static func addContact(userId: String, contactId: String) {
+        userRef.childByAppendingPath(userId).childByAppendingPath(DBConstants.contactsKey).childByAppendingPath(contactId).setValue(1)
+    }
 
+    // Add a new attended event to this user
+    static func addEvenAttended(userId: String, eventId: String) {
+        userRef.childByAppendingPath(userId).childByAppendingPath(DBConstants.eventsKey).childByAppendingPath(eventId).setValue(1)
+    }
+    
     // --------------------- Event functions ---------------------
 
     // Create event, return the id

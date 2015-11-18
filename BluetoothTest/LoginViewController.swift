@@ -1,4 +1,4 @@
-//
+    //
 //  LoginViewController.swift
 //  BluetoothTest
 //
@@ -45,6 +45,13 @@ class LoginViewController: UIViewController {
                     
                     User.getUserInfo(userId, completion: { user in
                         User.currentUser = user
+                        
+                        // Populate contacts
+                        for uid in user.contacts {
+                            User.getUserInfo(uid, completion: { user in
+                                User.currentContacts[uid] = ContactMini(id: uid, name: user.name, title: user.title)
+                            })
+                        }
                         
                         // Present the home view controller in the tab bar controller
                         let appDelegate: AppDelegate = UIApplication.sharedApplication().delegate as! AppDelegate

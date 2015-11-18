@@ -73,7 +73,9 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         flowLayout.minimumLineSpacing = 0
         
         
-
+        for c in User.currentContacts.values {
+            print(c.name)
+        }
         
         
         let collectionView:UICollectionView? = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), collectionViewLayout: flowLayout);

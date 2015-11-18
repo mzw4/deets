@@ -15,13 +15,14 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     static var userIdShow: String?
     
     // TEMP
-    var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
-    var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
-    var dates = ["10/25/2015","11/04/2015","11/11/2015","12/14/2015","12/16/2015","01/12/2015"]
-    var locations = ["Javits Center","Hilton Union Square","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
+//    var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
+//    var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
+//    var dates = ["10/25/2015","11/04/2015","11/11/2015","12/14/2015","12/16/2015","01/12/2015"]
+//    var locations = ["Javits Center","Hilton Union Square","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
     // END TEMP
     
     let viewSections = ["Info", "Events", "Notes"]
+    var userEvents = [String]()
     
     // Container views
     let scrollView = UIScrollView()
@@ -35,7 +36,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     let coverPhoto = UIImageView()
     let nameView = UILabel()
     let titleView = UILabel()
+    let numConnectionsLabelView = UILabel()
     let numConnectionsView = UILabel()
+    let numEventsLabelView = UILabel()
     let numEventsView = UILabel()
     
     // Section buttons
@@ -70,6 +73,8 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     let notesFieldView = UITextView()
     let noteIcon = UILabel()
 
+    let dateFormatter = NSDateFormatter()
+    
     func changeSegment(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex
         {
@@ -122,21 +127,25 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     
     // Set the values of the profile view for the given user object
     func populateUserInfo(user: User) {
+        // Populate images
         profilePicture.image = UIImage(named: user.profilePic)
         coverPhoto.image = UIImage(named: user.coverPhoto)
         backgroundImageView.image = UIImage(named: user.profilePic)!
 
+        // Populate info
+        formatLabel(nameView, text: user.name, color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmallish, weight: UIFontWeightRegular))
+        formatLabel(titleView, text: user.title, color: UIColor.lightGrayColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightRegular))
         
-        formatLabel(nameView, text: user.name, color: UIColor.whiteColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
-        formatLabel(titleView, text: user.title, color: UIColor.lightGrayColor(), fontName: UIConstants.systemFont, fontSize: UIConstants.fontSmallish)
-        
-        formatLabel(numConnectionsView, text: "Connections: \(user.numConnections)")
-        formatLabel(numEventsView, text: "Events: \(user.numEvents)")
+        formatLabel(numConnectionsView, text: "\(user.numConnections)", color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmallish, weight: UIFontWeightBold))
+        formatLabel(numEventsView, text: "\(user.numEvents)", color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmallish, weight: UIFontWeightBold))
         
         descriptionView.text = user.description
 
-        formatLabel(emailView, text: user.email, color: UIColor.whiteColor())
-        formatLabel(phoneView, text: user.phone, color: UIColor.whiteColor())
+        formatLabel(emailView, text: user.email, color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightRegular))
+        formatLabel(phoneView, text: user.phone, color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightRegular))
+        
+        // Get events
+        userEvents = user.events
     }
     
     func createView() {
@@ -155,6 +164,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
                 self.populateUserInfo(user)
             })
         }
+        
+        // Set date formatter
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         
         // Navigation bar
         navigationItem.title = "Profile"
@@ -186,7 +198,9 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         topDetailsContainer.addSubview(profilePicture)
         topDetailsContainer.addSubview(nameView)
         topDetailsContainer.addSubview(titleView)
+        topDetailsContainer.addSubview(numConnectionsLabelView)
         topDetailsContainer.addSubview(numConnectionsView)
+        topDetailsContainer.addSubview(numEventsLabelView)
         topDetailsContainer.addSubview(numEventsView)
 
         bottomView.addSubview(backgroundImageView)
@@ -282,17 +296,25 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
 //            make.size.equalTo(coverPhoto.snp_size)
         }
         
-//        bottomView.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(topView.snp_bottom)
-//            make.bottom.equalTo(view.snp_bottom).offset(-tabHeight)
-//            make.width.equalTo(scrollView.snp_width)
-//        }
+        formatLabel(numConnectionsLabelView, text: "Connections", color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightLight))
+        numConnectionsLabelView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(profilePicture.snp_centerY)
+            make.centerX.equalTo(profilePicture.snp_right).offset(UIConstants.spacing3)
+        }
+        numConnectionsView.snp_makeConstraints { (make) -> Void in
+            make.bottom.equalTo(numConnectionsLabelView.snp_top).offset(0)
+            make.centerX.equalTo(numConnectionsLabelView.snp_centerX)
+        }
         
-//        bottomView.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(topView.snp_bottom)
-//            make.bottom.equalTo(view.snp_bottom).offset(-tabHeight)
-//            make.width.equalTo(scrollView.snp_width)
-//        }
+        formatLabel(numEventsLabelView, text: "Events", color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightLight))
+        numEventsLabelView.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(profilePicture.snp_centerY)
+            make.centerX.equalTo(profilePicture.snp_left).offset(-UIConstants.spacing3)
+        }
+        numEventsView.snp_makeConstraints { (make) -> Void in
+            make.bottom.equalTo(numEventsLabelView.snp_top).offset(0)
+            make.centerX.equalTo(numEventsLabelView.snp_centerX)
+        }
         
         // --------------------- Bottom View ---------------------
         
@@ -344,8 +366,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.bottom.equalTo(linkedInView.snp_bottom).offset(UIConstants.spacing1)
         }
         
-        formatLabel(quoteView, text: "\u{f10d}", color: UIColor.whiteColor())
-        quoteView.font = UIFont(name: "FontAwesome", size: 18)
+        formatLabel(quoteView, text: "\u{f10d}", color: UIColor.whiteColor(), font: UIFont(name: "FontAwesome", size: 18))
         quoteView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(infoView.snp_top).offset(UIConstants.spacing1)
             make.left.equalTo(infoView.snp_left).offset(UIConstants.spacing1)
@@ -362,7 +383,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.right.equalTo(infoView.snp_right).offset(-UIConstants.spacing1)
         }
         
-        formatLabel(emailLabelView, text: "Email: ", color: UIColor.lightGrayColor())
+        formatLabel(emailLabelView, text: "Email: ", color: UIColor.lightGrayColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightRegular))
         emailLabelView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(descriptionView.snp_bottom).offset(UIConstants.spacing1)
             make.left.equalTo(infoView.snp_left).offset(UIConstants.spacing1)
@@ -373,7 +394,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.left.equalTo(emailLabelView.snp_right).offset(UIConstants.spacing0)
         }
         
-        formatLabel(phoneLabelView, text: "Phone: ", color: UIColor.lightGrayColor())
+        formatLabel(phoneLabelView, text: "Phone: ", color: UIColor.lightGrayColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmall, weight: UIFontWeightRegular))
         phoneLabelView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(emailLabelView.snp_bottom).offset(UIConstants.spacing0)
             make.left.equalTo(infoView.snp_left).offset(UIConstants.spacing1)
@@ -450,8 +471,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         }
         notesView.hidden = true
 
-        formatLabel(noteIcon, text: "\u{f044}", color: UIColor.whiteColor())
-        noteIcon.font = UIFont(name: "FontAwesome", size: 18)
+        formatLabel(noteIcon, text: "\u{f044}", color: UIColor.whiteColor(), font: UIFont(name: "FontAwesome", size: 18))
         noteIcon.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(segmentedControlView.snp_bottom).offset(UIConstants.spacing1)
             make.left.equalTo(notesView.snp_left).offset(UIConstants.spacing1)
@@ -501,8 +521,10 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     // --------------------- Table delegate functions ---------------------
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let event = EventManager.eventsDict[userEvents[indexPath.row]]!
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
-        cell.textLabel!.text = sampleEvents[indexPath.row]
+        cell.textLabel!.text = event.name
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.font = UIFont.systemFontOfSize(CGFloat(UIConstants.fontSmallish), weight: UIFontWeightLight)
         cell.backgroundColor = UIColor.clearColor()
@@ -531,7 +553,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         cell.backgroundView!.addSubview(locationLabel)
         cell.backgroundView?.clipsToBounds = true
         
-        imageView.image = UIImage(named: eventImages[indexPath.row])
+        imageView.image = UIImage(named: event.eventPhoto)
         imageView.contentMode = UIViewContentMode.ScaleAspectFill
         imageView.clipsToBounds = true
         imageView.alpha = UIConstants.alphaMedFade
@@ -546,7 +568,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         
         dateLabel.textColor = UIColor.whiteColor()
         dateLabel.font = UIFont.systemFontOfSize(15, weight: UIFontWeightLight)
-        dateLabel.text = dates[indexPath.row]
+        dateLabel.text = dateFormatter.stringFromDate(event.startDate)
         dateLabel.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(cell.snp_top).offset(UIConstants.spacing1)
             make.right.equalTo(cell.snp_right).offset(-UIConstants.spacing1)
@@ -560,7 +582,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.size.equalTo(CGSize(width: 20, height: 20))
         }
         
-        locationLabel.text = locations[indexPath.row]
+        locationLabel.text = event.location
         locationLabel.font = UIFont.systemFontOfSize(17, weight: UIFontWeightRegular)
         locationLabel.textColor = UIColor.whiteColor()
         locationLabel.snp_makeConstraints { (make) -> Void in
@@ -619,7 +641,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sampleEvents.count
+        return userEvents.count
     }
     
     override func viewDidLoad() {

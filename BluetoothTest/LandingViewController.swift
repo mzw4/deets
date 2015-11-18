@@ -29,6 +29,8 @@ class LandingViewController: UIViewController {
     }
     
     func createView() {
+//        DBScripts.makeUsers()
+
         view.backgroundColor = UIColor.blackColor()
         
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)

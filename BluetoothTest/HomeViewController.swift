@@ -39,13 +39,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             event.eventPhoto = String(eventInfo["eventPhoto"]!)
             
             EventManager.events.append(event)
+            EventManager.eventsDict[snapshot.key] = event
             self.eventTable.reloadData()
         })
     }
     
     func getConnectionRequests() {
         DataHandler.getConnectionRequests(User.currentUser.userId, completion: { connections in
-            print("got connection requests")
+            print("got connection requests \(connections.count)")
             ConnectionRequestManager.connectionRequests = connections
         })
     }
@@ -56,14 +57,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // TEMP, CREATE DB ENTRIES
 //        makeEvents()
-//        makeUsers()
-        DataHandler.submitConnectionRequest(User.currentUser.userId, userId2: "100a1497-746f-43ce-81fc-120d87457d2b", date: NSDate(), location: "Mexico", score: 0.2374)
-//        DataHandler.userAcceptedConnection(User.currentUser.userId, otherUserId: "100a1497-746f-43ce-81fc-120d87457d2b", connId: "100a1497-746f-43ce-81fc-120d87457d2be1c9384a-a279-4abe-9375-9bc8a813c034")
+//        DBScripts.makeUsers()
+//        DBScripts.makeConnectionRequests()
         // END TEMP
         
         populateEventInfo()
         getConnectionRequests()
         styleView()
+        
+        // Set date formatter
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         
         // Style navigation bar
         navigationItem.title = "My Events"
@@ -135,6 +138,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         shadowView.clipsToBounds = true
         dateLabel.textColor = UIColor.whiteColor()
         dateLabel.font = UIFont.systemFontOfSize(15, weight: UIFontWeightLight)
+        
         dateLabel.text = dateFormatter.stringFromDate(EventManager.events[indexPath.row].startDate)
         locationIcon.image = UIImage(named: "location.png")
         locationIcon.contentMode = UIViewContentMode.ScaleAspectFit

@@ -10,10 +10,6 @@ import UIKit
 
 class NotificationsViewController: UIPageViewController, UITableViewDelegate, UITableViewDataSource {
 
-//    var sampleConnectionRequests = [
-//        ["name": "Jaime Lanister", "profilePic": "jaime.png", "date": "5/5/15", "location": "King's Landing Pregame"],
-//        ["name": "Little Finger", "profilePic": "littlefinger.png", "date": "1/2/34", "location": "King's Landing Pregame"],
-//        ["name": "Daenerys Targaryen", "profilePic": "daenerys.png", "date": "7/7/15", "location": "King's Landing Pregame"]]
     var connections: [ConnectionRequest] = [ConnectionRequest]()
     
     var connectionsTable = UITableView()
@@ -25,6 +21,9 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         createView()
+        
+        // Set date formatter
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         
         connections = Array(ConnectionRequestManager.connectionRequests.values)
         
@@ -45,6 +44,7 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
     }
     
     func handleAccept(sender: UIButton) {
+        // Submit accept request
         let conn = connections[sender.tag]
         let otherId = (conn.userId1 == User.currentUser.userId) ? conn.userId2 : conn.userId1
         DataHandler.userAcceptedConnection(User.currentUser.userId, otherUserId: otherId, connId: connections[sender.tag].connId)
@@ -53,10 +53,11 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
         connections.removeAtIndex(sender.tag)
         connectionsTable.deleteRowsAtIndexPaths([NSIndexPath(forRow: sender.tag, inSection: 0)], withRowAnimation: .Right)
         connectionsTable.endUpdates()
-        
+        print("done accepting")
     }
     
     func handleReject(sender: UIButton) {
+        // Submit reject request
         DataHandler.userRejectedConnection(User.currentUser.userId, connId: connections[sender.tag].connId)
         
         connectionsTable.beginUpdates()

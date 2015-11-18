@@ -22,4 +22,5 @@ class Event {
 // Singleton containing all relevant events loaded on the app
 class EventManager {
     static var events = [Event]()
+    static var eventsDict = [String:Event]()
 }
