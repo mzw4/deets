@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Firebase
 
+
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var eventTable = UITableView()
@@ -20,6 +22,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var rowTapped = 0
     var eventSelected: String = ""
     
+//    var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
+//    var eventImages = ["event.jpg","event2.jpg","event3.jpg","event4.jpg","event5.png","event.jpg"]
+//    var dates = ["10/25/2015","11/04/2015","11/11/2015","12/14/2015","12/16/2015","01/12/2015"]
+//    var locations = ["Javits Center","New York Hilton Midtown","W. Hotel Midtown West","Cornell Tech NYC","San Diego Convention Center","Cornell Tech NYC"]
+
     var dateFormatter = NSDateFormatter()
     var firstLaunch = true
     var initialLoadFinished = false
@@ -41,7 +48,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             EventManager.events.append(event)
             EventManager.eventsDict[snapshot.key] = event
             self.eventTable.reloadData()
+            print(event.name)
         })
+
     }
     
     func getConnectionRequests() {
@@ -64,6 +73,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         populateEventInfo()
         getConnectionRequests()
         styleView()
+
         
         // Set date formatter
         dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -90,6 +100,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         ProfileViewController.userIdShow = User.currentUser.userId
         navigationController?.pushViewController(ProfileViewController(), animated: true)
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        if BeaconStarted.beacon.started == false{
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "Modal")
+        }else{
+            let icon = UIImage(named: "Radar4")
+            let iconSize = CGRect(origin: CGPointZero, size: icon!.size)
+            let iconButton = UIButton(frame: iconSize)
+            iconButton.setBackgroundImage(icon, forState: .Normal)
+            navigationItem.rightBarButtonItem!.customView = iconButton
+            navigationItem.rightBarButtonItem!.customView!.rotate360Degrees()
+            iconButton.addTarget(self, action: "Modal", forControlEvents: .TouchUpInside)
+        }
+    }
+    
     
     func styleView() {
         view.addSubview(eventTable)
@@ -157,13 +183,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.backgroundView!.addSubview(locationLabel)
         cell.backgroundView?.clipsToBounds = true
         
+        var alreadyCompleted = 0
         
         if indexPath.row == 0 && firstLaunch == true{
-            cell.backgroundView?.alpha = 0.7
-            cell.textLabel?.font = UIFont.systemFontOfSize(25, weight: UIFontWeightRegular)
-            cell.textLabel?.alpha = 1.0
-            cell.selected = true
-            firstLaunch = false
+            if alreadyCompleted == 0{
+                cell.backgroundView?.alpha = 0.7
+                cell.textLabel?.font = UIFont.systemFontOfSize(25, weight: UIFontWeightRegular)
+                cell.textLabel?.alpha = 1.0
+                cell.selected = true
+                firstLaunch = false
+                alreadyCompleted = 1
+            }
         }
         
         return cell
@@ -176,7 +206,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         if rowTapped == 2{
             EventChosen.events.eventSelected = EventManager.events[indexPath.row].name
             EventChosen.events.eventImage = EventManager.events[indexPath.row].eventPhoto
-            startEvent()
+            EventChosen.events.eventAddress = EventManager.events[indexPath.row].location
+            loadEvent()
+
             rowTapped = 0
         }
         
@@ -225,10 +257,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return EventManager.events.count
     }
     
-    func startEvent(){
-        let destination = ViewController()
-        presentViewController(destination, animated: true, completion: nil)
+    func loadEvent(){
+        let destination = EventDetailsViewController()
+        navigationController?.pushViewController(destination, animated: true)
     }
+    
+    func Modal(){
+        presentViewController(ViewController(), animated: true, completion: nil)
+    }
+
     
     
 

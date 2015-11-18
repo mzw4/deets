@@ -11,7 +11,7 @@ import UIKit
 
 struct UIConstants {
     static let fieldHeight = 12
-    static let fieldWidth = 200
+    static let fieldWidth = 250
     static let fieldWidthSmall = 92
     static let textHeight = 20.5
     
@@ -44,7 +44,7 @@ struct UIConstants {
     static let fontSmall = CGFloat(14)
     static let fontTiny = CGFloat(10)
 
-    static let primaryColor = UIColor(red: 51.0/255, green: 102.0/255, blue: 204.0/255, alpha: 1)
+    static let primaryColor = UIColor(red: 2.0/255, green: 132.0/255, blue: 255.0/255, alpha: 1)
     static let errorColor = UIColor(red: 1, green: 153.0/255, blue: 153.0/255, alpha: 1)
     static let fadedColor = UIColor(white: 1, alpha: 0.5)
     static let veryFadedColor = UIColor(white: 1, alpha: 0.1)
@@ -60,11 +60,27 @@ struct UIConstants {
 }
 
 struct StringConstants {
-    static let tagline = "Stay connected."
+    static let tagline = "Stay connected"
 }
 
 class EventChosen {
     var eventSelected = ""
     var eventImage = ""
+    var eventAddress = ""
     static let events = EventChosen()
+}
+
+class PeopleMet {
+    var peopleMet:[String] = []
+    static let people = PeopleMet()
+}
+
+class BeaconStarted{
+    var started = false
+    static let beacon = BeaconStarted()
+}
+
+class ProfileChosen {
+    var profileSelected = ""
+    static let profiles = ProfileChosen()
 }

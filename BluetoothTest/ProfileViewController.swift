@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import XMSegmentedControl
 
 class ProfileViewController: UIViewController, UIScrollViewDelegate,
     UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
@@ -130,7 +131,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         // Populate images
         profilePicture.image = UIImage(named: user.profilePic)
         coverPhoto.image = UIImage(named: user.coverPhoto)
-        backgroundImageView.image = UIImage(named: user.profilePic)!
+        backgroundImageView.image = UIImage(named: user.profilePic)
 
         // Populate info
         formatLabel(nameView, text: user.name, color: UIColor.whiteColor(), font: UIFont.systemFontOfSize(UIConstants.fontSmallish, weight: UIFontWeightRegular))
@@ -249,6 +250,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.centerX.equalTo(scrollView.snp_centerX)
             make.bottom.equalTo(scrollView.snp_top).offset(topViewRestingHeight)
             make.height.greaterThanOrEqualTo(CGFloat(2 * UIConstants.spacing1) + topViewRestingHeight)
+
         }
         
         topDetailsContainer.snp_makeConstraints { (make) -> Void in
@@ -332,6 +334,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
             make.center.equalTo(bottomView.snp_center)
             make.size.equalTo(bottomView.snp_size)
         }
+        backgroundImageView.alpha = 0.25
         
         blurEffectSegmentView.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(bottomView.snp_center)

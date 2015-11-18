@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2A616EDBE9D4F2DD975466D4D817FB00DAEACC78",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "251C4D070B851580F68E9A180C89B41CFB87C012" : 0,
+    "2A616EDBE9D4F2DD975466D4D817FB00DAEACC78" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3B5DC38B-94D6-4DA8-9A79-65F935B638CF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "251C4D070B851580F68E9A180C89B41CFB87C012" : "",
+    "2A616EDBE9D4F2DD975466D4D817FB00DAEACC78" : "BluetoothTest\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BluetoothTest",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BluetoothTest.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/inna-\/maintaining-flow.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "251C4D070B851580F68E9A180C89B41CFB87C012"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mzw4\/deets.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2A616EDBE9D4F2DD975466D4D817FB00DAEACC78"
+    }
+  ]
+}

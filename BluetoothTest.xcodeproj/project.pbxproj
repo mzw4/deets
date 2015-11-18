@@ -10,24 +10,23 @@
 		2706E2791BCC48B400537B7E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2706E2781BCC48B400537B7E /* Constants.swift */; };
 		2706E27B1BCC6B2400537B7E /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2706E27A1BCC6B2400537B7E /* Util.swift */; };
 		2706E27D1BCC911700537B7E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2706E27C1BCC911700537B7E /* OpenSans-Light.ttf */; };
-		2708B96A1BE1949800F3FC3B /* DBScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708B9691BE1949800F3FC3B /* DBScripts.swift */; settings = {ASSET_TAGS = (); }; };
-		2708B96E1BE1A21A00F3FC3B /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708B96D1BE1A21A00F3FC3B /* EventManager.swift */; settings = {ASSET_TAGS = (); }; };
-		2708B9721BE1A24600F3FC3B /* ConnReqManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708B9711BE1A24600F3FC3B /* ConnReqManager.swift */; settings = {ASSET_TAGS = (); }; };
-		271DD9F61BC57A4900FF864B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9F51BC57A4900FF864B /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FB1BC6E54200FF864B /* SignupViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		273957781BCF0E3B0044EE19 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273957771BCF0E3B0044EE19 /* ProfileViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		274676AE1BDEB24D002FC67D /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274676AD1BDEB24D002FC67D /* NotificationsViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		274676B11BDF03A8002FC67D /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274676B01BDF03A8002FC67D /* NotificationViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		2708B96A1BE1949800F3FC3B /* DBScripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708B9691BE1949800F3FC3B /* DBScripts.swift */; };
+		2708B96E1BE1A21A00F3FC3B /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708B96D1BE1A21A00F3FC3B /* EventManager.swift */; };
+		2708B9721BE1A24600F3FC3B /* ConnReqManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2708B9711BE1A24600F3FC3B /* ConnReqManager.swift */; };
+		271DD9F61BC57A4900FF864B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9F51BC57A4900FF864B /* LoginViewController.swift */; };
+		271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FB1BC6E54200FF864B /* SignupViewController.swift */; };
+		271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */; };
+		273957781BCF0E3B0044EE19 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273957771BCF0E3B0044EE19 /* ProfileViewController.swift */; };
+		274676AE1BDEB24D002FC67D /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274676AD1BDEB24D002FC67D /* NotificationsViewController.swift */; };
+		274676B11BDF03A8002FC67D /* NotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274676B01BDF03A8002FC67D /* NotificationViewCell.swift */; };
 		27A96E2B1BD15D5B00B6C1FB /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27A96E2A1BD15D4D00B6C1FB /* OpenSans-Regular.ttf */; };
-		27AD4C6A1BE11D9700BBED8D /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AD4C691BE11D9700BBED8D /* DataHandler.swift */; settings = {ASSET_TAGS = (); }; };
-		27AD4C6D1BE136FB00BBED8D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AD4C6C1BE136FB00BBED8D /* UserModel.swift */; settings = {ASSET_TAGS = (); }; };
+		27AD4C6A1BE11D9700BBED8D /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AD4C691BE11D9700BBED8D /* DataHandler.swift */; };
+		27AD4C6D1BE136FB00BBED8D /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AD4C6C1BE136FB00BBED8D /* UserModel.swift */; };
 		27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F1BD381BB0C34500BBE01A /* RequestHandler.swift */; };
 		491FEC981BDED7E700B9BDE5 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491FEC971BDED7E700B9BDE5 /* ContactsViewController.swift */; };
 		49912B0C1BBD9DED007CC54D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49912B0B1BBD9DED007CC54D /* CoreLocation.framework */; };
-		49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912B0D1BBDB276007CC54D /* EventViewController.swift */; };
-		49912B101BC47BFD007CC54D /* EventFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */; };
 		49A897B01BC710E700BBD558 /* FontAwesome.otf in Resources */ = {isa = PBXBuildFile; fileRef = 49A897AF1BC710E700BBD558 /* FontAwesome.otf */; };
+		617D481C1BE065FD0088A8B7 /* EventDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D481B1BE065FD0088A8B7 /* EventDetailsViewController.swift */; };
 		6188B4C91BA282570081223C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4C81BA282570081223C /* AppDelegate.swift */; };
 		6188B4CB1BA282570081223C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4CA1BA282570081223C /* ViewController.swift */; };
 		6188B4CE1BA282570081223C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4CC1BA282570081223C /* Main.storyboard */; };
@@ -35,8 +34,13 @@
 		6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6188B4D11BA282580081223C /* LaunchScreen.xib */; };
 		6188B4DF1BA282580081223C /* BluetoothTestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6188B4DE1BA282580081223C /* BluetoothTestTests.swift */; };
 		618C4FCC1BCEA0CC007F238E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618C4FCB1BCEA0CC007F238E /* HomeViewController.swift */; };
-		6816182FCB2BEF43E6C8BC85 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		9AEECE2C3F54384387CAA146 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		61BD72E31BF9A84F00C39A70 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD72E21BF9A84F00C39A70 /* MapViewController.swift */; };
+		61BD72E51BFB931E00C39A70 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD72E41BFB931E00C39A70 /* SettingsViewController.swift */; };
+		61C298431BE1DED900E0041E /* Franklin-Gothic-Demi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61C298411BE1DEC700E0041E /* Franklin-Gothic-Demi.ttf */; };
+		61C298451BE2634300E0041E /* FranklinGothicMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61C298441BE2634300E0041E /* FranklinGothicMedium.ttf */; };
+		61C298481BE267B600E0041E /* DIN Alternate Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61C298471BE267B600E0041E /* DIN Alternate Bold.ttf */; };
+		6816182FCB2BEF43E6C8BC85 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; };
+		9AEECE2C3F54384387CAA146 /* Pods_BluetoothTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */; };
 		E90C2E98EEA32D8BCC1BEFE9 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
@@ -69,9 +73,8 @@
 		27F1BD381BB0C34500BBE01A /* RequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestHandler.swift; sourceTree = "<group>"; };
 		491FEC971BDED7E700B9BDE5 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		49912B0B1BBD9DED007CC54D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		49912B0D1BBDB276007CC54D /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
-		49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventFormViewController.swift; sourceTree = "<group>"; };
 		49A897AF1BC710E700BBD558 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		617D481B1BE065FD0088A8B7 /* EventDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsViewController.swift; sourceTree = "<group>"; };
 		6188B4C31BA282570081223C /* BluetoothTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6188B4C71BA282570081223C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6188B4C81BA282570081223C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +86,11 @@
 		6188B4DD1BA282580081223C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6188B4DE1BA282580081223C /* BluetoothTestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothTestTests.swift; sourceTree = "<group>"; };
 		618C4FCB1BCEA0CC007F238E /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		61BD72E21BF9A84F00C39A70 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		61BD72E41BFB931E00C39A70 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		61C298411BE1DEC700E0041E /* Franklin-Gothic-Demi.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Franklin-Gothic-Demi.ttf"; sourceTree = "<group>"; };
+		61C298441BE2634300E0041E /* FranklinGothicMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FranklinGothicMedium.ttf; sourceTree = "<group>"; };
+		61C298471BE267B600E0041E /* DIN Alternate Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DIN Alternate Bold.ttf"; sourceTree = "<group>"; };
 		A0520EB9629DA02B6D13A8A6 /* Pods_BluetoothTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BluetoothTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA20280748557A50A82DE35E /* Pods-BluetoothTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest.debug.xcconfig"; sourceTree = "<group>"; };
 		D57BB4D432E6A2EA596C8851 /* Pods-BluetoothTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BluetoothTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-BluetoothTest/Pods-BluetoothTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -113,7 +121,6 @@
 		270D555E1BFA894C001F4C46 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				27F1BD381BB0C34500BBE01A /* RequestHandler.swift */,
 				2706E2781BCC48B400537B7E /* Constants.swift */,
 				2706E27A1BCC6B2400537B7E /* Util.swift */,
 				2708B9691BE1949800F3FC3B /* DBScripts.swift */,
@@ -173,13 +180,15 @@
 				27AD4C6B1BE136E500BBED8D /* Models */,
 				6188B4C81BA282570081223C /* AppDelegate.swift */,
 				491FEC971BDED7E700B9BDE5 /* ContactsViewController.swift */,
-				49912B0F1BC47BFC007CC54D /* EventFormViewController.swift */,
-				49912B0D1BBDB276007CC54D /* EventViewController.swift */,
 				6188B4CA1BA282570081223C /* ViewController.swift */,
+				61BD72E41BFB931E00C39A70 /* SettingsViewController.swift */,
 				6188B4CC1BA282570081223C /* Main.storyboard */,
 				6188B4CF1BA282580081223C /* Images.xcassets */,
 				6188B4D11BA282580081223C /* LaunchScreen.xib */,
+				27F1BD381BB0C34500BBE01A /* RequestHandler.swift */,
+				61BD72E21BF9A84F00C39A70 /* MapViewController.swift */,
 				273957771BCF0E3B0044EE19 /* ProfileViewController.swift */,
+				617D481B1BE065FD0088A8B7 /* EventDetailsViewController.swift */,
 				271DD9F51BC57A4900FF864B /* LoginViewController.swift */,
 				271DD9FB1BC6E54200FF864B /* SignupViewController.swift */,
 				271DD9FD1BC6E7E400FF864B /* LandingViewController.swift */,
@@ -197,7 +206,10 @@
 		6188B4C61BA282570081223C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				61C298471BE267B600E0041E /* DIN Alternate Bold.ttf */,
 				2706E27C1BCC911700537B7E /* OpenSans-Light.ttf */,
+				61C298411BE1DEC700E0041E /* Franklin-Gothic-Demi.ttf */,
+				61C298441BE2634300E0041E /* FranklinGothicMedium.ttf */,
 				27A96E2A1BD15D4D00B6C1FB /* OpenSans-Regular.ttf */,
 				6188B4C71BA282570081223C /* Info.plist */,
 			);
@@ -296,7 +308,7 @@
 				TargetAttributes = {
 					6188B4C21BA282570081223C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = W9N77F6KZT;
+						DevelopmentTeam = 963W32VWA9;
 					};
 					6188B4D71BA282580081223C = {
 						CreatedOnToolsVersion = 6.4;
@@ -329,12 +341,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61C298451BE2634300E0041E /* FranklinGothicMedium.ttf in Resources */,
+				61C298431BE1DED900E0041E /* Franklin-Gothic-Demi.ttf in Resources */,
 				27A96E2B1BD15D5B00B6C1FB /* OpenSans-Regular.ttf in Resources */,
 				2706E27D1BCC911700537B7E /* OpenSans-Light.ttf in Resources */,
 				6188B4CE1BA282570081223C /* Main.storyboard in Resources */,
 				6188B4D31BA282580081223C /* LaunchScreen.xib in Resources */,
 				49A897B01BC710E700BBD558 /* FontAwesome.otf in Resources */,
 				6188B4D01BA282580081223C /* Images.xcassets in Resources */,
+				61C298481BE267B600E0041E /* DIN Alternate Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +464,6 @@
 				2706E27B1BCC6B2400537B7E /* Util.swift in Sources */,
 				491FEC981BDED7E700B9BDE5 /* ContactsViewController.swift in Sources */,
 				271DD9F61BC57A4900FF864B /* LoginViewController.swift in Sources */,
-				49912B0E1BBDB276007CC54D /* EventViewController.swift in Sources */,
 				27AD4C6A1BE11D9700BBED8D /* DataHandler.swift in Sources */,
 				274676AE1BDEB24D002FC67D /* NotificationsViewController.swift in Sources */,
 				271DD9FC1BC6E54200FF864B /* SignupViewController.swift in Sources */,
@@ -457,13 +471,15 @@
 				2708B96A1BE1949800F3FC3B /* DBScripts.swift in Sources */,
 				27AD4C6D1BE136FB00BBED8D /* UserModel.swift in Sources */,
 				2706E2791BCC48B400537B7E /* Constants.swift in Sources */,
-				49912B101BC47BFD007CC54D /* EventFormViewController.swift in Sources */,
+				617D481C1BE065FD0088A8B7 /* EventDetailsViewController.swift in Sources */,
+				61BD72E51BFB931E00C39A70 /* SettingsViewController.swift in Sources */,
 				27F1BD391BB0C34500BBE01A /* RequestHandler.swift in Sources */,
 				274676B11BDF03A8002FC67D /* NotificationViewCell.swift in Sources */,
 				271DD9FE1BC6E7E400FF864B /* LandingViewController.swift in Sources */,
 				2708B9721BE1A24600F3FC3B /* ConnReqManager.swift in Sources */,
 				273957781BCF0E3B0044EE19 /* ProfileViewController.swift in Sources */,
 				6188B4C91BA282570081223C /* AppDelegate.swift in Sources */,
+				61BD72E31BF9A84F00C39A70 /* MapViewController.swift in Sources */,
 				618C4FCC1BCEA0CC007F238E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,7 +539,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: msoccer37@yahoo.com (V98L4UHTX7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -547,6 +564,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -569,7 +587,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: msoccer37@yahoo.com (V98L4UHTX7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -585,6 +604,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -600,7 +620,7 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -616,7 +636,7 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

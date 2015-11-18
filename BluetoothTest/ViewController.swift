@@ -13,19 +13,6 @@ import Firebase
 import SnapKit
 import Darwin
 
-extension UIView {
-    func rotate360Degrees(duration: CFTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotateAnimation.fromValue = 0.0
-        rotateAnimation.toValue = CGFloat(M_PI * 2.0)
-        rotateAnimation.duration = duration
-        
-        if let delegate: AnyObject = completionDelegate {
-            rotateAnimation.delegate = delegate
-        }
-        self.layer.addAnimation(rotateAnimation, forKey: nil)
-    }
-}
 
 class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralManagerDelegate {
     let locationManager = CLLocationManager()
@@ -57,15 +44,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     // Create a reference to a Firebase location
     let firebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com")
     let userref = Firebase(url:"https://fiery-heat-4470.firebaseio.com/users")
+    let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!, identifier: "TEST")
+
+    let userID = "e1c9384a-a279-4abe-9375-9bc8a813c034"
+    
+    let idDictionary = ["999":"e1c9384a-a279-4abe-9375-9bc8a813c034","900":"0bf5ce44-8422-4754-9ff2-568b6fec27bd"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         /* START BROADCASTING BEACON */
         
+//        let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
         let UUID = NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!
-        let major: CLBeaconMajorValue = 999
+        
+        let major: CLBeaconMajorValue = 900
         let minor: CLBeaconMinorValue = 678
+        
+        print(userID)
+        
+        
         
         beacon = CLBeaconRegion(proximityUUID: UUID, major: major, minor: minor, identifier: "TEST")
         peripheral = CBPeripheralManager(delegate: self, queue: nil, options: nil)
@@ -77,9 +76,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        let region = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "9BF22DAD-2C5E-4F9A-89D0-EB375E069F46")!, identifier: "TEST")
         
-        locationManager.startRangingBeaconsInRegion(region)
+        if BeaconStarted.beacon.started == false{
+            locationManager.startRangingBeaconsInRegion(region)
+        }
         
         createView()
         
@@ -91,7 +91,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
 //        let params = ["client_id": "30e036d353d740b", "response_type": "token", "state": ""]
 //        requestHandler.sendRequest("https://api.imgur.com/oauth2/authorize", method: "GET", params: params, completionHandler: responseHandler)
 
-        firebaseRef.authUser("bobtony@example.com", password: "correcthorsebatterystaple",
+        firebaseRef.authUser("mzw4@cornell.edu", password: "123",
             withCompletionBlock: { error, authData in
                 if error != nil {
                     // There was an error logging in to this account
@@ -127,14 +127,20 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager){
-        if peripheral.state == .PoweredOn {
-            print("test worked")
-            peripheral.startAdvertising(beaconData as! [String: AnyObject]!)
+        if BeaconStarted.beacon.started == false{
+            if peripheral.state == .PoweredOn {
+                print("test worked")
+                peripheral.startAdvertising(beaconData as! [String: AnyObject]!)
+                BeaconStarted.beacon.started = true
+            }
         } else if peripheral.state == .PoweredOff {
             peripheral.stopAdvertising()
+            BeaconStarted.beacon.started = false
         }
     }
     
+    var user: User!
+
     func locationManager(manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
         var beaconMajor = ""
         var rssi = 0
@@ -142,7 +148,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         for beacon in beacons{
             beaconMajor = "\(beacon.major)"
             rssi = beacon.rssi
-            print(rssi)
+//            print(rssi)
         }
         
         if (rssi < -50 || beaconMajor.isEmpty) {
@@ -150,7 +156,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
             return
         }
         
+        print(PeopleMet.people.peopleMet)
         /* Use beaconMajor as closes becaon - send that ID to firebase to retrieve contact information */
+        /* If there is a beaconMajor match, append the userID */
         if peopleMet.contains(beaconMajor){
             print("Person already met")
         }
@@ -159,10 +167,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
             
                 // Attach a closure to read the data at our posts reference
                 userref.childByAppendingPath(beaconMajor).observeEventType(.Value, withBlock: { snapshot in
-                    print(snapshot.value)
-                    self.populateUserInfo(snapshot.value as! NSDictionary)
+//                    print(snapshot.value)
+//                    self.populateUserInfo(snapshot.value as! NSDictionary)
                     self.peopleMet.append(beaconMajor)
-
+                    User.getUserInfo(self.idDictionary[beaconMajor]!, completion: { userObj in
+                        self.user = userObj
+                        print(self.user.name)
+                    })
+                    DataHandler.submitConnectionRequest(self.idDictionary["999"]!, userId2: self.idDictionary[beaconMajor]!, date: NSDate(), location: EventChosen.events.eventSelected, score: 55.0)
+                    PeopleMet.people.peopleMet.append(self.idDictionary[beaconMajor]!)  //fix this so that it sends to the database each time
                     }, withCancelBlock: { error in
                         print(error.description)
                 })
@@ -249,13 +262,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
 
         view.addSubview(viewContacts)
         viewContacts.translatesAutoresizingMaskIntoConstraints = false
-        viewContacts.layer.cornerRadius = 25.0
+        viewContacts.layer.cornerRadius = 6.0
         viewContacts.backgroundColor = UIConstants.primaryColor
-        viewContacts.setTitle("View Contacts", forState: .Normal)
+        viewContacts.setTitle("Stop Broadcasting", forState: .Normal)
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .CenterX, relatedBy: .Equal, toItem: view, attribute: .CenterX, multiplier: 1.0, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 0.7, constant: 0.0))
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 50.0))
         view.addConstraint(NSLayoutConstraint(item: viewContacts, attribute: .Bottom, relatedBy: .Equal, toItem: view, attribute: .Bottom, multiplier: 1.0, constant: -60.0))
+        viewContacts.addTarget(self, action: "stopBeacon", forControlEvents: .TouchUpInside)
         
         let swipeDown = UISwipeGestureRecognizer(target: self, action: "swipeDown:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
@@ -348,6 +362,15 @@ class ViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralM
         }
     }
     
+    func stopBeacon(){
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        peripheral.stopAdvertising()
+        BeaconStarted.beacon.started = false
+        locationManager.stopRangingBeaconsInRegion(region)
+
+        dismissViewControllerAnimated(true, completion: nil)
+    }
     
     func swipeDown(gesture: UISwipeGestureRecognizer) {
         if gesture.direction == UISwipeGestureRecognizerDirection.Down && topConstraint.constant == 0{

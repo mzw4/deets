@@ -9,6 +9,8 @@ target 'BluetoothTest' do
     link_with 'BluetoothTest', 'BluetoothTestTests'
     pod 'Firebase', '>= 2.3.3'
     pod 'SnapKit', '~> 0.15.0'
+    pod 'XMSegmentedControl'
+    pod 'LTMorphingLabel'
 end
 
 target 'BluetoothTestTests' do

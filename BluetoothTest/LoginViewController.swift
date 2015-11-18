@@ -41,9 +41,7 @@ class LoginViewController: UIViewController {
                     print("\(authData) logged in with email \(email!) and id \(authData.uid)")
                     
                     // Get user info
-                    let userId = NSUserDefaults.standardUserDefaults().stringForKey("userId")!
-                    
-                    User.getUserInfo(userId, completion: { user in
+                    User.getUserInfo(authData.uid, completion: { user in
                         User.currentUser = user
                         
                         // Populate contacts
