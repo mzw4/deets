@@ -147,6 +147,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate,
         
         // Get events
         userEvents = user.events
+        eventTable.reloadData()
     }
     
     func createView() {

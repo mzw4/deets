@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class DBScripts {
+class DBScripts : NSObject {
     // Create some fake event data and stick it in the DB
     static func makeEvents() {
         var sampleEvents = ["Entrepreneurs Meetup", "Hilton Networking Event", "VC Meet & Greet", "Cornell Tech Meetup", "Comic Con: San Diego","Cornell Career Fair"]
@@ -35,6 +35,7 @@ class DBScripts {
 
     // Create some fake user data and stick it in the DB
     static func makeUsers() {
+        DataHandler.userRef.removeValue()
         DataHandler.userRef.childByAppendingPath("e1c9384a-a279-4abe-9375-9bc8a813c034").setValue([
             "coverPhoto": "nightswatch.png",
             "description": "My name is Jon Snow. I am Lord Commander of the Night's Watch, steward of justice and killer of white walkers. I am son to a murdered father, brother to murdered kin, husband to a murdered wife, I'm not sure who my mother was, and I was murdered too. And I will have my vengenace, in this life or the next.",
@@ -137,9 +138,17 @@ class DBScripts {
         addContacts()
         // Populate events
         addEventsToUsers()
+        // Wait 3 seconds for updates to propogate lol
+        NSTimer.scheduledTimerWithTimeInterval(3, target: self, selector: "populateUserInfo", userInfo: nil, repeats: false)
+    }
+    
+    static func populateUserInfo() {
+        // Populate connection requests
+        makeConnectionRequests()
     }
 
     static func makeConnectionRequests() {
+        print("making connections")
         DataHandler.connectionRequestsRef.removeValue()
         DataHandler.userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             let userIds: [String] = Array((snapshot.value as! [String: AnyObject]).keys)
@@ -164,6 +173,7 @@ class DBScripts {
     }
 
     static func addEventsToUsers() {
+        print("adding events...")
         DataHandler.userRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
             let userIds: [String] = Array((snapshot.value as! [String: AnyObject]).keys)
 
@@ -171,8 +181,9 @@ class DBScripts {
                 let eventIds: [String] = Array((snapshot2.value as! [String: AnyObject]).keys)
                 
                 for u in 0..<userIds.count {
+                    print("Adding events \(u)")
                     for i in u..<(u+3) {
-                        DataHandler.addEvenAttended(userIds[u], eventId: eventIds[i % eventIds.count])
+                        DataHandler.addEventAttended(userIds[u], eventId: eventIds[i % eventIds.count])
                     }
                 }
             })

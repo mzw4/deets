@@ -308,7 +308,7 @@
 				TargetAttributes = {
 					6188B4C21BA282570081223C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 963W32VWA9;
+						DevelopmentTeam = W9N77F6KZT;
 					};
 					6188B4D71BA282580081223C = {
 						CreatedOnToolsVersion = 6.4;
@@ -620,7 +620,7 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve.mzw4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -636,7 +636,7 @@
 				INFOPLIST_FILE = BluetoothTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cohesve.mzw4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
