@@ -21,7 +21,8 @@ struct DBConstants {
     static let userId1Key = "userId1"
     static let userId2Key = "userId2"
     static let scoreKey = "score"
-    static let acceptedKey = "accepted"
+    static let user1StatusKey = "user1Status"
+    static let user2StatusKey = "user2Status"
     static let dateKey = "date"
     static let name1Key = "name1"
     static let name2Key = "name2"
@@ -136,7 +137,8 @@ class DataHandler {
                     DBConstants.profilePic1Key: user1.profilePic,
                     DBConstants.profilePic2Key: user2.profilePic,
                     DBConstants.scoreKey: score,        // the likelihood they talked, used for priority
-                    DBConstants.acceptedKey: 0,         // when the count is 2, exchange contacts
+                    DBConstants.user1StatusKey: 0,      // when both are 1, exchange contacts
+                    DBConstants.user2StatusKey: 0,
                     DBConstants.dateKey: date.timeIntervalSince1970,          // date when connection was made
                     DBConstants.locationKey: location   // location where the connection was made
                 ])
@@ -146,24 +148,44 @@ class DataHandler {
     }
 
     // Get all pending connection requests for a user
-    static func getConnectionRequests(userId: String, completion: ([String: ConnectionRequest]) -> Void) {
+    static func getConnectionRequests(userId: String, completion: ([ConnectionRequest]) -> Void) {
         var numCompleted = 0
-        var connections = [String: ConnectionRequest]()
+//        var connections = [ConnectionRequest]()
         
         func waitForRequests(snapshot: FDataSnapshot!) -> Void {
+//            let data: [String: AnyObject]? = snapshot.value as? [String : AnyObject]
+//            if data != nil {
+////                print(data!.values)
+//                for k in data!.keys {
+//                    let connDataDict = data![k] as! [String : AnyObject]
+//                    connections.append(ConnectionRequest(id: k, fromData: connDataDict))
+//                }
+//            }
+//            print("Getting new connections")
+//            completion(connections)
+            
+            var connections = [ConnectionRequest]()
             let data: [String: AnyObject]? = snapshot.value as? [String : AnyObject]
             if data != nil {
-//                print(data!.values)
                 for k in data!.keys {
                     let connDataDict = data![k] as! [String : AnyObject]
-                    connections[k] = ConnectionRequest(id: k, fromData: connDataDict)
+//                    completion(ConnectionRequest(id: snapshot.key, fromData: connDataDict))
+                    connections.append(ConnectionRequest(id: k, fromData: connDataDict))
                 }
             }
+            completion(connections)
             
-            numCompleted++
-            if numCompleted >= 2 {
-                completion(connections)
-            }
+//            // Evaluate this for each new connection object
+//            let connDataDict = snapshot.value as? [String : AnyObject]
+//            if connDataDict != nil {
+//                completion(ConnectionRequest(id: snapshot.key, fromData: connDataDict!))
+//            }
+            
+//            numCompleted++
+//            print("waiting for requests: \(numCompleted)")
+//            if numCompleted >= 1 {
+//                numCompleted = 0
+//            }
         }
         
         // can't think of a better way to do this right now aside from storing two entries for each request
@@ -173,26 +195,51 @@ class DataHandler {
 
     // Submit an accept connection request
     static func userAcceptedConnection(userId: String, otherUserId: String, connId: String) {
-        connectionRequestsRef.childByAppendingPath(connId).observeSingleEventOfType(.ChildAdded, withBlock: { snapshot in
-            if snapshot.key == DBConstants.acceptedKey {
-                let acceptedResult = (snapshot.value as! Int) + 1
-                
-                // If they've both accepted the connection request, exchange contacts
+        connectionRequestsRef.childByAppendingPath(connId).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let connReq = (snapshot.value as! [String: AnyObject])
+            let id1 = connReq[DBConstants.userId1Key] as! String
+            let id2 = connReq[DBConstants.userId2Key] as! String
+            let user1Status = connReq[DBConstants.user1StatusKey] as! Int
+            let user2Status = connReq[DBConstants.user2StatusKey] as! Int
+            
+            if userId == id1 && user2Status == 1 || userId == id2 && user1Status == 1 {
                 print("accepted connection request!")
-                if acceptedResult == 2 {
-                    self.addContact(userId, contactId: otherUserId)
-                    self.addContact(otherUserId, contactId: userId)
-                    connectionRequestsRef.childByAppendingPath(connId).removeValue()
-                } else {
-                    connectionRequestsRef.childByAppendingPath(connId).childByAppendingPath(DBConstants.acceptedKey).setValue(acceptedResult)
-                }
+                // Both accepted the connection request, exchange contacts and remove request
+                self.addContact(userId, contactId: otherUserId)
+                self.addContact(otherUserId, contactId: userId)
+                connectionRequestsRef.childByAppendingPath(connId).removeValue()
+            } else if user1Status == -1 || user2Status == -1 {
+                print("accepted but it was rejected!")
+                // One user rejected and the other accepted, so remove request
+                connectionRequestsRef.childByAppendingPath(connId).removeValue()
+            } else {
+                print("accepted but other not responded!")
+                // Other use has not responded yet, set status
+                // CAN GET INTO STATE WHERE BOTH ARE 1 IF THEY CLICK AT THE SAME TIME!!
+                let updateKey = userId == id1 ? DBConstants.user1StatusKey : DBConstants.user2StatusKey
+                connectionRequestsRef.childByAppendingPath(connId).childByAppendingPath(updateKey).setValue(1)
             }
         })
     }
 
     // Submit a reject connection request
     static func userRejectedConnection(userId: String, connId: String) {
-        connectionRequestsRef.childByAppendingPath(connId).removeValue()
+        connectionRequestsRef.childByAppendingPath(connId).observeSingleEventOfType(.Value, withBlock: { snapshot in
+            let connReq = (snapshot.value as! [String: AnyObject])
+            let id1 = connReq[DBConstants.userId1Key] as! String
+            let user1Status = connReq[DBConstants.user1StatusKey] as! Int
+            let user2Status = connReq[DBConstants.user1StatusKey] as! Int
+
+            if user1Status != 0 || user2Status != 0 {
+                // Both have responded, remove the request
+                connectionRequestsRef.childByAppendingPath(connId).removeValue()
+            } else {
+                // Other use has not responded so submit reject status
+                let updateKey = userId == id1 ? DBConstants.user1StatusKey : DBConstants.user2StatusKey
+                connectionRequestsRef.childByAppendingPath(connId).childByAppendingPath(updateKey).setValue(-1)
+            }
+
+        })
     }
     
     // Submit a new contact for this user
@@ -201,7 +248,7 @@ class DataHandler {
     }
 
     // Add a new attended event to this user
-    static func addEvenAttended(userId: String, eventId: String) {
+    static func addEventAttended(userId: String, eventId: String) {
         userRef.childByAppendingPath(userId).childByAppendingPath(DBConstants.eventsKey).childByAppendingPath(eventId).setValue(1)
     }
     

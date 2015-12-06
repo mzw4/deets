@@ -9,8 +9,8 @@
 import UIKit
 
 class NotificationsViewController: UIPageViewController, UITableViewDelegate, UITableViewDataSource {
-
-    var connections: [ConnectionRequest] = [ConnectionRequest]()
+    
+    var connections = [ConnectionRequest]()
     
     var connectionsTable = UITableView()
     var cellToHide: Int?
@@ -25,12 +25,11 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
         // Set date formatter
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
-        ConnectionRequestManager.getConnectionRequests(User.currentUser.userId, completion: { (connections: [String : ConnectionRequest]) in
-            self.connections = Array(ConnectionRequestManager.connectionRequests.values)
-            self.connectionsTable.reloadData()
-        })
-
-        connections = Array(ConnectionRequestManager.connectionRequests.values)
+//        ConnectionRequestManager.getConnectionRequests(User.currentUser.userId, completion: { (connections: [String : ConnectionRequest]) in
+//            self.connections = Array(ConnectionRequestManager.connectionRequests.values)
+//            self.connectionsTable.reloadData()
+//        })
+//        connections = Array(ConnectionRequestManager.connectionRequests.values)
         
         // Style navigation bar
         navigationItem.title = "Notifications"
@@ -48,12 +47,20 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
         self.automaticallyAdjustsScrollViewInsets = true
     }
     
+    override func viewDidAppear(animated: Bool) {
+        // Reload table data when the view is opened
+        connections = ConnectionRequestManager.connectionRequests
+        connectionsTable.reloadData()
+    }
+    
     func handleAccept(sender: UIButton) {
         // Submit accept request
+        print("accept \(sender.tag)")
         let conn = connections[sender.tag]
         let otherId = (conn.userId1 == User.currentUser.userId) ? conn.userId2 : conn.userId1
-        DataHandler.userAcceptedConnection(User.currentUser.userId, otherUserId: otherId, connId: connections[sender.tag].connId)
+        DataHandler.userAcceptedConnection(User.currentUser.userId, otherUserId: otherId, connId: conn.connId)
 
+        ConnectionRequestManager.removeRequest(conn.connId)
         connectionsTable.beginUpdates()
         connections.removeAtIndex(sender.tag)
         connectionsTable.deleteRowsAtIndexPaths([NSIndexPath(forRow: sender.tag, inSection: 0)], withRowAnimation: .Right)
@@ -63,8 +70,11 @@ class NotificationsViewController: UIPageViewController, UITableViewDelegate, UI
     
     func handleReject(sender: UIButton) {
         // Submit reject request
-        DataHandler.userRejectedConnection(User.currentUser.userId, connId: connections[sender.tag].connId)
+        print("reject \(sender.tag)")
+        let connId = connections[sender.tag].connId
+        DataHandler.userRejectedConnection(User.currentUser.userId, connId: connId)
         
+        ConnectionRequestManager.removeRequest(connId)
         connectionsTable.beginUpdates()
         connections.removeAtIndex(sender.tag)
         connectionsTable.deleteRowsAtIndexPaths([NSIndexPath(forRow: sender.tag, inSection: 0)], withRowAnimation: .Left)

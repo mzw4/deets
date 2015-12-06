@@ -14,6 +14,8 @@ class ConnectionRequest {
     var connId = ""
     var userId1 = ""
     var userId2 = ""
+    var user1Status = 0
+    var user2Status = 0
     var name1 = ""
     var name2 = ""
     var title1 = ""
@@ -27,12 +29,13 @@ class ConnectionRequest {
     
     init(id: String, fromData data: [String: AnyObject]) {
         connId = id
+        user1Status = data[DBConstants.user1StatusKey] as! Int
+        user2Status = data[DBConstants.user2StatusKey] as! Int
         userId1 = data[DBConstants.userId1Key] as! String
         userId2 = data[DBConstants.userId2Key] as! String
         date = NSDate(timeIntervalSince1970: data[DBConstants.dateKey] as! Double)
         location = data[DBConstants.locationKey] as! String
         score = data[DBConstants.scoreKey] as! Double
-        acceptedCount = data[DBConstants.acceptedKey] as! Int
         name1 = data[DBConstants.name1Key] as! String
         name2 = data[DBConstants.name2Key] as! String
         title1 = data[DBConstants.title1Key] as! String
@@ -44,13 +47,29 @@ class ConnectionRequest {
 
 // Singleton containing all currently outstanding connection requests for the current user
 class ConnectionRequestManager {
-    static var connectionRequests = [String : ConnectionRequest]()
+    static var connectionRequestSet = Set<String>()
+    static var connectionRequests = [ConnectionRequest]()
     
-    static func getConnectionRequests(id: String, completion: ([String : ConnectionRequest]) -> Void) {
-        DataHandler.getConnectionRequests(id, completion: { connections in
-            print("got connection requests \(connections.count)")
-            connectionRequests = connections
-            completion(connections)
-        })
+    static func addRequest(connectionRequest: ConnectionRequest) {
+        if !connectionRequestSet.contains(connectionRequest.connId) {
+            connectionRequestSet.insert(connectionRequest.connId)
+            connectionRequests.append(connectionRequest)
+        }
+    }
+    
+    static func removeRequest(id: String) {
+        var index = -1
+        for i in 0..<connectionRequests.count {
+            if connectionRequests[i].connId == id {
+                index = i
+                break
+            }
+        }
+        if index >= 0 {
+            connectionRequests.removeAtIndex(index)
+        }
+        connectionRequestSet.remove(id)
     }
 }
+
+

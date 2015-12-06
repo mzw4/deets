@@ -56,19 +56,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.blackColor()
-
-        // TEMP, CREATE DB ENTRIES
-//        makeEvents()
-//        DBScripts.makeUsers()
-//        DBScripts.makeConnectionRequests()
-        // END TEMP
         
         populateEventInfo()
-        ConnectionRequestManager.getConnectionRequests(User.currentUser.userId, completion: { (connections: [String : ConnectionRequest]) in
-            
-        })
         styleView()
-
         
         // Set date formatter
         dateFormatter.dateFormat = "MM/dd/yyyy"
