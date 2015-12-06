@@ -10,7 +10,7 @@ import UIKit
 
 class ContactsViewController: UIViewController, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UICollectionViewDelegate {
 
-    var collectionView : UICollectionViewFlowLayout = UICollectionViewFlowLayout()   // Initialization
+//    var collectionView : UICollectionViewFlowLayout = UICollectionViewFlowLayout()   // Initialization
     //    let firebaseRef = Firebase(url:"https://fiery-heat-4470.firebaseio.com/")
     //    let userRef = Firebase(url: "https://<your-firebase-app>.firebaseio.com/users")
     //    let itemsRef = rootRef.childByAppendingPath("users")
