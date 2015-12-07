@@ -363,7 +363,7 @@
 					};
 					6188B4C21BA282570081223C = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = W9N77F6KZT;
+						DevelopmentTeam = 963W32VWA9;
 					};
 					6188B4D71BA282580081223C = {
 						CreatedOnToolsVersion = 6.4;

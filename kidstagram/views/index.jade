@@ -1,0 +1,55 @@
+extends layout
+
+block content
+    h1= title
+    p Welcome to our test
+
+    // Wrapper
+    #wrapper
+
+		// USER INFO
+        #userInfo
+            h2 User Info
+            p
+                strong Name:
+                |  <span id='userInfoName'></span>
+                br
+                strong Age:
+                |  <span id='userInfoAge'></span>
+                br
+                strong Gender:
+                |  <span id='userInfoGender'></span>
+                br
+                strong Location:
+                |  <span id='userInfoLocation'></span>
+        // /USER INFO
+
+        // EVENT LIST
+        h2 Event List
+        #userList
+            table
+                thead
+                    th Event Name
+                    th Description
+                    th Delete?
+                tbody
+        // /EVENT LIST
+
+
+        // ADD EVENT
+        h2 Add User
+        #addUser
+            fieldset
+                input#inputUserName(type='text', placeholder='Event Name')
+                input#inputUserEmail(type='text', placeholder='Comapany')
+                br
+                input#inputUserFullname(type='text', placeholder='Description')
+                input#inputUserAge(type='text', placeholder='Date')
+                br
+                input#inputUserLocation(type='text', placeholder='City')
+                input#inputUserGender(type='text', placeholder='State')
+                br
+                button#btnAddUser Add User
+        // /ADD EVENT
+
+    // /WRAPPER
