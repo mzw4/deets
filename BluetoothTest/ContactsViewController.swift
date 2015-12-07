@@ -28,6 +28,8 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
     
     var connectionSwitch = true
     
+    var collectionView:UICollectionView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,7 +51,7 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
             self.userid.append(c.userId)
         }
         
-        let collectionView:UICollectionView? = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), collectionViewLayout: flowLayout);
+        collectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), collectionViewLayout: flowLayout);
         collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell");
         collectionView?.delegate = self;
         collectionView?.dataSource = self;
@@ -81,7 +83,10 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func viewDidAppear(animated: Bool) {
+        // Reload table data when the view is opened
+        collectionView?.reloadData()
+    }
     
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
