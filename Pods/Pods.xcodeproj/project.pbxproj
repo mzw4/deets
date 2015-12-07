@@ -34,7 +34,6 @@
 		5B3F435DD4B7F3CEE0E65DA045DCE351 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807000E209FE4F1203BCF95399F400 /* ConstraintAttributes.swift */; };
 		5CF83FB2E49B3342A3C09B02E8F474D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C75E33B87AD87BB0B385CEA765E50B /* QuartzCore.framework */; };
 		60F9139BDD38565B78214C4FC5F5729D /* Firebase-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A5A2A08B511A93A3257F6153A39C9225 /* Firebase-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		61C2983C1BE1C25800E0041E /* XMSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C2983B1BE1C25800E0041E /* XMSegmentedControl.swift */; };
 		62821F4D42C187B437988C64DBA6E0C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FC3C70B5BBBE3E40A24658D3EDDC105 /* UIKit.framework */; };
 		6646DA26298257396C7FFE141BB84CC3 /* FirebaseServerValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 9857497A70195C9B1BC27DF2CDFA589F /* FirebaseServerValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		74DEC2D3601595D8C6850C8FB7173158 /* LTCharacterLimbo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C606D746660EC32929B782AF25B3D8B9 /* LTCharacterLimbo.swift */; };
@@ -49,6 +48,7 @@
 		9A3D32C700863B881001CF1DFD905041 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC357D0AAC7FDC569CB5DEA678628C24 /* Foundation.framework */; };
 		9CD2F676F12CF59997D469DC44040977 /* LTEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BC6CC54477C9D653F03BCCBDFD0870 /* LTEasing.swift */; };
 		A5F9916EB5EBF2A8954F3BB1D214AC4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC357D0AAC7FDC569CB5DEA678628C24 /* Foundation.framework */; };
+		B0EC280C9439F45090699329C975CE2F /* XMSegmentedControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB3B424342D0F8883FABF1D33BC5BA85 /* XMSegmentedControl-dummy.m */; };
 		BA25E1C4EFB2B53764E95238C01FC541 /* LTMorphingLabel-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C837844066D72CC30C85E4786EF499E /* LTMorphingLabel-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BE937E1E36604AAADE7C4A7E04B755D7 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4456D57866A044EBD3BFC84239B8CC51 /* ConstraintDescription.swift */; };
 		C23FCF31260D47CEC1494A292DAA1A1E /* FAuthData.h in Headers */ = {isa = PBXBuildFile; fileRef = 367F0E739609C9348A0F5B77536C7652 /* FAuthData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -57,20 +57,19 @@
 		D3220A7948ED00ADD2AC68AE141CD3B2 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A0CFFA878E439781D3B7FF1E3E2D66 /* ConstraintMaker.swift */; };
 		D3C23E80B6678224F50A9DE7E1011883 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D883F1323412A480EC91E845D840D64 /* Constraint.swift */; };
 		D40D84C336EB60A2349DA835277B3BB6 /* LTMorphingLabel+Burn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D68F28B7F6EA4FADE345B021A237EE8 /* LTMorphingLabel+Burn.swift */; };
+		D451FCC950D56AA74E1B49C5585D48E7 /* XMSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474B3027A777B0CD8D5B794CFC844950 /* XMSegmentedControl.swift */; };
 		D4BEFE9697D2C98014CEA515831D78EC /* NSString+LTMorphingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCCAA9A19FEB22AEC1DDC1E735B7859 /* NSString+LTMorphingLabel.swift */; };
 		D7AF1C498BACC7A8145392B6E3AC91FB /* LTMorphingLabel+Pixelate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E5844C0168860BB793A1BABC8981C1 /* LTMorphingLabel+Pixelate.swift */; };
 		DB05A9DD8244D10C28B6915C514AE15F /* FMutableData.h in Headers */ = {isa = PBXBuildFile; fileRef = 857CAAFBA28D91F770A43011609EE3F2 /* FMutableData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E1A883FEBDEED9B85D90D6BE2080F218 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD68CB170895ECEC733FEFEE28672760 /* SystemConfiguration.framework */; };
-		E3D317465182459F73030C5EC9D87B17 /* XMSegmentedControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CF524FA9BA16549A2B4AD9A19DE0675D /* XMSegmentedControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E3D317465182459F73030C5EC9D87B17 /* XMSegmentedControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C5CEE3E61CF018575BDEA515C0FEC2C7 /* XMSegmentedControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E3FBB5B462A14E8ACC9B340227DE4BE1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10FA169BF01AD681D4F65CE9ACCACB36 /* CFNetwork.framework */; };
 		E4E3D8C8541B823D88A6469DFE24ACE5 /* Pods-BluetoothTest-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 10FF0F90184B567DDE92AE0AD927DDD8 /* Pods-BluetoothTest-dummy.m */; };
 		E60FA42EEC3ECC48701DB55986D25D69 /* FConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 4CCD5A5602D62C78E5CCF5F95E1FF7AA /* FConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E64E0DA42FF43A0CE84FC8E07BA9C2F4 /* Smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C6E8F2891CE9FFA24E12829B4A00763 /* Smoke.png */; };
-		E6ABC58F0DBDC48D06096B2E71021ED0 /* XMSegmentedControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 91AD56919506C36D7EAD52BFDE4AB73B /* XMSegmentedControl-dummy.m */; };
 		E8B534D15D2B25919ACD898217266891 /* FDataSnapshot.h in Headers */ = {isa = PBXBuildFile; fileRef = 78BCD47A4DA591CAE35BC1EE3DA6ECF1 /* FDataSnapshot.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F0F119C05F6408B9E0F8064AA86D77C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC357D0AAC7FDC569CB5DEA678628C24 /* Foundation.framework */; };
 		F549610EE0F620E4D54FDEC2052BE3CE /* View+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA063A6E70D16D0ABF601B92972BCC0F /* View+SnapKit.swift */; };
-		FB08A6EC809547178B8168A5F90EF490 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F3679C63B4B5EAF0F6AE1387767267 /* ReplaceMe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,10 +112,10 @@
 
 /* Begin PBXFileReference section */
 		06EF2E80B72EC01DAC5F8A2978D73218 /* LTMorphingEffect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LTMorphingEffect.swift; path = LTMorphingLabel/LTMorphingEffect.swift; sourceTree = "<group>"; };
+		0A468F70CFA778FFB2904C7166127D5A /* XMSegmentedControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = XMSegmentedControl.modulemap; sourceTree = "<group>"; };
 		0A5A6D253A97338E31DD3B8F386B20BE /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		0B04CAFF82306C8F666CF2089618F0F1 /* LTMorphingLabel+Fall.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LTMorphingLabel+Fall.swift"; path = "LTMorphingLabel/LTMorphingLabel+Fall.swift"; sourceTree = "<group>"; };
 		0B4EB9785D283BA0651F2290AF66363D /* Pods-BluetoothTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BluetoothTest.release.xcconfig"; sourceTree = "<group>"; };
-		0C96C3865D41D8A0DDA44C093C3D160B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0F818FE9AD0077E93416774ACAEF1397 /* LTMorphingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LTMorphingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10FA169BF01AD681D4F65CE9ACCACB36 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
 		10FF0F90184B567DDE92AE0AD927DDD8 /* Pods-BluetoothTest-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BluetoothTest-dummy.m"; sourceTree = "<group>"; };
@@ -125,8 +124,8 @@
 		1D68F28B7F6EA4FADE345B021A237EE8 /* LTMorphingLabel+Burn.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LTMorphingLabel+Burn.swift"; path = "LTMorphingLabel/LTMorphingLabel+Burn.swift"; sourceTree = "<group>"; };
 		23705B46DBA5C30D7BB0EF2E3896F4A7 /* FQuery.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FQuery.h; sourceTree = "<group>"; };
 		24DAABE518EE7F375C87FD0B0D2270DC /* Pods-BluetoothTest-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BluetoothTest-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2AEA6A44B5D0CB85D8664B2025449C60 /* XMSegmentedControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XMSegmentedControl-prefix.pch"; sourceTree = "<group>"; };
 		2D53B8116638C54165D5D480E9D235BF /* LTEmitterView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LTEmitterView.swift; path = LTMorphingLabel/LTEmitterView.swift; sourceTree = "<group>"; };
-		2D616E9DDEA5A57311D8FD60C715BBA8 /* XMSegmentedControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XMSegmentedControl.xcconfig; sourceTree = "<group>"; };
 		3175F7DC0B0ABA7524E8FBB9FE428863 /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
 		322265ECEE96B7689982CA1C35DE02A8 /* FTransactionResult.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FTransactionResult.h; sourceTree = "<group>"; };
 		367F0E739609C9348A0F5B77536C7652 /* FAuthData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FAuthData.h; sourceTree = "<group>"; };
@@ -136,6 +135,7 @@
 		3E654ABB197CEF9866F0914C7182C1B5 /* Pods-BluetoothTest-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BluetoothTest-resources.sh"; sourceTree = "<group>"; };
 		4456D57866A044EBD3BFC84239B8CC51 /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
 		456689E62C080CEB985C8D79C0A7E256 /* SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SnapKit.swift; path = Source/SnapKit.swift; sourceTree = "<group>"; };
+		474B3027A777B0CD8D5B794CFC844950 /* XMSegmentedControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XMSegmentedControl.swift; path = Pod/Classes/XMSegmentedControl.swift; sourceTree = "<group>"; };
 		4C837844066D72CC30C85E4786EF499E /* LTMorphingLabel-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LTMorphingLabel-umbrella.h"; sourceTree = "<group>"; };
 		4CCD5A5602D62C78E5CCF5F95E1FF7AA /* FConfig.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FConfig.h; sourceTree = "<group>"; };
 		530374209969897D77F3D5090E56BBCD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
@@ -143,7 +143,6 @@
 		56467DEE853A65FA08B195B69C550CE7 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		5C41004A0657DE459E6434C9E5CD0BAB /* Pods-BluetoothTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BluetoothTest.debug.xcconfig"; sourceTree = "<group>"; };
 		60DA609AD7F7B06440B6F6B35377AD9E /* libFirebaseStatic.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = libFirebaseStatic.a; sourceTree = "<group>"; };
-		61C2983B1BE1C25800E0041E /* XMSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMSegmentedControl.swift; sourceTree = "<group>"; };
 		62CADEB238663D3C7CC681B4C28CED9F /* LTMorphingLabel-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "LTMorphingLabel-dummy.m"; sourceTree = "<group>"; };
 		6564DFB219BCFFF75DBDCDE077B814D8 /* Pods-BluetoothTest-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BluetoothTest-acknowledgements.plist"; sourceTree = "<group>"; };
 		668A8C6C4DC7E75F1E4D8F6094A32975 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
@@ -160,10 +159,7 @@
 		7FC3C70B5BBBE3E40A24658D3EDDC105 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		80C75E33B87AD87BB0B385CEA765E50B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		839D6C8EB05DD9F074BE59893FAC63A2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		84F3679C63B4B5EAF0F6AE1387767267 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = Pod/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		857CAAFBA28D91F770A43011609EE3F2 /* FMutableData.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FMutableData.h; sourceTree = "<group>"; };
-		8AECD699E2ED30377CC6177111489401 /* XMSegmentedControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XMSegmentedControl-prefix.pch"; sourceTree = "<group>"; };
-		91AD56919506C36D7EAD52BFDE4AB73B /* XMSegmentedControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XMSegmentedControl-dummy.m"; sourceTree = "<group>"; };
 		938D9EE356F7958477EFD0F998EB7794 /* LTMorphingLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LTMorphingLabel.swift; path = LTMorphingLabel/LTMorphingLabel.swift; sourceTree = "<group>"; };
 		96807000E209FE4F1203BCF95399F400 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
 		9857497A70195C9B1BC27DF2CDFA589F /* FirebaseServerValue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = FirebaseServerValue.h; sourceTree = "<group>"; };
@@ -178,21 +174,23 @@
 		A5A2A08B511A93A3257F6153A39C9225 /* Firebase-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Firebase-umbrella.h"; sourceTree = "<group>"; };
 		ABE3FFE6098C618DB77AB3F49256FDBD /* LTMorphingLabel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = LTMorphingLabel.h; path = LTMorphingLabel/LTMorphingLabel.h; sourceTree = "<group>"; };
 		AD68CB170895ECEC733FEFEE28672760 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/SystemConfiguration.framework; sourceTree = DEVELOPER_DIR; };
+		B21A084F569E92AD391652C129DBC9B2 /* XMSegmentedControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = XMSegmentedControl.xcconfig; sourceTree = "<group>"; };
 		BA6428E9F66FD5A23C0A2E06ED26CD2F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BC357D0AAC7FDC569CB5DEA678628C24 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		BDCCAA9A19FEB22AEC1DDC1E735B7859 /* NSString+LTMorphingLabel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSString+LTMorphingLabel.swift"; path = "LTMorphingLabel/NSString+LTMorphingLabel.swift"; sourceTree = "<group>"; };
-		C4020F5C2DC925840363C32AD3A3CBAD /* XMSegmentedControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = XMSegmentedControl.modulemap; sourceTree = "<group>"; };
 		C40BA319A87C62007AC48DF6733C8083 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5CEE3E61CF018575BDEA515C0FEC2C7 /* XMSegmentedControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XMSegmentedControl-umbrella.h"; sourceTree = "<group>"; };
 		C606D746660EC32929B782AF25B3D8B9 /* LTCharacterLimbo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LTCharacterLimbo.swift; path = LTMorphingLabel/LTCharacterLimbo.swift; sourceTree = "<group>"; };
 		CA063A6E70D16D0ABF601B92972BCC0F /* View+SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+SnapKit.swift"; path = "Source/View+SnapKit.swift"; sourceTree = "<group>"; };
 		CA800046D600258B797F716A6AC19889 /* XMSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = XMSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB3B424342D0F8883FABF1D33BC5BA85 /* XMSegmentedControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "XMSegmentedControl-dummy.m"; sourceTree = "<group>"; };
 		CD1C069CDA5736EEA10B7F585E6964B7 /* Firebase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
-		CF524FA9BA16549A2B4AD9A19DE0675D /* XMSegmentedControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "XMSegmentedControl-umbrella.h"; sourceTree = "<group>"; };
 		D2E5844C0168860BB793A1BABC8981C1 /* LTMorphingLabel+Pixelate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LTMorphingLabel+Pixelate.swift"; path = "LTMorphingLabel/LTMorphingLabel+Pixelate.swift"; sourceTree = "<group>"; };
 		DABA7E1D3B9EC8C3B0280E4212182B3F /* LTMorphingLabel+Anvil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LTMorphingLabel+Anvil.swift"; path = "LTMorphingLabel/LTMorphingLabel+Anvil.swift"; sourceTree = "<group>"; };
 		DC2B15BB9103FA9982F5D73BBA091998 /* Pods-BluetoothTest-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BluetoothTest-frameworks.sh"; sourceTree = "<group>"; };
 		E1E2082B9DAEB9BF3606C331D0A61B16 /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ViewController+SnapKit.swift"; path = "Source/ViewController+SnapKit.swift"; sourceTree = "<group>"; };
 		E2CFC870803B521D589D8D4B1929AB24 /* Fire.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = Fire.png; path = LTMorphingLabel/Particles/Fire.png; sourceTree = "<group>"; };
+		E5D5D713CCCD83FECB5C9B2CF15BC1EC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E67ECAF875D4129EA39DBE0EE6E37FE3 /* Pods-BluetoothTest-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-BluetoothTest-umbrella.h"; sourceTree = "<group>"; };
 		E6951FF694D5B6598049AC38F30B5F5E /* XMSegmentedControl.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMSegmentedControl.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A0CFFA878E439781D3B7FF1E3E2D66 /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
@@ -289,6 +287,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1626C52AD84F0DD99ECFA69BBA4B64B6 /* XMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				474B3027A777B0CD8D5B794CFC844950 /* XMSegmentedControl.swift */,
+				F35A88DFC5FD8BF30D4E7CB2B2330CA5 /* Support Files */,
+			);
+			path = XMSegmentedControl;
+			sourceTree = "<group>";
+		};
 		6EF9EF026FFA6AEF2FBD727B2C331AF7 /* Pods-BluetoothTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -358,7 +365,7 @@
 				7BDE2CA3DD4B7BF040EC2CEC21B33E74 /* Firebase */,
 				B8296C4D6CF8D46CB148336140E157D5 /* LTMorphingLabel */,
 				079C75C4640BEF7EF2516113E1965400 /* SnapKit */,
-				E698B21618DFF32A8340CD0A0A8B8782 /* XMSegmentedControl */,
+				1626C52AD84F0DD99ECFA69BBA4B64B6 /* XMSegmentedControl */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -369,20 +376,6 @@
 				6EF9EF026FFA6AEF2FBD727B2C331AF7 /* Pods-BluetoothTest */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		A4BA09F043D8EC8CA073045F5E4A591F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				0C96C3865D41D8A0DDA44C093C3D160B /* Info.plist */,
-				C4020F5C2DC925840363C32AD3A3CBAD /* XMSegmentedControl.modulemap */,
-				2D616E9DDEA5A57311D8FD60C715BBA8 /* XMSegmentedControl.xcconfig */,
-				91AD56919506C36D7EAD52BFDE4AB73B /* XMSegmentedControl-dummy.m */,
-				8AECD699E2ED30377CC6177111489401 /* XMSegmentedControl-prefix.pch */,
-				CF524FA9BA16549A2B4AD9A19DE0675D /* XMSegmentedControl-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/XMSegmentedControl";
 			sourceTree = "<group>";
 		};
 		B58C8CB560FD6E13E4D58A84A8B89954 /* Products */ = {
@@ -462,22 +455,26 @@
 			path = "../Target Support Files/LTMorphingLabel";
 			sourceTree = "<group>";
 		};
-		E698B21618DFF32A8340CD0A0A8B8782 /* XMSegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				61C2983B1BE1C25800E0041E /* XMSegmentedControl.swift */,
-				84F3679C63B4B5EAF0F6AE1387767267 /* ReplaceMe.swift */,
-				A4BA09F043D8EC8CA073045F5E4A591F /* Support Files */,
-			);
-			path = XMSegmentedControl;
-			sourceTree = "<group>";
-		};
 		F148A70AC8B3F77323CE9D5717480EC5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				60DA609AD7F7B06440B6F6B35377AD9E /* libFirebaseStatic.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F35A88DFC5FD8BF30D4E7CB2B2330CA5 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E5D5D713CCCD83FECB5C9B2CF15BC1EC /* Info.plist */,
+				0A468F70CFA778FFB2904C7166127D5A /* XMSegmentedControl.modulemap */,
+				B21A084F569E92AD391652C129DBC9B2 /* XMSegmentedControl.xcconfig */,
+				CB3B424342D0F8883FABF1D33BC5BA85 /* XMSegmentedControl-dummy.m */,
+				2AEA6A44B5D0CB85D8664B2025449C60 /* XMSegmentedControl-prefix.pch */,
+				C5CEE3E61CF018575BDEA515C0FEC2C7 /* XMSegmentedControl-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/XMSegmentedControl";
 			sourceTree = "<group>";
 		};
 		F7DA8F1D283F5856C06CFB7E9D966AD4 /* Resources */ = {
@@ -571,7 +568,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 703D0D16B34BCA69EB1EE6C49C2823AD /* Build configuration list for PBXNativeTarget "XMSegmentedControl" */;
 			buildPhases = (
-				3104D387DD4EBAE59F81B667A8874F25 /* Sources */,
+				6ED3BBA4007F549E21A83971AE370923 /* Sources */,
 				9C05EBF346A0BAB4329A7B872DF4AF31 /* Frameworks */,
 				323815EDF13D4F81272E841DB52B5901 /* Resources */,
 				80784BE0EE5C34658CBA81A54F3D6ED9 /* Headers */,
@@ -719,16 +716,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3104D387DD4EBAE59F81B667A8874F25 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FB08A6EC809547178B8168A5F90EF490 /* ReplaceMe.swift in Sources */,
-				E6ABC58F0DBDC48D06096B2E71021ED0 /* XMSegmentedControl-dummy.m in Sources */,
-				61C2983C1BE1C25800E0041E /* XMSegmentedControl.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3DC2935A23180149BB5D0DC956D8B7CD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -755,6 +742,15 @@
 			files = (
 				012A7E018F3D34F159894EBD7EACACF9 /* Empty.m in Sources */,
 				1D9D7FF5237C8CC91EF58DC45AC274FB /* Firebase-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ED3BBA4007F549E21A83971AE370923 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0EC280C9439F45090699329C975CE2F /* XMSegmentedControl-dummy.m in Sources */,
+				D451FCC950D56AA74E1B49C5585D48E7 /* XMSegmentedControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,7 +827,7 @@
 /* Begin XCBuildConfiguration section */
 		26105D3FD191C16D0AC97B83DA52FD64 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D616E9DDEA5A57311D8FD60C715BBA8 /* XMSegmentedControl.xcconfig */;
+			baseConfigurationReference = B21A084F569E92AD391652C129DBC9B2 /* XMSegmentedControl.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = XMSegmentedControl;
@@ -901,7 +897,7 @@
 		};
 		3D4AED4A5D10BD31195134F4DAB3BAA6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D616E9DDEA5A57311D8FD60C715BBA8 /* XMSegmentedControl.xcconfig */;
+			baseConfigurationReference = B21A084F569E92AD391652C129DBC9B2 /* XMSegmentedControl.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1048,7 +1044,7 @@
 		};
 		E039745826E684283F4DDC616910FA51 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D616E9DDEA5A57311D8FD60C715BBA8 /* XMSegmentedControl.xcconfig */;
+			baseConfigurationReference = B21A084F569E92AD391652C129DBC9B2 /* XMSegmentedControl.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1076,7 +1072,7 @@
 		};
 		EBB91892F2C78F1269C938D5A1F22D91 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D616E9DDEA5A57311D8FD60C715BBA8 /* XMSegmentedControl.xcconfig */;
+			baseConfigurationReference = B21A084F569E92AD391652C129DBC9B2 /* XMSegmentedControl.xcconfig */;
 			buildSettings = {
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				PRODUCT_NAME = XMSegmentedControl;

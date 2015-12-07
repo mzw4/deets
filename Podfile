@@ -6,8 +6,8 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'BluetoothTest' do
-    link_with 'BluetoothTest', 'BluetoothTestTests'
-    pod 'Firebase', '>= 2.3.3'
+    link_with 'BluetoothTest', 'BluetoothTestTests', 'BluetoothTestUITests'
+    pod 'Firebase', '>= 2.4.3'
     pod 'SnapKit', '~> 0.15.0'
     pod 'XMSegmentedControl'
     pod 'LTMorphingLabel'

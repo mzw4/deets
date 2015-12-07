@@ -38,7 +38,26 @@
                ReferencedContainer = "container:BluetoothTest.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "27DAD0591C1601B7004C0A52"
+               BuildableName = "BluetoothTestUITests.xctest"
+               BlueprintName = "BluetoothTestUITests"
+               ReferencedContainer = "container:BluetoothTest.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6188B4D71BA282580081223C"
+            BuildableName = "BluetoothTestTests.xctest"
+            BlueprintName = "BluetoothTestTests"
+            ReferencedContainer = "container:BluetoothTest.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>

@@ -1,19 +1,19 @@
 PODS:
-  - Firebase (2.4.2)
-  - LTMorphingLabel (0.0.8)
+  - Firebase (2.4.3)
+  - LTMorphingLabel (0.0.9)
   - SnapKit (0.15.0)
-  - XMSegmentedControl (0.1.1)
+  - XMSegmentedControl (0.1.4)
 
 DEPENDENCIES:
-  - Firebase (>= 2.3.3)
+  - Firebase (>= 2.4.3)
   - LTMorphingLabel
   - SnapKit (~> 0.15.0)
   - XMSegmentedControl
 
 SPEC CHECKSUMS:
-  Firebase: 5e898ed5012c81d28ca5fae1113c6b61a172bc6d
-  LTMorphingLabel: 0d2c981d47bb3b57dd03b37c5c13d8d71fc1e97e
+  Firebase: 48179995b561e2262c5d4060ecdffca45fbbff8b
+  LTMorphingLabel: 4235a403f99f0e0e503389da660e0fec324549d9
   SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
-  XMSegmentedControl: 01f82e578f7b3d25dc61ff8e8b0ef1b207438773
+  XMSegmentedControl: 51cf4f3daf14920692a064d9252aa7b29622dda6
 
 COCOAPODS: 0.39.0
