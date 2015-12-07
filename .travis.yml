@@ -9,5 +9,6 @@ xcode_scheme: BluetoothTest
 osx_image: xcode7
 xcode_sdk: iphonesimulator9.0
 
-#script:
+script:
 #- xcodebuild clean build test -workspace BluetoothTest.xcworkspace -scheme BluetoothTest -destination 'platform=iOS Simulator,OS=9.0,name=iPhone 6'
+- xcodebuild clean build -workspace BluetoothTest -scheme BluetoothTest
