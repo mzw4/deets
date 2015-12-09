@@ -44,13 +44,6 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         flowLayout.minimumInteritemSpacing = 0
         flowLayout.minimumLineSpacing = 0
         
-        for c in User.currentContacts.values {
-            nameArray.append(c.name)
-            cityArray.append(c.title)
-            profileImage.append(c.profilePic)
-            self.userid.append(c.userId)
-        }
-        
         collectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height), collectionViewLayout: flowLayout);
         collectionView?.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell");
         collectionView?.delegate = self;
@@ -58,6 +51,13 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
         collectionView?.backgroundColor = UIColor(red:0/255.0, green:0/255.0, blue:0/255.0, alpha: 1.0);
         
         collectionView?.reloadData()
+        
+        for c in User.currentContacts.values {
+            nameArray.append(c.name)
+            cityArray.append(c.title)
+            profileImage.append(c.profilePic)
+            self.userid.append(c.userId)
+        }
         
         var user: User!
         if ProfileViewController.userIdShow == nil {
@@ -85,6 +85,16 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
     
     override func viewDidAppear(animated: Bool) {
         // Reload table data when the view is opened
+        nameArray = []
+        cityArray = []
+        profileImage = []
+        self.userid = []
+        for c in User.currentContacts.values {
+            nameArray.append(c.name)
+            cityArray.append(c.title)
+            profileImage.append(c.profilePic)
+            self.userid.append(c.userId)
+        }
         collectionView?.reloadData()
     }
     
@@ -165,10 +175,10 @@ class ContactsViewController: UIViewController, UICollectionViewDataSource,UICol
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if nameArray.count > 0 {
-            return nameArray.count;
-        }
-        return 0;
+        //if nameArray.count > 0 {
+          //  return nameArray.count;
+        //}
+        return User.currentContacts.count;
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize

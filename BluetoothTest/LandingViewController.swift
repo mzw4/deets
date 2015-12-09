@@ -31,7 +31,7 @@ class LandingViewController: UIViewController {
     func createView() {
         // TEMP, CREATE DB ENTRIES
         //        makeEvents()
-        DBScripts.makeUsers()
+//        DBScripts.makeUsers()
         // END TEMP
 
         view.backgroundColor = UIColor.blackColor()
